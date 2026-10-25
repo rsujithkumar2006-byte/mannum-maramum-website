@@ -1,0 +1,22 @@
+# ==============================================================================
+# MANNUM MARAMUM IYAKKAM — NETLIFY ROUTE REDIRECTS & API REVERSE PROXY
+# ==============================================================================
+
+# 1. Shortcuts & Semantic Route Redirects
+/volunteer              /#volunteer                302
+/volunteers             /#volunteer                302
+/volunteer-registration /#volunteer                302
+/nature-activities      /#gogreen                  302
+
+# 2. Portal Rewrites
+/vendor-registration    /vendor-registration.html  200
+/admin/login            /public/admin/login.html   200
+/admin                  /public/admin/index.html   200
+
+# 3. Backend API & Uploads Proxy
+# INSTRUCTIONS: Once you deploy your backend on Render/Railway/Fly.io/VPS,
+# replace 'https://YOUR_BACKEND_URL' with your real backend host, e.g.:
+# /api/*      https://mannum-maramum-api.onrender.com/api/:splat      200!
+# /uploads/*  https://mannum-maramum-api.onrender.com/uploads/:splat  200!
+/api/*      https://YOUR_BACKEND_URL/api/:splat      200!
+/uploads/*  https://YOUR_BACKEND_URL/uploads/:splat  200!

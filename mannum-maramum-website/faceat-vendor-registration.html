@@ -1,0 +1,2440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mannum Maramum Iyakkam | Vendor Registration Portal</title>
+  <meta name="description" content="Official Vendor Registration Portal for Mannum Maramum Iyakkam. Join our mission to protect nature and promote a greener future." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =========================================================================
+       CSS VARIABLES & THEME TOKENS (MANNUM MARAMUM NATURE-INSPIRED GREEN PALETTE)
+       ========================================================================= */
+    :root {
+      /* Environmental Green Palette */
+      --primary: #2E7D32;            /* Primary green */
+      --primary-dark: #1B5E20;       /* Dark green */
+      --primary-hover: #154c19;
+      --primary-light: #E8F5E9;      /* Light green background */
+      --primary-focus: rgba(46, 125, 50, 0.22);
+      --primary-gradient: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+      
+      --accent: #2E7D32;
+      --accent-soft: #E8F5E9;
+
+      /* Page, Cards, and Borders */
+      --bg-page: #F4F9F4;            /* Nature light green-tinted page background */
+      --bg-card: #FFFFFF;            /* Pure white cards */
+      --bg-card-alt: #F7FAF7;        /* Soft subtle green tint for unselected options */
+      --bg-input: #FFFFFF;
+      --border-color: #C8E6C9;       /* Soft green borders */
+      --border-focus: #2E7D32;
+
+      /* Typography */
+      --text-main: #222222;          /* Clean dark text */
+      --text-muted: #555555;
+      --text-subtle: #777777;
+      
+      /* Alerts & States */
+      --error-color: #dc2626;
+      --error-bg: #fef2f2;
+      --error-border: #fca5a5;
+
+      /* Elevation & Shadows */
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 10px -1px rgba(46, 125, 50, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+      --shadow-card: 0 8px 24px -4px rgba(46, 125, 50, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.02);
+      --shadow-lg: 0 15px 35px -5px rgba(27, 94, 32, 0.15);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    
+
+    /* =========================================================================
+       BASE & RESET
+       ========================================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+      padding: 20px 16px 80px;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    /* =========================================================================
+       HEADER & NAVIGATION BAR
+       ========================================================================= */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 14px 22px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: #E8F5E9;
+      color: #1B5E20;
+      border: 1px solid #C8E6C9;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      user-select: none;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.35);
+      flex-shrink: 0;
+    }
+
+    .brand-text h2 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-text span {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 28px;
+      padding: 40px 24px 34px;
+      background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 10px 28px -4px rgba(27, 94, 32, 0.32);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      display: inline-block;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #C8E6C9;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.95);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    
+
+    /* =========================================================================
+       3 & 4. SECTION CARDS & GREEN SECTION HEADINGS
+       ========================================================================= */
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+    }
+
+    .form-card:hover {
+      border-color: var(--primary);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      padding: 14px 18px;
+      background: #E8F5E9;           /* Subtle light green background */
+      border: 1px solid #C8E6C9;     /* Soft green borders */
+      border-left: 4px solid #2E7D32;/* Green section heading accent */
+      border-radius: var(--radius-sm);
+    }
+
+    
+
+    .section-num {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);    /* #2E7D32 */
+      color: #FFFFFF;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.92rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1B5E20;                /* Dark green section heading */
+    }
+
+    
+
+    .section-subtitle {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .req-star {
+      color: var(--error-color);
+      font-weight: bold;
+      margin-left: 2px;
+    }
+
+    /* =========================================================================
+       6 & 7. SELECTABLE REGISTRATION CARDS & PRICE TEXT
+       ========================================================================= */
+    .selectable-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .select-card {
+      position: relative;
+      border: 2px solid var(--border-color);
+      background: var(--bg-card-alt);
+      border-radius: var(--radius-md);
+      padding: 22px 20px;
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .select-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Selected registration card border to green */
+    .select-card.active {
+      border-color: #2E7D32;         /* Selected registration card border to green */
+      background: #E8F5E9;           /* Light green background */
+      box-shadow: 0 0 0 1px #2E7D32, var(--shadow-md);
+    }
+
+    
+
+    .select-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .select-card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .check-indicator {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      color: transparent;
+      transition: var(--transition);
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      font-weight: 900;
+    }
+
+    .select-card.active .check-indicator {
+      background: var(--primary);    /* #2E7D32 */
+      border-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .price-list {
+      list-style: none;
+      margin-top: 10px;
+      font-size: 0.92rem;
+      border-top: 1px dashed var(--border-color);
+      padding-top: 10px;
+    }
+
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      color: var(--text-muted);
+    }
+
+    /* Price text (₹5,000/-, ₹9,000/-, etc.) to dark green */
+    .price-item strong {
+      color: #1B5E20;                /* Dark green price text */
+      font-weight: 700;
+    }
+
+    
+
+    /* =========================================================================
+       8. REGISTRATION DURATION SELECTION STYLES (GREEN)
+       ========================================================================= */
+    .duration-card {
+      text-align: center;
+      padding: 22px 14px;
+    }
+
+    .duration-card:hover {
+      border-color: #2E7D32;
+    }
+
+    .duration-card.active {
+      border-color: #2E7D32;         /* Green border */
+      background: #E8F5E9;           /* Light green background */
+      box-shadow: 0 0 0 1px #2E7D32, var(--shadow-md);
+    }
+
+    
+
+    .duration-card .duration-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    /* Duration price text to dark green */
+    .duration-card .duration-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #1B5E20;                /* Dark green */
+      letter-spacing: -0.02em;
+    }
+
+    
+
+    .duration-card .duration-tag {
+      margin-top: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #2E7D32;                /* Green */
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* =========================================================================
+       5. FORM CONTROLS & RADIO BUTTON ACCENT COLOURS (GREEN)
+       ========================================================================= */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px 20px;
+    }
+
+    .col-span-2 {
+      grid-column: span 2;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+    }
+
+    .hint-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 14px;
+      background: var(--bg-input);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--primary-focus);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      accent-color: #2E7D32;         /* Native radio/checkbox accent colour to green */
+    }
+
+    /* Business Details Radio Cards */
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .radio-option {
+      position: relative;
+      flex: 1;
+      min-width: 160px;
+    }
+
+    .radio-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .radio-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-card-alt);
+      border-radius: var(--radius-md);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .radio-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--border-color);
+      display: inline-block;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    /* Radio button active state: green */
+    .radio-option input[type="radio"]:checked + .radio-label {
+      border-color: #2E7D32;         /* Green border */
+      background: #E8F5E9;           /* Light green background */
+      color: #1B5E20;                /* Dark green text */
+    }
+
+    
+
+    .radio-option input[type="radio"]:checked + .radio-label .radio-circle {
+      border-color: #2E7D32;         /* Green circle */
+      background: #2E7D32;           /* Green center */
+      box-shadow: inset 0 0 0 3px var(--bg-card);
+    }
+
+    /* =========================================================================
+       SERVICE AREAS (MULTI-SELECT DROPDOWN WITH CHIPS/TAGS)
+       ========================================================================= */
+    .service-area-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px;
+      min-height: 48px;
+      background: var(--bg-input);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .chips-container:focus-within,
+    .chips-container.dropdown-open {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--primary-focus);
+    }
+
+    .chip-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: #E8F5E9;
+      color: #1B5E20;
+      border: 1px solid #C8E6C9;
+      border-radius: var(--radius-full);
+      font-size: 0.84rem;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    
+
+    .chip-remove {
+      width: 16px;
+      height: 16px;
+      border-radius: var(--radius-full);
+      background: rgba(46, 125, 50, 0.18);
+      color: #1B5E20;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 900;
+      transition: var(--transition);
+    }
+
+    
+
+    .chip-remove:hover {
+      background: #2E7D32;
+      color: #FFFFFF;
+    }
+
+    .chips-placeholder {
+      color: var(--text-subtle);
+      font-size: 0.95rem;
+      align-self: center;
+      padding-left: 4px;
+      user-select: none;
+    }
+
+    .service-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      max-height: 280px;
+      overflow-y: auto;
+      z-index: 100;
+      padding: 10px;
+    }
+
+    .service-dropdown-menu.show {
+      display: block;
+    }
+
+    .service-search-box {
+      padding: 6px 10px;
+      margin-bottom: 8px;
+    }
+
+    .service-search-box input {
+      padding: 8px 12px;
+      font-size: 0.88rem;
+    }
+
+    .service-actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 6px 8px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 6px;
+    }
+
+    .btn-action-text {
+      background: none;
+      border: none;
+      color: #2E7D32;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .btn-action-text:hover { text-decoration: underline; }
+
+    .service-dropdown-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px;
+    }
+
+    .service-opt-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .service-opt-item:hover {
+      background: var(--bg-card-alt);
+    }
+
+    .service-opt-item.selected {
+      background: #E8F5E9;
+      color: #1B5E20;
+      font-weight: 700;
+    }
+
+    
+
+    .service-opt-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #2E7D32;
+      cursor: pointer;
+    }
+
+    /* =========================================================================
+       DOCUMENT UPLOAD CARDS
+       ========================================================================= */
+    .upload-card {
+      border: 1.5px dashed var(--border-color);
+      background: var(--bg-card-alt);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    .upload-card:hover {
+      border-color: #2E7D32;
+      background: #E8F5E9;
+    }
+
+    
+
+    .upload-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .upload-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .upload-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: #2E7D32;
+      color: #FFFFFF;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .upload-action-btn:hover {
+      background: #1B5E20;
+    }
+
+    .upload-file-display {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 4px 8px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+    }
+
+    .upload-file-display.has-file {
+      color: #1B5E20;
+      font-weight: 700;
+      border-color: #2E7D32;
+    }
+
+    
+
+    .native-file-input { display: none; }
+
+    /* =========================================================================
+       REGISTRATION PAYMENT TABLE & BREAKDOWN
+       ========================================================================= */
+    .payment-summary-box {
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-card-alt);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .payment-summary-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .payment-summary-table th,
+    .payment-summary-table td {
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 0.94rem;
+    }
+
+    .payment-summary-table th {
+      background: rgba(46, 125, 50, 0.06);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    #tableAmount {
+      font-weight: 700;
+      color: #1B5E20;
+    }
+
+    
+
+    .total-fee-row {
+      background: #E8F5E9;
+      border-top: 2px solid #2E7D32;
+    }
+
+    
+
+    .total-fee-row td {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    /* Total Amount Highlight (Dark green) */
+    .total-amount-highlight {
+      color: #1B5E20;                /* Dark green */
+      font-size: 1.45rem;
+      font-weight: 800;
+    }
+
+    
+
+    /* =========================================================================
+       BANK & SCAN & PAY DETAILS
+       ========================================================================= */
+    .payment-split-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 24px;
+    }
+
+    .bank-card {
+      background: var(--bg-card-alt);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+
+    .bank-card h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .placeholder-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      background: rgba(220, 38, 38, 0.1);
+      color: var(--error-color);
+      border-radius: var(--radius-full);
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .bank-item-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 7px 0;
+      border-bottom: 1px dotted var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .bank-item-row:last-child { border-bottom: none; }
+    .bank-item-label { color: var(--text-muted); }
+    .bank-item-val {
+      font-weight: 700;
+      color: var(--text-main);
+      font-family: monospace, sans-serif;
+    }
+
+    .copy-upi-btn {
+      background: none;
+      border: none;
+      color: #2E7D32;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+    .copy-upi-btn:hover { text-decoration: underline; }
+
+    /* Scan & Pay Card */
+    .scan-pay-card {
+      background: var(--bg-card-alt);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scan-pay-card h4 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .scan-pay-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      max-width: 240px;
+    }
+
+    .qr-placeholder-box {
+      width: 170px;
+      height: 170px;
+      background: var(--bg-card);
+      border: 2px dashed #2E7D32;
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .qr-placeholder-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #1B5E20;
+    }
+
+    
+
+    .qr-placeholder-subtitle {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* =========================================================================
+       DECLARATION & SUBMIT BUTTON
+       ========================================================================= */
+    .declaration-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .declaration-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .declaration-label input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #2E7D32;
+      margin-top: 3px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .declaration-text {
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 17px 28px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      box-shadow: 0 10px 22px -5px rgba(27, 94, 32, 0.42);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px -5px rgba(27, 94, 32, 0.52);
+      background: linear-gradient(135deg, #154c19 0%, #256629 100%);
+    }
+
+    .btn-submit:active { transform: translateY(0); }
+
+    /* =========================================================================
+       VALIDATION ERROR STATES
+       ========================================================================= */
+    .field-error-msg {
+      color: var(--error-color);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .has-error input,
+    .has-error select,
+    .has-error textarea,
+    .has-error .chips-container {
+      border-color: var(--error-color) !important;
+      background-color: var(--error-bg);
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+    }
+
+    .has-error .field-error-msg {
+      display: block;
+    }
+
+    /* =========================================================================
+       SUCCESS MODAL / FRONTEND CONFIRMATION
+       ========================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.68);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 16px;
+    }
+
+    .modal-backdrop.active { display: flex; }
+
+    .modal-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 38px 32px;
+      max-width: 540px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modalPop {
+      0% { opacity: 0; transform: scale(0.92); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-icon-wrap {
+      width: 76px;
+      height: 76px;
+      border-radius: var(--radius-full);
+      background: #E8F5E9;
+      color: #2E7D32;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+    }
+
+    
+
+    .modal-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .modal-summary-grid {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      text-align: left;
+      margin-bottom: 20px;
+      font-size: 0.92rem;
+    }
+
+    .modal-summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .modal-summary-row:last-child {
+      border-bottom: none;
+      font-weight: 800;
+      color: #1B5E20;
+      font-size: 1.1rem;
+      padding-top: 10px;
+    }
+
+    
+
+    .modal-demo-tag {
+      font-size: 0.78rem;
+      color: #64748b;
+      margin-bottom: 22px;
+      line-height: 1.4;
+      background: rgba(0,0,0,0.03);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-modal-close {
+      background: #2E7D32;
+      color: #FFFFFF;
+      border: none;
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .btn-modal-close:hover { background: #1B5E20; }
+
+    /* =========================================================================
+       RESPONSIVE DESIGN (DESKTOP TO MOBILE SINGLE COLUMN)
+       ========================================================================= */
+    @media (max-width: 768px) {
+      body { padding: 14px 10px 60px; }
+      .form-card { padding: 22px 16px; }
+      .hero { padding: 24px 14px 20px; }
+      .hero h1 { font-size: 1.7rem; }
+      .hero p { font-size: 0.94rem; }
+
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .col-span-2 { grid-column: span 1; }
+      .service-dropdown-list { grid-template-columns: 1fr; }
+
+      .payment-split-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .radio-group { flex-direction: column; }
+      .radio-label { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Header Bar -->
+    <header class="header-bar" role="banner">
+      <a href="#" class="brand-mark" aria-label="FACEAT Home">
+        <div class="brand-icon">F</div>
+        <div class="brand-text">
+          <h2>FACEAT</h2>
+          <span>Federation of All Civil Engineers Associations of Tamil Nadu</span>
+        </div>
+      </a>
+
+      <div class="header-badge">Official Partner Portal</div>
+    </header>
+
+    <!-- Hero Title -->
+    <div class="hero">
+      <h1>Mannum Maramum Iyakkam</h1>
+      <div class="hero-subtitle">Vendor Registration Portal</div>
+      <p>Join our mission to protect nature and promote a greener future.</p>
+    </div>
+
+    <!-- MAIN REGISTRATION FORM -->
+    <form id="vendorRegistrationForm" novalidate autocomplete="on">
+
+      <!-- ===================================================================
+           1. VENDOR REGISTRATION TYPE
+           =================================================================== -->
+      <section class="form-card" id="sectionVendorType">
+        <div class="section-header">
+          <span class="section-num">1</span>
+          <div>
+            <h2 class="section-title">Vendor Registration Type <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Select your vendor category to unlock tier duration pricing</p>
+          </div>
+        </div>
+
+        <div class="selectable-grid grid-2" id="vendorTypeGrid">
+          <!-- Corporate Vendor Card (Default Active) -->
+          <div class="select-card active" data-vendor-type="Corporate Vendor" tabindex="0" role="radio" aria-checked="true">
+            <div>
+              <div class="select-card-header">
+                <div>
+                  <div class="select-card-title">Corporate Vendor</div>
+                  <span class="hint-text">For medium to large enterprises</span>
+                </div>
+                <div class="check-indicator">&check;</div>
+              </div>
+              <ul class="price-list">
+                <li class="price-item"><span>1 Year:</span> <strong>₹5,000/-</strong></li>
+                <li class="price-item"><span>2 Years:</span> <strong>₹9,000/-</strong></li>
+                <li class="price-item"><span>3 Years:</span> <strong>₹13,000/-</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Company Vendor Card -->
+          <div class="select-card" data-vendor-type="Company Vendor" tabindex="0" role="radio" aria-checked="false">
+            <div>
+              <div class="select-card-header">
+                <div>
+                  <div class="select-card-title">Company Vendor</div>
+                  <span class="hint-text">For proprietary firms, LLPs & SMBs</span>
+                </div>
+                <div class="check-indicator">&check;</div>
+              </div>
+              <ul class="price-list">
+                <li class="price-item"><span>1 Year:</span> <strong>₹3,000/-</strong></li>
+                <li class="price-item"><span>2 Years:</span> <strong>₹5,500/-</strong></li>
+                <li class="price-item"><span>3 Years:</span> <strong>₹8,000/-</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" id="selectedVendorType" name="vendorType" value="Corporate Vendor" />
+        <div class="field-error-msg" id="errorVendorType">Please choose a Vendor Registration Type.</div>
+      </section>
+
+
+      <!-- ===================================================================
+           2. REGISTRATION DURATION
+           =================================================================== -->
+      <section class="form-card" id="sectionDuration">
+        <div class="section-header">
+          <span class="section-num">2</span>
+          <div>
+            <h2 class="section-title">Registration Duration <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Select the membership validity period. Prices update automatically based on vendor category.</p>
+          </div>
+        </div>
+
+        <div class="selectable-grid grid-3" id="durationGrid">
+          <!-- 1 Year (Default Active) -->
+          <div class="select-card duration-card active" data-duration="1 Year" data-duration-years="1" tabindex="0" role="radio" aria-checked="true">
+            <div class="check-indicator" style="position: absolute; top: 12px; right: 12px;">&check;</div>
+            <div class="duration-name">1 Year</div>
+            <div class="duration-price" id="priceDisplay1Year">₹5,000/-</div>
+            <div class="duration-tag">Standard Plan</div>
+          </div>
+
+          <!-- 2 Years -->
+          <div class="select-card duration-card" data-duration="2 Years" data-duration-years="2" tabindex="0" role="radio" aria-checked="false">
+            <div class="check-indicator" style="position: absolute; top: 12px; right: 12px;">&check;</div>
+            <div class="duration-name">2 Years</div>
+            <div class="duration-price" id="priceDisplay2Years">₹9,000/-</div>
+            <div class="duration-tag">Discounted Plan</div>
+          </div>
+
+          <!-- 3 Years -->
+          <div class="select-card duration-card" data-duration="3 Years" data-duration-years="3" tabindex="0" role="radio" aria-checked="false">
+            <div class="check-indicator" style="position: absolute; top: 12px; right: 12px;">&check;</div>
+            <div class="duration-name">3 Years</div>
+            <div class="duration-price" id="priceDisplay3Years">₹13,000/-</div>
+            <div class="duration-tag">Best Value Plan</div>
+          </div>
+        </div>
+        <input type="hidden" id="selectedDuration" name="duration" value="1 Year" />
+        <input type="hidden" id="registrationAmount" name="registrationAmount" value="5000" />
+        <div class="field-error-msg" id="errorDuration">Please select a Registration Duration.</div>
+      </section>
+
+
+      <!-- ===================================================================
+           3. COMPANY DETAILS
+           =================================================================== -->
+      <section class="form-card" id="sectionCompanyDetails">
+        <div class="section-header">
+          <span class="section-num">3</span>
+          <div>
+            <h2 class="section-title">Company Details</h2>
+            <p class="section-subtitle">Official registered entity, tax and address information</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group col-span-2" id="groupCompanyName">
+            <label for="companyName">Company Name <span class="req-star">*</span></label>
+            <input type="text" id="companyName" name="companyName" placeholder="e.g. Southern Infra Tech Solutions Pvt Ltd" required autocomplete="organization" />
+            <div class="field-error-msg" id="errorCompanyName">Company Name is required.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="companyRegNumber">Company Registration Number</label>
+            <input type="text" id="companyRegNumber" name="companyRegNumber" placeholder="e.g. U45201TN2020PTC123456 / MSME / Reg No." />
+          </div>
+
+          <div class="form-group">
+            <label for="gstNumber">GST Number</label>
+            <input type="text" id="gstNumber" name="gstNumber" placeholder="e.g. 33AAAAA0000A1Z5" style="text-transform: uppercase;" />
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="panNumber">PAN Number</label>
+            <input type="text" id="panNumber" name="panNumber" placeholder="e.g. ABCDE1234F" style="text-transform: uppercase;" maxlength="10" />
+          </div>
+
+          <div class="form-group col-span-2" id="groupCompanyAddress">
+            <label for="companyAddress">Company Address <span class="req-star">*</span></label>
+            <textarea id="companyAddress" name="companyAddress" rows="3" placeholder="Door / Plot No., Street, Area, Landmark" required autocomplete="street-address"></textarea>
+            <div class="field-error-msg" id="errorCompanyAddress">Company Address is required.</div>
+          </div>
+
+          <div class="form-group" id="groupDistrict">
+            <label for="cityDistrict">City / District <span class="req-star">*</span></label>
+            <select id="cityDistrict" name="cityDistrict" required>
+              <option value="">Select District</option>
+              <!-- Populated via JavaScript with all 39 requested Tamil Nadu + Puducherry districts -->
+            </select>
+            <div class="field-error-msg" id="errorCityDistrict">Please select a District.</div>
+          </div>
+
+          <div class="form-group" id="groupPincode">
+            <label for="pinCode">PIN Code (6 digits) <span class="req-star">*</span></label>
+            <input type="text" id="pinCode" name="pinCode" placeholder="e.g. 600001" maxlength="6" inputmode="numeric" required />
+            <div class="field-error-msg" id="errorPinCode">Enter a valid 6-digit PIN code (numeric only).</div>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="website">Website</label>
+            <input type="url" id="website" name="website" placeholder="https://www.yourcompany.com" autocomplete="url" />
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           4. CONTACT DETAILS
+           =================================================================== -->
+      <section class="form-card" id="sectionContactDetails">
+        <div class="section-header">
+          <span class="section-num">4</span>
+          <div>
+            <h2 class="section-title">Contact Details</h2>
+            <p class="section-subtitle">Primary authorized contact person for official communication</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group" id="groupContactName">
+            <label for="contactPersonName">Contact Person Name <span class="req-star">*</span></label>
+            <input type="text" id="contactPersonName" name="contactPersonName" placeholder="e.g. Er. K. Rajesh" required autocomplete="name" />
+            <div class="field-error-msg" id="errorContactPersonName">Contact Person Name is required.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="designation">Designation</label>
+            <input type="text" id="designation" name="designation" placeholder="e.g. Managing Director / Partner" autocomplete="organization-title" />
+          </div>
+
+          <div class="form-group" id="groupMobileNumber">
+            <label for="mobileNumber">Mobile Number <span class="req-star">*</span></label>
+            <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" required autocomplete="tel" />
+            <div class="field-error-msg" id="errorMobileNumber">Enter exactly 10 numeric digits.</div>
+          </div>
+
+          <div class="form-group" id="groupAltMobileNumber">
+            <label for="altMobileNumber">Alternate Mobile Number</label>
+            <input type="tel" id="altMobileNumber" name="altMobileNumber" placeholder="Optional 10-digit number" maxlength="10" inputmode="numeric" />
+            <div class="field-error-msg" id="errorAltMobileNumber">If entered, alternate mobile must be exactly 10 digits.</div>
+          </div>
+
+          <div class="form-group col-span-2" id="groupEmail">
+            <label for="emailAddress">Email Address <span class="req-star">*</span></label>
+            <input type="email" id="emailAddress" name="emailAddress" placeholder="contact@company.com" required autocomplete="email" />
+            <div class="field-error-msg" id="errorEmailAddress">Please enter a valid email format.</div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           5. BUSINESS DETAILS
+           =================================================================== -->
+      <section class="form-card" id="sectionBusinessDetails">
+        <div class="section-header">
+          <span class="section-num">5</span>
+          <div>
+            <h2 class="section-title">Business Details</h2>
+            <p class="section-subtitle">Specify what your enterprise provides</p>
+          </div>
+        </div>
+
+        <div class="form-group" id="groupBusinessType">
+          <label>Business Type <span class="req-star">*</span></label>
+          <div class="radio-group" role="radiogroup">
+            <label class="radio-option">
+              <input type="radio" name="businessType" value="Product" required />
+              <span class="radio-label">
+                <span class="radio-circle"></span>
+                Product
+              </span>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" name="businessType" value="Service" required />
+              <span class="radio-label">
+                <span class="radio-circle"></span>
+                Service
+              </span>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" name="businessType" value="Product & Service" required />
+              <span class="radio-label">
+                <span class="radio-circle"></span>
+                Product &amp; Service
+              </span>
+            </label>
+          </div>
+          <div class="field-error-msg" id="errorBusinessType">Please select your Business Type.</div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           6. SERVICE AREAS (MULTI-SELECT DROPDOWN WITH CHIPS/TAGS)
+           =================================================================== -->
+      <section class="form-card" id="sectionServiceAreas">
+        <div class="section-header">
+          <span class="section-num">6</span>
+          <div>
+            <h2 class="section-title">Service Areas <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Select districts where your operations, products, or services are provided</p>
+          </div>
+        </div>
+
+        <div class="form-group" id="groupServiceAreas">
+          <label>Select Service Areas <span class="req-star">*</span></label>
+          
+          <div class="service-area-wrapper">
+            <!-- Chips Container / Clickable Dropdown Trigger -->
+            <div class="chips-container" id="chipsContainer" tabindex="0" role="combobox" aria-expanded="false" aria-haspopup="listbox">
+              <span class="chips-placeholder" id="chipsPlaceholder">Select one or more service areas</span>
+            </div>
+
+            <!-- Custom Searchable Dropdown Menu -->
+            <div class="service-dropdown-menu" id="serviceDropdownMenu">
+              <div class="service-search-box">
+                <input type="text" id="serviceSearchInput" placeholder="Filter districts..." aria-label="Search districts" />
+              </div>
+              <div class="service-actions-row">
+                <button type="button" class="btn-action-text" id="btnSelectAllDistricts">Select All (39)</button>
+                <button type="button" class="btn-action-text" id="btnClearDistricts">Clear All</button>
+              </div>
+              <div class="service-dropdown-list" id="serviceDropdownList" role="listbox">
+                <!-- District options with checkboxes injected via JS -->
+              </div>
+            </div>
+          </div>
+
+          <p class="hint-text">You can select multiple districts / service areas.</p>
+          <div class="field-error-msg" id="errorServiceAreas">Please select at least one service area / district.</div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           7. COMPANY / SERVICE DESCRIPTION
+           =================================================================== -->
+      <section class="form-card" id="sectionCompanyDescription">
+        <div class="section-header">
+          <span class="section-num">7</span>
+          <div>
+            <h2 class="section-title">Company / Service Description</h2>
+            <p class="section-subtitle">Brief overview of your operations, civil supplies, or specialized services</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="companyProfile">Brief Company Profile</label>
+          <textarea id="companyProfile" name="companyProfile" rows="4" placeholder="Briefly describe your company, products, services and experience..."></textarea>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           8. FACEAT MEMBERSHIP / CERTIFICATION
+           =================================================================== -->
+      <section class="form-card" id="sectionFaceatMember">
+        <div class="section-header">
+          <span class="section-num">8</span>
+          <div>
+            <h2 class="section-title">FACEAT Membership / Certification <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Are you or your entity already a certified FACEAT member?</p>
+          </div>
+        </div>
+
+        <div class="form-group" id="groupFaceatMember">
+          <label for="faceatMemberSelect">FACEAT Certified Member? <span class="req-star">*</span></label>
+          <select id="faceatMemberSelect" name="faceatCertifiedMember" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          <div class="field-error-msg" id="errorFaceatMember">Please specify if you are a FACEAT Certified Member.</div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           9. DOCUMENT UPLOAD
+           =================================================================== -->
+      <section class="form-card" id="sectionDocumentUpload">
+        <div class="section-header">
+          <span class="section-num">9</span>
+          <div>
+            <h2 class="section-title">Document Upload</h2>
+            <p class="section-subtitle">Upload official verification documents (PDF, PNG, JPG - Frontend verification)</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <!-- Company Logo -->
+          <div class="upload-card">
+            <div class="upload-card-header">
+              <span class="upload-title">Company Logo</span>
+              <button type="button" class="upload-action-btn" onclick="triggerFileUpload('fileLogo')">Choose File</button>
+            </div>
+            <div class="upload-file-display" id="disp_fileLogo">No file chosen</div>
+            <input type="file" id="fileLogo" name="fileLogo" class="native-file-input" accept="image/*,.pdf" onchange="handleFileSelected(this, 'disp_fileLogo')" />
+          </div>
+
+          <!-- GST Certificate -->
+          <div class="upload-card">
+            <div class="upload-card-header">
+              <span class="upload-title">GST Certificate</span>
+              <button type="button" class="upload-action-btn" onclick="triggerFileUpload('fileGst')">Choose File</button>
+            </div>
+            <div class="upload-file-display" id="disp_fileGst">No file chosen</div>
+            <input type="file" id="fileGst" name="fileGst" class="native-file-input" accept=".pdf,image/*" onchange="handleFileSelected(this, 'disp_fileGst')" />
+          </div>
+
+          <!-- PAN Card -->
+          <div class="upload-card">
+            <div class="upload-card-header">
+              <span class="upload-title">PAN Card</span>
+              <button type="button" class="upload-action-btn" onclick="triggerFileUpload('filePan')">Choose File</button>
+            </div>
+            <div class="upload-file-display" id="disp_filePan">No file chosen</div>
+            <input type="file" id="filePan" name="filePan" class="native-file-input" accept=".pdf,image/*" onchange="handleFileSelected(this, 'disp_filePan')" />
+          </div>
+
+          <!-- Company Registration Certificate -->
+          <div class="upload-card">
+            <div class="upload-card-header">
+              <span class="upload-title">Company Registration Certificate</span>
+              <button type="button" class="upload-action-btn" onclick="triggerFileUpload('fileRegCert')">Choose File</button>
+            </div>
+            <div class="upload-file-display" id="disp_fileRegCert">No file chosen</div>
+            <input type="file" id="fileRegCert" name="fileRegCert" class="native-file-input" accept=".pdf,image/*" onchange="handleFileSelected(this, 'disp_fileRegCert')" />
+          </div>
+
+          <!-- Company Profile / Brochure -->
+          <div class="upload-card col-span-2">
+            <div class="upload-card-header">
+              <span class="upload-title">Company Profile / Brochure</span>
+              <button type="button" class="upload-action-btn" onclick="triggerFileUpload('fileBrochure')">Choose File</button>
+            </div>
+            <div class="upload-file-display" id="disp_fileBrochure">No file chosen</div>
+            <input type="file" id="fileBrochure" name="fileBrochure" class="native-file-input" accept=".pdf,image/*" onchange="handleFileSelected(this, 'disp_fileBrochure')" />
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           10. REGISTRATION PAYMENT SUMMARY & TRANSACTION
+           =================================================================== -->
+      <section class="form-card" id="sectionRegistrationPayment">
+        <div class="section-header">
+          <span class="section-num">10</span>
+          <div>
+            <h2 class="section-title">Registration Payment</h2>
+            <p class="section-subtitle">Real-time breakdown of registration fees and transaction details</p>
+          </div>
+        </div>
+
+        <div class="payment-summary-box">
+          <table class="payment-summary-table" aria-label="Registration Fee Summary">
+            <thead>
+              <tr>
+                <th>Selected Vendor Type</th>
+                <th>Selected Duration</th>
+                <th>Registration Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="tableVendorType">Corporate Vendor</td>
+                <td id="tableDuration">1 Year</td>
+                <td id="tableAmount">₹5,000/-</td>
+              </tr>
+              <tr class="total-fee-row">
+                <td colspan="2">Total Registration Fee:</td>
+                <td class="total-amount-highlight" id="tableTotalFee">₹5,000/-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="paymentRefNumber">Payment Reference / Transaction Number</label>
+            <input type="text" id="paymentRefNumber" name="paymentRefNumber" placeholder="e.g. UTR / UPI Ref / IMPS / 428172918234" />
+          </div>
+
+          <div class="form-group">
+            <label for="paymentDate">Payment Date</label>
+            <input type="date" id="paymentDate" name="paymentDate" />
+          </div>
+
+          <div class="form-group col-span-2">
+            <label>Payment Screenshot / Receipt</label>
+            <div class="upload-card">
+              <div class="upload-card-header">
+                <span class="upload-title">Payment Screenshot / Receipt (Image or PDF)</span>
+                <button type="button" class="upload-action-btn" onclick="triggerFileUpload('fileReceipt')">Choose File</button>
+              </div>
+              <div class="upload-file-display" id="disp_fileReceipt">No file chosen</div>
+              <input type="file" id="fileReceipt" name="fileReceipt" class="native-file-input" accept=".pdf,image/*" onchange="handleFileSelected(this, 'disp_fileReceipt')" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           11. PAYMENT DETAILS & 12. SCAN & PAY
+           =================================================================== -->
+      <section class="form-card" id="sectionBankDetails">
+        <div class="section-header">
+          <span class="section-num">11</span>
+          <div>
+            <h2 class="section-title">Payment Details</h2>
+            <p class="section-subtitle">Official FACEAT Bank Account Details and Scan &amp; Pay</p>
+          </div>
+        </div>
+
+        <div class="payment-split-grid">
+          <!-- 11. FACEAT Bank Account Details -->
+          <div class="bank-card">
+            <h4>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+              FACEAT Bank Account Details
+            </h4>
+            <span class="placeholder-badge">Placeholder Information</span>
+
+            <div class="bank-item-row">
+              <span class="bank-item-label">Account Name:</span>
+              <span class="bank-item-val">FACEAT</span>
+            </div>
+            <div class="bank-item-row">
+              <span class="bank-item-label">Bank Name:</span>
+              <span class="bank-item-val">YOUR BANK NAME</span>
+            </div>
+            <div class="bank-item-row">
+              <span class="bank-item-label">Branch:</span>
+              <span class="bank-item-val">YOUR BRANCH NAME</span>
+            </div>
+            <div class="bank-item-row">
+              <span class="bank-item-label">Account Number:</span>
+              <span class="bank-item-val">XXXXXXXXXXXX</span>
+            </div>
+            <div class="bank-item-row">
+              <span class="bank-item-label">IFSC Code:</span>
+              <span class="bank-item-val">XXXXXXXXXXX</span>
+            </div>
+            <div class="bank-item-row">
+              <span class="bank-item-label">UPI ID:</span>
+              <span class="bank-item-val">
+                <span id="upiIdText">yourupi@bank</span>
+                <button type="button" class="copy-upi-btn" id="btnCopyUpi" title="Copy UPI ID">Copy</button>
+              </span>
+            </div>
+          </div>
+
+          <!-- 12. Scan & Pay -->
+          <div class="scan-pay-card">
+            <h4>Scan &amp; Pay</h4>
+            <p class="scan-pay-desc">Scan the QR code using your UPI app to make the registration payment.</p>
+
+            <div class="qr-placeholder-box">
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--primary);">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <div class="qr-placeholder-title">FACEAT Payment QR Code</div>
+              <div class="qr-placeholder-subtitle">Payment QR will be added here.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           13. DECLARATION
+           =================================================================== -->
+      <section class="declaration-card" id="sectionDeclaration">
+        <label class="declaration-label" for="declarationCheckbox">
+          <input type="checkbox" id="declarationCheckbox" name="declaration" required />
+          <span class="declaration-text">
+            I hereby declare that the information provided above is true and correct. I agree to abide by the rules, regulations and terms of FACEAT vendor registration. <span class="req-star">*</span>
+          </span>
+        </label>
+        <div class="field-error-msg" id="errorDeclaration" style="margin-top: 8px;">You must agree to the declaration before submitting.</div>
+      </section>
+
+      <!-- ===================================================================
+           14. SUBMIT BUTTON
+           =================================================================== -->
+      <button type="submit" class="btn-submit" id="btnSubmitForm">
+        <span>Submit Vendor Registration</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+
+    </form>
+  </div>
+
+  <!-- =======================================================================
+       15. SUCCESS MESSAGE MODAL
+       ======================================================================= -->
+  <div class="modal-backdrop" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-icon-wrap">&check;</div>
+      <h3 class="modal-title" id="modalTitle">Vendor Registration Submitted</h3>
+      <p class="modal-desc">Thank you for registering with FACEAT. Your vendor registration details have been recorded successfully.</p>
+
+      <div class="modal-summary-grid">
+        <div class="modal-summary-row">
+          <span>Vendor Type:</span>
+          <strong id="modalSummaryType">Corporate Vendor</strong>
+        </div>
+        <div class="modal-summary-row">
+          <span>Duration:</span>
+          <strong id="modalSummaryDuration">1 Year</strong>
+        </div>
+        <div class="modal-summary-row">
+          <span>Payment Reference Number:</span>
+          <strong id="modalSummaryRef">—</strong>
+        </div>
+        <div class="modal-summary-row">
+          <span>Total Registration Fee:</span>
+          <strong id="modalSummaryFee">₹5,000/-</strong>
+        </div>
+      </div>
+
+      <div class="modal-demo-tag">
+        Note: This is a frontend demonstration recording. Official verification will be performed prior to final approval.
+      </div>
+
+      <button type="button" class="btn-modal-close" id="btnModalClose">Done / Register Another</button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       JAVASCRIPT FUNCTIONAL LOGIC
+       ========================================================================= -->
+  <script>
+    document.documentElement.removeAttribute("data-theme");
+
+    // =========================================================================
+    // 18. EXACT PRICING OBJECT MATRIX
+    // =========================================================================
+    const PRICING_MATRIX = {
+      "Corporate Vendor": {
+        "1 Year": 5000,
+        "2 Years": 9000,
+        "3 Years": 13000
+      },
+      "Company Vendor": {
+        "1 Year": 3000,
+        "2 Years": 5500,
+        "3 Years": 8000
+      }
+    };
+
+    // 3. EXACT LIST OF 38 TAMIL NADU DISTRICTS + PUDUCHERRY (39 TOTAL)
+    const TAMILNADU_DISTRICTS = [
+      "Ariyalur",
+      "Chengalpattu",
+      "Chennai",
+      "Coimbatore",
+      "Cuddalore",
+      "Dharmapuri",
+      "Dindigul",
+      "Erode",
+      "Kallakurichi",
+      "Kancheepuram",
+      "Karur",
+      "Krishnagiri",
+      "Madurai",
+      "Mayiladuthurai",
+      "Nagapattinam",
+      "Kanniyakumari",
+      "Namakkal",
+      "Perambalur",
+      "Pudukkottai",
+      "Ramanathapuram",
+      "Ranipet",
+      "Salem",
+      "Sivaganga",
+      "Tenkasi",
+      "Thanjavur",
+      "Theni",
+      "Thoothukudi",
+      "Tiruchirappalli",
+      "Tirunelveli",
+      "Tirupathur",
+      "Tiruppur",
+      "Tiruvallur",
+      "Tiruvannamalai",
+      "Tiruvarur",
+      "Vellore",
+      "Viluppuram",
+      "Virudhunagar",
+      "The Nilgiris",
+      "Puducherry"
+    ];
+
+    // Current State (Defaults: Corporate Vendor, 1 Year, Total = ₹5,000)
+    let selectedVendorType = "Corporate Vendor";
+    let selectedDuration = "1 Year";
+    let selectedServiceAreas = [];
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      enforceLightMode();
+      populateDistrictDropdown();
+      initServiceAreaMultiSelect();
+      initSelectionCards();
+      initPaymentHelpers();
+      initFormValidation();
+      updatePricingDisplays();
+    });
+
+    // =========================================================================
+    // THEME MANAGEMENT (PERMANENT LIGHT THEME)
+    // =========================================================================
+    function enforceLightMode() {
+      document.documentElement.removeAttribute("data-theme");
+      try {
+        localStorage.removeItem("faceat_theme");
+      } catch (e) {}
+    }
+    }
+
+    // =========================================================================
+    // 3. POPULATE CITY / DISTRICT DROPDOWN
+    // =========================================================================
+    function populateDistrictDropdown() {
+      const select = document.getElementById("cityDistrict");
+      TAMILNADU_DISTRICTS.forEach(district => {
+        const option = document.createElement("option");
+        option.value = district;
+        option.textContent = district;
+        select.appendChild(option);
+      });
+    }
+
+    // =========================================================================
+    // 6. SERVICE AREAS MULTI-SELECT DROPDOWN WITH CHIPS/TAGS
+    // =========================================================================
+    function initServiceAreaMultiSelect() {
+      const chipsContainer = document.getElementById("chipsContainer");
+      const dropdownMenu = document.getElementById("serviceDropdownMenu");
+      const dropdownList = document.getElementById("serviceDropdownList");
+      const searchInput = document.getElementById("serviceSearchInput");
+      const btnSelectAll = document.getElementById("btnSelectAllDistricts");
+      const btnClear = document.getElementById("btnClearDistricts");
+
+      // Render dropdown items
+      dropdownList.innerHTML = "";
+      TAMILNADU_DISTRICTS.forEach((district, idx) => {
+        const item = document.createElement("label");
+        item.className = "service-opt-item";
+        item.dataset.name = district.toLowerCase();
+
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.value = district;
+        cb.id = "sa_cb_" + idx;
+
+        cb.addEventListener("change", () => {
+          if (cb.checked) {
+            if (!selectedServiceAreas.includes(district)) selectedServiceAreas.push(district);
+          } else {
+            selectedServiceAreas = selectedServiceAreas.filter(d => d !== district);
+          }
+          renderChips();
+          clearFieldError("groupServiceAreas", "errorServiceAreas");
+        });
+
+        const span = document.createElement("span");
+        span.textContent = district;
+
+        item.appendChild(cb);
+        item.appendChild(span);
+        dropdownList.appendChild(item);
+      });
+
+      // Toggle Dropdown on chipsContainer click
+      chipsContainer.addEventListener("click", (e) => {
+        if (e.target.classList.contains("chip-remove")) return;
+        const isOpen = dropdownMenu.classList.contains("show");
+        if (isOpen) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
+      });
+
+      function openDropdown() {
+        dropdownMenu.classList.add("show");
+        chipsContainer.classList.add("dropdown-open");
+        chipsContainer.setAttribute("aria-expanded", "true");
+        searchInput.focus();
+      }
+
+      function closeDropdown() {
+        dropdownMenu.classList.remove("show");
+        chipsContainer.classList.remove("dropdown-open");
+        chipsContainer.setAttribute("aria-expanded", "false");
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".service-area-wrapper")) {
+          closeDropdown();
+        }
+      });
+
+      // Search filter
+      searchInput.addEventListener("input", (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        const items = dropdownList.querySelectorAll(".service-opt-item");
+        items.forEach(it => {
+          const matches = it.dataset.name.includes(q);
+          it.style.display = matches ? "flex" : "none";
+        });
+      });
+
+      // Select All
+      btnSelectAll.addEventListener("click", () => {
+        selectedServiceAreas = [...TAMILNADU_DISTRICTS];
+        updateCheckboxesState();
+        renderChips();
+        clearFieldError("groupServiceAreas", "errorServiceAreas");
+      });
+
+      // Clear All
+      btnClear.addEventListener("click", () => {
+        selectedServiceAreas = [];
+        updateCheckboxesState();
+        renderChips();
+      });
+
+      window.removeServiceAreaChip = function(district) {
+        selectedServiceAreas = selectedServiceAreas.filter(d => d !== district);
+        updateCheckboxesState();
+        renderChips();
+      };
+    }
+
+    function updateCheckboxesState() {
+      const cbs = document.querySelectorAll('#serviceDropdownList input[type="checkbox"]');
+      cbs.forEach(cb => {
+        cb.checked = selectedServiceAreas.includes(cb.value);
+        const parent = cb.closest(".service-opt-item");
+        if (parent) {
+          parent.classList.toggle("selected", cb.checked);
+        }
+      });
+    }
+
+    function renderChips() {
+      const container = document.getElementById("chipsContainer");
+      updateCheckboxesState();
+
+      if (selectedServiceAreas.length === 0) {
+        container.innerHTML = '<span class="chips-placeholder" id="chipsPlaceholder">Select one or more service areas</span>';
+        return;
+      }
+
+      container.innerHTML = "";
+      selectedServiceAreas.forEach(district => {
+        const chip = document.createElement("span");
+        chip.className = "chip-item";
+        chip.innerHTML = `${district} <span class="chip-remove" onclick="removeServiceAreaChip('${district}')">&times;</span>`;
+        container.appendChild(chip);
+      });
+    }
+
+    // =========================================================================
+    // 1 & 2. SELECTION CARDS & AUTOMATIC PRICING UPDATE
+    // =========================================================================
+    function initSelectionCards() {
+      const vendorCards = document.querySelectorAll("#vendorTypeGrid .select-card");
+      const durationCards = document.querySelectorAll("#durationGrid .select-card");
+
+      // Vendor Type Click Handler
+      vendorCards.forEach(card => {
+        card.addEventListener("click", () => {
+          vendorCards.forEach(c => {
+            c.classList.remove("active");
+            c.setAttribute("aria-checked", "false");
+          });
+          card.classList.add("active");
+          card.setAttribute("aria-checked", "true");
+
+          selectedVendorType = card.dataset.vendorType;
+          document.getElementById("selectedVendorType").value = selectedVendorType;
+          clearFieldError("sectionVendorType", "errorVendorType");
+
+          updatePricingDisplays();
+        });
+
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+
+      // Duration Click Handler
+      durationCards.forEach(card => {
+        card.addEventListener("click", () => {
+          durationCards.forEach(c => {
+            c.classList.remove("active");
+            c.setAttribute("aria-checked", "false");
+          });
+          card.classList.add("active");
+          card.setAttribute("aria-checked", "true");
+
+          selectedDuration = card.dataset.duration;
+          document.getElementById("selectedDuration").value = selectedDuration;
+          clearFieldError("sectionDuration", "errorDuration");
+
+          updatePricingDisplays();
+        });
+
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+    }
+
+    // Updates Duration Cards and Payment Section dynamically
+    function updatePricingDisplays() {
+      const rates = PRICING_MATRIX[selectedVendorType];
+      if (!rates) return;
+
+      // Update 3 Duration Card displays
+      document.getElementById("priceDisplay1Year").textContent = `₹${rates["1 Year"].toLocaleString("en-IN")}/-`;
+      document.getElementById("priceDisplay2Years").textContent = `₹${rates["2 Years"].toLocaleString("en-IN")}/-`;
+      document.getElementById("priceDisplay3Years").textContent = `₹${rates["3 Years"].toLocaleString("en-IN")}/-`;
+
+      // Calculate Total Amount
+      const totalAmount = rates[selectedDuration] || 0;
+      document.getElementById("registrationAmount").value = totalAmount;
+
+      const formattedTotal = `₹${totalAmount.toLocaleString("en-IN")}/-`;
+
+      // Update Section 10 Payment Table
+      document.getElementById("tableVendorType").textContent = selectedVendorType;
+      document.getElementById("tableDuration").textContent = selectedDuration;
+      document.getElementById("tableAmount").textContent = formattedTotal;
+      document.getElementById("tableTotalFee").textContent = formattedTotal;
+    }
+
+    // =========================================================================
+    // 9. FILE UPLOAD HANDLERS
+    // =========================================================================
+    window.triggerFileUpload = function(inputId) {
+      const fileInput = document.getElementById(inputId);
+      if (fileInput) fileInput.click();
+    };
+
+    window.handleFileSelected = function(input, displayId) {
+      const display = document.getElementById(displayId);
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+        display.textContent = `${file.name} (${sizeMB} MB)`;
+        display.classList.add("has-file");
+      } else {
+        display.textContent = "No file chosen";
+        display.classList.remove("has-file");
+      }
+    };
+
+    // =========================================================================
+    // 11. PAYMENT HELPERS & COPY UPI
+    // =========================================================================
+    function initPaymentHelpers() {
+      // Default payment date to today
+      const paymentDate = document.getElementById("paymentDate");
+      if (paymentDate) paymentDate.value = new Date().toISOString().split("T")[0];
+
+      // Copy UPI
+      const btnCopy = document.getElementById("btnCopyUpi");
+      const upiText = document.getElementById("upiIdText").textContent.trim();
+      btnCopy.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(upiText);
+          const orig = btnCopy.textContent;
+          btnCopy.textContent = "Copied!";
+          setTimeout(() => btnCopy.textContent = orig, 2000);
+        } catch (e) {
+          btnCopy.textContent = "Failed";
+        }
+      });
+    }
+
+    // =========================================================================
+    // ERROR HELPERS
+    // =========================================================================
+    function showFieldError(groupId, errorId, msg) {
+      const g = document.getElementById(groupId);
+      const e = document.getElementById(errorId);
+      if (g) g.classList.add("has-error");
+      if (e) {
+        if (msg) e.textContent = msg;
+        e.style.display = "block";
+      }
+    }
+
+    function clearFieldError(groupId, errorId) {
+      const g = document.getElementById(groupId);
+      const e = document.getElementById(errorId);
+      if (g) g.classList.remove("has-error");
+      if (e) e.style.display = "none";
+    }
+
+    // =========================================================================
+    // 14. FORM VALIDATION & SUBMISSION
+    // =========================================================================
+    function initFormValidation() {
+      const form = document.getElementById("vendorRegistrationForm");
+
+      // Realtime clearing of errors
+      const inputs = [
+        { id: "companyName", group: "groupCompanyName", err: "errorCompanyName" },
+        { id: "companyAddress", group: "groupCompanyAddress", err: "errorCompanyAddress" },
+        { id: "cityDistrict", group: "groupDistrict", err: "errorCityDistrict" },
+        { id: "pinCode", group: "groupPincode", err: "errorPinCode" },
+        { id: "contactPersonName", group: "groupContactName", err: "errorContactPersonName" },
+        { id: "mobileNumber", group: "groupMobileNumber", err: "errorMobileNumber" },
+        { id: "altMobileNumber", group: "groupAltMobileNumber", err: "errorAltMobileNumber" },
+        { id: "emailAddress", group: "groupEmail", err: "errorEmailAddress" },
+        { id: "faceatMemberSelect", group: "groupFaceatMember", err: "errorFaceatMember" },
+        { id: "declarationCheckbox", group: "sectionDeclaration", err: "errorDeclaration" }
+      ];
+
+      inputs.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (el) {
+          el.addEventListener("input", () => clearFieldError(item.group, item.err));
+          el.addEventListener("change", () => clearFieldError(item.group, item.err));
+        }
+      });
+
+      // Business type radios
+      document.querySelectorAll('input[name="businessType"]').forEach(r => {
+        r.addEventListener("change", () => clearFieldError("groupBusinessType", "errorBusinessType"));
+      });
+
+      // Form Submit
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        validateForm();
+      });
+
+      // Modal close button
+      document.getElementById("btnModalClose").addEventListener("click", () => {
+        document.getElementById("successModal").classList.remove("active");
+        form.reset();
+        selectedVendorType = "Corporate Vendor";
+        selectedDuration = "1 Year";
+        selectedServiceAreas = [];
+        renderChips();
+        updatePricingDisplays();
+
+        // Reset cards state to defaults
+        document.querySelectorAll("#vendorTypeGrid .select-card").forEach(c => {
+          const isCorp = c.dataset.vendorType === "Corporate Vendor";
+          c.classList.toggle("active", isCorp);
+          c.setAttribute("aria-checked", isCorp ? "true" : "false");
+        });
+        document.querySelectorAll("#durationGrid .select-card").forEach(c => {
+          const is1Y = c.dataset.duration === "1 Year";
+          c.classList.toggle("active", is1Y);
+          c.setAttribute("aria-checked", is1Y ? "true" : "false");
+        });
+
+        document.querySelectorAll(".upload-file-display").forEach(disp => {
+          disp.textContent = "No file chosen";
+          disp.classList.remove("has-file");
+        });
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    function validateForm() {
+      let isValid = true;
+      let firstErrorEl = null;
+
+      function logError(element, groupId, errorId, message) {
+        isValid = false;
+        showFieldError(groupId, errorId, message);
+        if (!firstErrorEl) {
+          firstErrorEl = element || document.getElementById(groupId);
+        }
+      }
+
+      // ✓ 1. Vendor type selected
+      if (!selectedVendorType) {
+        logError(document.getElementById("sectionVendorType"), "sectionVendorType", "errorVendorType", "Please choose a Vendor Registration Type.");
+      } else {
+        clearFieldError("sectionVendorType", "errorVendorType");
+      }
+
+      // ✓ 2. Duration selected
+      if (!selectedDuration) {
+        logError(document.getElementById("sectionDuration"), "sectionDuration", "errorDuration", "Please select a Registration Duration.");
+      } else {
+        clearFieldError("sectionDuration", "errorDuration");
+      }
+
+      // ✓ 3. Company Name *
+      const compName = document.getElementById("companyName");
+      if (!compName.value.trim()) {
+        logError(compName, "groupCompanyName", "errorCompanyName", "Company Name is required.");
+      } else {
+        clearFieldError("groupCompanyName", "errorCompanyName");
+      }
+
+      // ✓ 4. Company Address *
+      const compAddr = document.getElementById("companyAddress");
+      if (!compAddr.value.trim()) {
+        logError(compAddr, "groupCompanyAddress", "errorCompanyAddress", "Company Address is required.");
+      } else {
+        clearFieldError("groupCompanyAddress", "errorCompanyAddress");
+      }
+
+      // ✓ 5. District *
+      const district = document.getElementById("cityDistrict");
+      if (!district.value) {
+        logError(district, "groupDistrict", "errorCityDistrict", "Please select a District.");
+      } else {
+        clearFieldError("groupDistrict", "errorCityDistrict");
+      }
+
+      // ✓ 6. PIN Code * (6 digits, numbers only)
+      const pinCode = document.getElementById("pinCode");
+      const pinVal = pinCode.value.trim();
+      if (!pinVal) {
+        logError(pinCode, "groupPincode", "errorPinCode", "PIN Code is required.");
+      } else if (!/^\d{6}$/.test(pinVal)) {
+        logError(pinCode, "groupPincode", "errorPinCode", "PIN Code must be exactly 6 numeric digits.");
+      } else {
+        clearFieldError("groupPincode", "errorPinCode");
+      }
+
+      // ✓ 7. Contact Person *
+      const contactName = document.getElementById("contactPersonName");
+      if (!contactName.value.trim()) {
+        logError(contactName, "groupContactName", "errorContactPersonName", "Contact Person Name is required.");
+      } else {
+        clearFieldError("groupContactName", "errorContactPersonName");
+      }
+
+      // ✓ 8. Mobile Number * (Exactly 10 digits, numbers only)
+      const mobile = document.getElementById("mobileNumber");
+      const mobVal = mobile.value.trim();
+      if (!mobVal) {
+        logError(mobile, "groupMobileNumber", "errorMobileNumber", "Mobile Number is required.");
+      } else if (!/^\d{10}$/.test(mobVal)) {
+        logError(mobile, "groupMobileNumber", "errorMobileNumber", "Mobile Number must contain exactly 10 digits (numbers only).");
+      } else {
+        clearFieldError("groupMobileNumber", "errorMobileNumber");
+      }
+
+      // Alternate Mobile (Optional, but if entered exactly 10 digits)
+      const altMobile = document.getElementById("altMobileNumber");
+      const altVal = altMobile.value.trim();
+      if (altVal && !/^\d{10}$/.test(altVal)) {
+        logError(altMobile, "groupAltMobileNumber", "errorAltMobileNumber", "If entered, alternate mobile must be exactly 10 digits.");
+      } else {
+        clearFieldError("groupAltMobileNumber", "errorAltMobileNumber");
+      }
+
+      // ✓ 9. Email * (Valid email format)
+      const email = document.getElementById("emailAddress");
+      const emailVal = email.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailVal) {
+        logError(email, "groupEmail", "errorEmailAddress", "Email Address is required.");
+      } else if (!emailRegex.test(emailVal)) {
+        logError(email, "groupEmail", "errorEmailAddress", "Please enter a valid email format (e.g. name@domain.com).");
+      } else {
+        clearFieldError("groupEmail", "errorEmailAddress");
+      }
+
+      // ✓ 10. Business Type *
+      const checkedBusiness = document.querySelector('input[name="businessType"]:checked');
+      if (!checkedBusiness) {
+        logError(document.getElementById("groupBusinessType"), "groupBusinessType", "errorBusinessType", "Please select your Business Type.");
+      } else {
+        clearFieldError("groupBusinessType", "errorBusinessType");
+      }
+
+      // ✓ 11. Service Area * (At least 1 selected)
+      if (selectedServiceAreas.length === 0) {
+        logError(document.getElementById("chipsContainer"), "groupServiceAreas", "errorServiceAreas", "Please select at least one service area / district.");
+      } else {
+        clearFieldError("groupServiceAreas", "errorServiceAreas");
+      }
+
+      // ✓ 12. FACEAT Certified Member * (Dropdown required)
+      const memberSelect = document.getElementById("faceatMemberSelect");
+      if (!memberSelect.value) {
+        logError(memberSelect, "groupFaceatMember", "errorFaceatMember", "Please select whether you are a FACEAT Certified Member.");
+      } else {
+        clearFieldError("groupFaceatMember", "errorFaceatMember");
+      }
+
+      // ✓ 13. Declaration checkbox *
+      const declaration = document.getElementById("declarationCheckbox");
+      if (!declaration.checked) {
+        logError(declaration, "sectionDeclaration", "errorDeclaration", "You must agree to the declaration before submitting.");
+      } else {
+        clearFieldError("sectionDeclaration", "errorDeclaration");
+      }
+
+      // If invalid, automatically scroll to first error and focus
+      if (!isValid && firstErrorEl) {
+        firstErrorEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (typeof firstErrorEl.focus === "function") firstErrorEl.focus();
+        return;
+      }
+
+      // =======================================================================
+      // TODO: Connect vendor registration form to backend/database
+      // TODO: Integrate payment gateway
+      // TODO: Upload documents to secure storage
+      // TODO: Verify payment reference before final approval
+      // =======================================================================
+
+      // 15. SUCCESS MESSAGE
+      const payRef = document.getElementById("paymentRefNumber").value.trim();
+      const currentFee = PRICING_MATRIX[selectedVendorType][selectedDuration] || 0;
+
+      document.getElementById("modalSummaryType").textContent = selectedVendorType;
+      document.getElementById("modalSummaryDuration").textContent = selectedDuration;
+      document.getElementById("modalSummaryRef").textContent = payRef || "Not provided";
+      document.getElementById("modalSummaryFee").textContent = `₹${currentFee.toLocaleString("en-IN")}/-`;
+
+      document.getElementById("successModal").classList.add("active");
+    }
+  </script>
+</body>
+</html>

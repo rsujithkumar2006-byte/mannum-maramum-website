@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Mannum Maramum Iyakkam</title>
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-logo">
+          <img src="/logo.png" alt="Logo">
+        </div>
+        <div>
+          <div class="sidebar-title">MANNUM MARAMUM</div>
+          <span class="sidebar-badge">Admin Portal</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-label">Core Operations</span>
+        <a class="nav-item active" data-view="dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Dashboard</span>
+        </a>
+
+        <a class="nav-item" data-view="projects">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          <span>Projects</span>
+          <span class="nav-badge" id="badgeProjects">0</span>
+        </a>
+
+        <a class="nav-item" data-view="events">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span>Events</span>
+          <span class="nav-badge" id="badgeEvents">0</span>
+        </a>
+
+        <a class="nav-item" data-view="gallery">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          <span>Gallery</span>
+          <span class="nav-badge" id="badgeGallery">0</span>
+        </a>
+
+        <span class="nav-label">Stakeholders & Community</span>
+        <a class="nav-item" data-view="volunteers">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Volunteers</span>
+          <span class="nav-badge" id="badgeVolunteers">0</span>
+        </a>
+
+        <a class="nav-item" data-view="partnerships">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+          <span>Partnerships</span>
+          <span class="nav-badge" id="badgePartnerships">0</span>
+        </a>
+
+        <a class="nav-item" data-view="donations">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          <span>Donations</span>
+        </a>
+
+        <span class="nav-label">Configuration</span>
+        <a class="nav-item" data-view="impact">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+          <span>Impact Reports</span>
+        </a>
+
+        <a class="nav-item" data-view="content">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <span>Website Content</span>
+        </a>
+
+        <a class="nav-item" data-view="settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>Admin Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-avatar" id="userAvatar">A</div>
+          <div class="user-meta">
+            <div class="user-name" id="currentUserName">Administrator</div>
+            <div class="user-role" id="currentUserRole">Super Admin</div>
+          </div>
+        </div>
+        <button class="logout-icon-btn" id="logoutBtn" title="Sign Out">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="header-title-wrap">
+            <h1 id="pageTitle">Dashboard</h1>
+            <p id="pageSubtitle">Real-time overview of Mannum Maramum NGO operations</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="/" target="_blank" class="public-site-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <span>Live Public Site</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Page Body Containers -->
+      <div class="page-body">
+
+        <!-- ==================== 1. DASHBOARD VIEW ==================== -->
+        <section id="view-dashboard" class="view-panel active">
+          <!-- Summary Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card accent-lime">
+              <div class="kpi-top">
+                <span class="kpi-label">Palm Seeds Sown</span>
+                <div class="kpi-icon">🌴</div>
+              </div>
+              <div class="kpi-value" id="kpiPalmSeeds">0</div>
+              <div class="kpi-sub">River banks & lake bunds</div>
+            </div>
+
+            <div class="kpi-card accent-emerald">
+              <div class="kpi-top">
+                <span class="kpi-label">Trees Planted</span>
+                <div class="kpi-icon">🌱</div>
+              </div>
+              <div class="kpi-value" id="kpiTrees">0</div>
+              <div class="kpi-sub">Native species growing</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <span class="kpi-label">Active Projects</span>
+                <div class="kpi-icon">📋</div>
+              </div>
+              <div class="kpi-value" id="kpiProjects">0</div>
+              <div class="kpi-sub" id="kpiProjectsSub">0 Published</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <span class="kpi-label">Events Hosted</span>
+                <div class="kpi-icon">📅</div>
+              </div>
+              <div class="kpi-value" id="kpiEvents">0</div>
+              <div class="kpi-sub" id="kpiEventsSub">0 Upcoming</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <span class="kpi-label">Volunteers</span>
+                <div class="kpi-icon">🤝</div>
+              </div>
+              <div class="kpi-value" id="kpiVolunteers">0</div>
+              <div class="kpi-sub" id="kpiVolunteersSub">0 Pending review</div>
+            </div>
+
+            <div class="kpi-card accent-gold">
+              <div class="kpi-top">
+                <span class="kpi-label">Partnerships</span>
+                <div class="kpi-icon">🏛️</div>
+              </div>
+              <div class="kpi-value" id="kpiPartnerships">0</div>
+              <div class="kpi-sub" id="kpiPartnershipsSub">0 Pending</div>
+            </div>
+          </div>
+
+          <!-- Quick Action Bar -->
+          <div class="quick-action-bar">
+            <div class="quick-action-text">
+              <h2>Quick Management Actions</h2>
+              <p>Add new ecological initiatives, publish photos, or review pending institutional requests.</p>
+            </div>
+            <div class="quick-action-buttons">
+              <button class="btn btn-lime" onclick="openCreateProjectModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Add Project</span>
+              </button>
+              <button class="btn btn-white" onclick="openCreateEventModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>New Event</span>
+              </button>
+              <button class="btn btn-white" onclick="openUploadGalleryModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <span>Upload Photos</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dashboard Grid: Recent Projects + Recent Activities -->
+          <div class="dashboard-grid">
+            <div>
+              <div class="panel-card">
+                <div class="panel-header">
+                  <h3 class="panel-title">Recently Added Environmental Projects</h3>
+                  <button class="btn btn-sm btn-outline" onclick="switchView('projects')">View All Projects</button>
+                </div>
+                <div class="table-container">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Project</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="dashRecentProjectsBody">
+                      <tr><td colspan="5" style="text-align:center; padding:20px;">Loading projects...</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Pending Community Requests -->
+              <div class="panel-card">
+                <div class="panel-header">
+                  <h3 class="panel-title">Pending Submissions Requiring Attention</h3>
+                </div>
+                <div class="table-container">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Organization / Volunteer</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Review</th>
+                      </tr>
+                    </thead>
+                    <tbody id="dashPendingSubmissionsBody">
+                      <tr><td colspan="5" style="text-align:center; padding:20px;">Loading pending items...</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent System Activities Timeline -->
+            <div>
+              <div class="panel-card">
+                <div class="panel-header">
+                  <h3 class="panel-title">System Audit Log</h3>
+                </div>
+                <div id="dashActivityLogList" style="display:flex; flex-direction:column; gap:14px; font-size:0.85rem;">
+                  <!-- Activities populated dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== 2. PROJECTS VIEW ==================== -->
+        <section id="view-projects" class="view-panel">
+          <div class="table-toolbar">
+            <div class="search-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="projSearchInput" placeholder="Search by title, location, college...">
+            </div>
+
+            <div class="filter-group">
+              <select class="select-filter" id="projCategoryFilter">
+                <option value="">All Categories</option>
+                <option value="Plantation">Plantation</option>
+                <option value="Lake Renovation">Lake Renovation</option>
+                <option value="Nursery">Nursery</option>
+                <option value="Soil Care">Soil Care</option>
+                <option value="Water Saving">Water Saving</option>
+                <option value="Eco Education">Eco Education</option>
+              </select>
+
+              <select class="select-filter" id="projStatusFilter">
+                <option value="">All Statuses</option>
+                <option value="published">Published</option>
+                <option value="draft">Draft</option>
+              </select>
+
+              <button class="btn btn-lime" onclick="openCreateProjectModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Add Project</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Cover</th>
+                  <th>Project Details</th>
+                  <th>Location</th>
+                  <th>Seeds & Saplings</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="projectsTableBody">
+                <tr><td colspan="7" style="text-align:center; padding:30px;">Loading projects...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================== 3. EVENTS VIEW ==================== -->
+        <section id="view-events" class="view-panel">
+          <div class="table-toolbar">
+            <div class="search-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="eventsSearchInput" placeholder="Search events by title or location...">
+            </div>
+
+            <div class="filter-group">
+              <select class="select-filter" id="eventsStatusFilter">
+                <option value="">All Statuses</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+
+              <button class="btn btn-lime" onclick="openCreateEventModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Add Event</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Date</th>
+                  <th>Location</th>
+                  <th>Participants</th>
+                  <th>Status</th>
+                  <th>Published</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="eventsTableBody">
+                <tr><td colspan="7" style="text-align:center; padding:30px;">Loading events...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================== 4. GALLERY VIEW ==================== -->
+        <section id="view-gallery" class="view-panel">
+          <div class="table-toolbar">
+            <div style="font-size:0.92rem; font-weight:600; color:var(--forest-800);">
+              Preserved authentic field photo archives: <strong id="galleryCountDisplay">17</strong> images
+            </div>
+
+            <div class="filter-group">
+              <select class="select-filter" id="galleryCategoryFilter">
+                <option value="">All Categories</option>
+                <option value="plantation">Palm & Tree Plantation</option>
+                <option value="lake">Lake Renovation</option>
+                <option value="youth">College & Youth Drives</option>
+                <option value="general">General Events</option>
+              </select>
+
+              <button class="btn btn-lime" onclick="openUploadGalleryModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <span>Upload Images</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="gallery-admin-grid" id="galleryGridContainer">
+            <!-- Populated dynamically -->
+          </div>
+        </section>
+
+        <!-- ==================== 5. VOLUNTEERS VIEW ==================== -->
+        <section id="view-volunteers" class="view-panel">
+          <div class="table-toolbar">
+            <div class="search-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="volSearchInput" placeholder="Search by name, email, phone, skill...">
+            </div>
+
+            <div class="filter-group">
+              <select class="select-filter" id="volStatusFilter">
+                <option value="">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Active">Active</option>
+                <option value="Completed">Completed</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+
+              <button class="btn btn-white" onclick="exportVolunteersCSV()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Export CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Volunteer Name</th>
+                  <th>Contact</th>
+                  <th>District</th>
+                  <th>Occupation & Skills</th>
+                  <th>Assigned To</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="volunteersTableBody">
+                <tr><td colspan="7" style="text-align:center; padding:30px;">Loading volunteers...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================== 6. PARTNERSHIPS VIEW ==================== -->
+        <section id="view-partnerships" class="view-panel">
+          <div class="table-toolbar">
+            <div class="search-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="partSearchInput" placeholder="Search organization, contact name, email...">
+            </div>
+
+            <div class="filter-group">
+              <select class="select-filter" id="partTypeFilter">
+                <option value="">All Org Types</option>
+                <option value="Corporate">Corporate / CSR</option>
+                <option value="Educational">College / School</option>
+                <option value="Institutional">Government / Institute</option>
+                <option value="NGO">Trust / NGO</option>
+              </select>
+
+              <select class="select-filter" id="partStatusFilter">
+                <option value="">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Reviewed">Reviewed</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+
+              <button class="btn btn-white" onclick="exportPartnershipsCSV()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Export CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Organization</th>
+                  <th>Type</th>
+                  <th>Contact Person</th>
+                  <th>District / PIN</th>
+                  <th>Duration & Focus</th>
+                  <th>Status</th>
+                  <th>Review</th>
+                </tr>
+              </thead>
+              <tbody id="partnershipsTableBody">
+                <tr><td colspan="7" style="text-align:center; padding:30px;">Loading partnerships...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================== 7. DONATIONS VIEW ==================== -->
+        <section id="view-donations" class="view-panel">
+          <div class="table-toolbar">
+            <div class="search-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="donSearchInput" placeholder="Search donor name, email, transaction ref...">
+            </div>
+
+            <div class="filter-group">
+              <button class="btn btn-white" onclick="exportDonationsCSV()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Export Report</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Donor Name</th>
+                  <th>Contact</th>
+                  <th>PAN</th>
+                  <th>Amount (₹)</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Transaction Ref</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="donationsTableBody">
+                <tr><td colspan="8" style="text-align:center; padding:30px;">Loading donations...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================== 8. IMPACT REPORTS VIEW ==================== -->
+        <section id="view-impact" class="view-panel">
+          <div class="panel-card" style="max-width:760px; margin: 0 auto;">
+            <div class="panel-header">
+              <div>
+                <h3 class="panel-title">Verified NGO Environmental Impact Results</h3>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                  Only approved, verified metrics entered here are published on the public website.
+                </p>
+              </div>
+            </div>
+
+            <form id="impactForm">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label">Palm Tree Seeds Planted</label>
+                  <input type="number" id="impPalmSeeds" class="form-control" required min="0">
+                  <small style="color:var(--text-muted); font-size:0.75rem;">Verified seed counts along river/lake embankments</small>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Trees Planted</label>
+                  <input type="number" id="impTrees" class="form-control" required min="0">
+                  <small style="color:var(--text-muted); font-size:0.75rem;">Native saplings rearing & afforestation</small>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Projects Completed</label>
+                  <input type="number" id="impProjects" class="form-control" required min="0">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Events & Camps Conducted</label>
+                  <input type="number" id="impEvents" class="form-control" required min="0">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Locations Covered</label>
+                  <input type="number" id="impLocations" class="form-control" required min="0">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Volunteers Participated</label>
+                  <input type="number" id="impVolunteers" class="form-control" required min="0">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Active Since Year</label>
+                  <input type="number" id="impActiveSince" class="form-control" required min="2000" max="2099">
+                </div>
+              </div>
+
+              <div style="margin-top:24px; text-align:right;">
+                <button type="submit" class="btn btn-lime">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                  <span>Save & Sync Public Impact</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ==================== 9. WEBSITE CONTENT VIEW ==================== -->
+        <section id="view-content" class="view-panel">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h3 class="panel-title">Bilingual Website Content Blocks</h3>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                  Preserve Tamil and English bilingual content across homepage sections.
+                </p>
+              </div>
+            </div>
+
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Section</th>
+                    <th>Key Identifier</th>
+                    <th>English Content</th>
+                    <th>Tamil Content (தமிழ்)</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="contentTableBody">
+                  <tr><td colspan="5" style="text-align:center; padding:30px;">Loading content...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== 10. ADMIN SETTINGS VIEW ==================== -->
+        <section id="view-settings" class="view-panel">
+          <div class="dashboard-grid">
+            <!-- Profile & Password -->
+            <div>
+              <div class="panel-card">
+                <div class="panel-header">
+                  <h3 class="panel-title">Admin Profile</h3>
+                </div>
+                <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+                  <div class="user-avatar" style="width:56px; height:56px; font-size:1.4rem;" id="setAvatar">A</div>
+                  <div>
+                    <h4 id="setName" style="font-size:1.1rem; color:var(--forest-900);">Administrator</h4>
+                    <p id="setEmail" style="font-size:0.85rem; color:var(--text-muted);">admin@mannummaramum.org</p>
+                    <span class="badge badge-published" id="setRole" style="margin-top:6px;">Super Admin</span>
+                  </div>
+                </div>
+
+                <hr style="border:none; border-top:1px solid var(--cream-border); margin:20px 0;">
+
+                <h4 style="font-size:0.95rem; font-weight:700; color:var(--forest-900); margin-bottom:14px;">Change Secure Password</h4>
+                <form id="changePasswordForm">
+                  <div class="form-group" style="margin-bottom:14px;">
+                    <label class="form-label">Current Password</label>
+                    <input type="password" id="currentPassword" class="form-control" required placeholder="Enter current password">
+                  </div>
+                  <div class="form-group" style="margin-bottom:14px;">
+                    <label class="form-label">New Password (min 8 chars)</label>
+                    <input type="password" id="newPassword" class="form-control" required minlength="8" placeholder="Enter new strong password">
+                  </div>
+                  <div class="form-group" style="margin-bottom:20px;">
+                    <label class="form-label">Confirm New Password</label>
+                    <input type="password" id="confirmNewPassword" class="form-control" required placeholder="Re-enter new password">
+                  </div>
+                  <button type="submit" class="btn btn-forest">Update Password</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Staff Accounts (Role-based) -->
+            <div>
+              <div class="panel-card">
+                <div class="panel-header">
+                  <h3 class="panel-title">Staff Management</h3>
+                  <button class="btn btn-sm btn-lime" onclick="openCreateUserModal()">+ Add Staff</button>
+                </div>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">
+                  Only authorized personnel can access administrative NGO functions.
+                </p>
+                <div class="table-container">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="staffTableBody">
+                      <tr><td colspan="3" style="text-align:center; padding:16px;">Loading staff...</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. PROJECT CREATE / EDIT MODAL -->
+  <div class="modal-backdrop" id="projectModal">
+    <div class="modal-window wide">
+      <div class="modal-header">
+        <h3 id="projectModalTitle">Create Environmental Project</h3>
+        <button class="modal-close-btn" onclick="closeModal('projectModal')">&times;</button>
+      </div>
+      <form id="projectForm">
+        <input type="hidden" id="projEditId">
+        <div class="modal-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Project Title (English) *</label>
+              <input type="text" id="pTitleEn" class="form-control" required placeholder="e.g. Cauvery River Bank Palm Drive">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Project Title (Tamil - தமிழ்)</label>
+              <input type="text" id="pTitleTa" class="form-control" placeholder="e.g. காவிரி ஆற்றங்கரை பனை விதை நடவு">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Category *</label>
+              <select id="pCategory" class="form-control" required>
+                <option value="Plantation">Plantation</option>
+                <option value="Lake Renovation">Lake Renovation</option>
+                <option value="Nursery">Nursery & Sapling Care</option>
+                <option value="Soil Care">Soil Care</option>
+                <option value="Water Saving">Water Saving</option>
+                <option value="Eco Education">Eco Education</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Project Date *</label>
+              <input type="date" id="pDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Location *</label>
+              <input type="text" id="pLocation" class="form-control" required placeholder="e.g. Mukkombu, Tiruchirappalli">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Publication Status</label>
+              <select id="pStatus" class="form-control">
+                <option value="published">Published (Visible on Public Website)</option>
+                <option value="draft">Save as Draft (Internal Only)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Palm Seeds Planted</label>
+              <input type="number" id="pPalmSeeds" class="form-control" min="0" value="0">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Saplings Planted</label>
+              <input type="number" id="pSaplings" class="form-control" min="0" value="0">
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Participating Colleges, Volunteers & Organizations</label>
+              <input type="text" id="pParticipatingOrgs" class="form-control" placeholder="e.g. Bishop Heber College, JJ Polytechnic NSS, Farmers Association">
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Supporting Government / District Bodies</label>
+              <input type="text" id="pSupportingOrgs" class="form-control" placeholder="e.g. Tamil Nadu Forest Department, PWD">
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Cover Image URL or Upload</label>
+              <div style="display:flex; gap:10px;">
+                <input type="text" id="pCoverImage" class="form-control" placeholder="/uploads/covers/myphoto.jpg or URL">
+                <input type="file" id="pCoverFileInput" style="display:none;" accept="image/*" onchange="uploadSingleFile(this, 'pCoverImage')">
+                <button type="button" class="btn btn-outline" onclick="document.getElementById('pCoverFileInput').click()">Browse</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Description (English) *</label>
+              <textarea id="pDescEn" class="form-control" rows="3" required placeholder="Describe objectives, results, and local impact"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Description (Tamil - தமிழ்)</label>
+              <textarea id="pDescTa" class="form-control" rows="3" placeholder="திட்டத்தின் நோக்கங்கள் மற்றும் பலன்கள்"></textarea>
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Key Highlights (Comma-separated)</label>
+              <input type="text" id="pHighlights" class="form-control" placeholder="50,000 seeds planted, 350 volunteers participated, Embankment fortified">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('projectModal')">Cancel</button>
+          <button type="submit" class="btn btn-lime">Save Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. EVENT CREATE / EDIT MODAL -->
+  <div class="modal-backdrop" id="eventModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 id="eventModalTitle">Create NGO Event</h3>
+        <button class="modal-close-btn" onclick="closeModal('eventModal')">&times;</button>
+      </div>
+      <form id="eventForm">
+        <input type="hidden" id="eventEditId">
+        <div class="modal-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Event Title (English) *</label>
+              <input type="text" id="eTitleEn" class="form-control" required placeholder="e.g. Monsoon Palm Planting Camp">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Event Title (Tamil - தமிழ்)</label>
+              <input type="text" id="eTitleTa" class="form-control" placeholder="e.g. பருவமழை பனை விதை நடவு முகாம்">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Event Date *</label>
+              <input type="date" id="eDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Location *</label>
+              <input type="text" id="eLocation" class="form-control" required placeholder="e.g. Uyyakondan Canal Embankments">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select id="eStatus" class="form-control">
+                <option value="upcoming">Upcoming</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Target Participants</label>
+              <input type="number" id="eTarget" class="form-control" value="100">
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Cover Image URL</label>
+              <div style="display:flex; gap:10px;">
+                <input type="text" id="eCoverImage" class="form-control" placeholder="/uploads/covers/event.jpg">
+                <input type="file" id="eCoverFileInput" style="display:none;" accept="image/*" onchange="uploadSingleFile(this, 'eCoverImage')">
+                <button type="button" class="btn btn-outline" onclick="document.getElementById('eCoverFileInput').click()">Browse</button>
+              </div>
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Event Description (English) *</label>
+              <textarea id="eDescEn" class="form-control" rows="3" required placeholder="Explain schedule, assembly point, and instructions"></textarea>
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Event Description (Tamil - தமிழ்)</label>
+              <textarea id="eDescTa" class="form-control" rows="3" placeholder="நிகழ்வு பற்றிய குறிப்பு மற்றும் வழிமுறைகள்"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('eventModal')">Cancel</button>
+          <button type="submit" class="btn btn-lime">Save Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. GALLERY UPLOAD MODAL -->
+  <div class="modal-backdrop" id="galleryUploadModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Upload Field Gallery Photos</h3>
+        <button class="modal-close-btn" onclick="closeModal('galleryUploadModal')">&times;</button>
+      </div>
+      <form id="galleryUploadForm">
+        <div class="modal-body">
+          <div class="file-dropzone" id="dropzone">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color:var(--forest-700); margin-bottom:8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <p style="font-weight:700; color:var(--forest-900);">Choose image files or drag & drop here</p>
+            <p style="font-size:0.78rem; color:var(--text-muted); margin-top:4px;">Supports multiple JPG, PNG, WEBP files (Max 10MB each)</p>
+            <input type="file" id="galleryFilesInput" multiple accept="image/*" required>
+          </div>
+
+          <div class="image-preview-strip" id="galleryPreviewStrip"></div>
+
+          <div class="form-grid" style="margin-top:16px;">
+            <div class="form-group">
+              <label class="form-label">Photo Caption (English) *</label>
+              <input type="text" id="gCaptionEn" class="form-control" placeholder="e.g. Palm planting at lake bund" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Photo Caption (Tamil - தமிழ்)</label>
+              <input type="text" id="gCaptionTa" class="form-control" placeholder="e.g. ஏரிக்கரையில் பனை விதை நடவு">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <select id="gCategory" class="form-control">
+                <option value="plantation">Palm & Tree Plantation</option>
+                <option value="lake">Lake Renovation</option>
+                <option value="youth">Youth & College Volunteers</option>
+                <option value="general">General</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Assign to Project (Optional)</label>
+              <select id="gAssignProject" class="form-control">
+                <option value="">None (Independent Photo)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('galleryUploadModal')">Cancel</button>
+          <button type="submit" class="btn btn-lime">Upload & Publish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. GALLERY EDIT MODAL -->
+  <div class="modal-backdrop" id="galleryEditModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Edit Photo Details & Captions</h3>
+        <button class="modal-close-btn" onclick="closeModal('galleryEditModal')">&times;</button>
+      </div>
+      <form id="galleryEditForm">
+        <input type="hidden" id="editGalId">
+        <div class="modal-body">
+          <div style="text-align:center; margin-bottom:16px;">
+            <img id="editGalPreviewImg" src="" style="max-height:180px; border-radius:12px; object-fit:cover; border:1px solid var(--cream-border);">
+          </div>
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Caption (English)</label>
+            <input type="text" id="editGalCaptionEn" class="form-control" required>
+          </div>
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Caption (Tamil - தமிழ்)</label>
+            <input type="text" id="editGalCaptionTa" class="form-control">
+          </div>
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Category</label>
+            <select id="editGalCategory" class="form-control">
+              <option value="plantation">Palm & Tree Plantation</option>
+              <option value="lake">Lake Renovation</option>
+              <option value="youth">Youth & College Volunteers</option>
+              <option value="general">General</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Visibility</label>
+            <select id="editGalPublished" class="form-control">
+              <option value="1">Published (Visible in Public Gallery)</option>
+              <option value="0">Hidden (Archived)</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('galleryEditModal')">Cancel</button>
+          <button type="submit" class="btn btn-lime">Update Photo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. VOLUNTEER REVIEW / ASSIGN MODAL -->
+  <div class="modal-backdrop" id="volunteerModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Volunteer Information & Assignment</h3>
+        <button class="modal-close-btn" onclick="closeModal('volunteerModal')">&times;</button>
+      </div>
+      <form id="volunteerForm">
+        <input type="hidden" id="volEditId">
+        <div class="modal-body">
+          <div style="background:var(--cream-300); padding:16px; border-radius:12px; margin-bottom:16px; font-size:0.88rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <strong id="volModalName" style="font-size:1.05rem; color:var(--forest-900);">Name</strong>
+              <span id="volModalRegisteredDate" style="color:var(--text-muted);">Date</span>
+            </div>
+            <p><strong>Email:</strong> <span id="volModalEmail"></span></p>
+            <p><strong>Phone:</strong> <span id="volModalPhone"></span></p>
+            <p><strong>District:</strong> <span id="volModalDistrict"></span></p>
+            <p><strong>Occupation:</strong> <span id="volModalOccupation"></span></p>
+            <p><strong>Skills & Preferences:</strong> <span id="volModalSkills"></span></p>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Status *</label>
+              <select id="volModalStatus" class="form-control" required>
+                <option value="Pending">Pending Review</option>
+                <option value="Approved">Approved</option>
+                <option value="Active">Active Volunteer</option>
+                <option value="Completed">Project Completed</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Assign to Active Project</label>
+              <select id="volModalProject" class="form-control">
+                <option value="">None</option>
+              </select>
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Assign to Event</label>
+              <select id="volModalEvent" class="form-control">
+                <option value="">None</option>
+              </select>
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Coordinator Internal Notes</label>
+              <textarea id="volModalNotes" class="form-control" rows="2" placeholder="Notes on volunteer availability or skills..."></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('volunteerModal')">Cancel</button>
+          <button type="submit" class="btn btn-lime">Update Volunteer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. PARTNERSHIP REVIEW MODAL -->
+  <div class="modal-backdrop" id="partnershipModal">
+    <div class="modal-window wide">
+      <div class="modal-header">
+        <h3>Partnership Request Evaluation</h3>
+        <button class="modal-close-btn" onclick="closeModal('partnershipModal')">&times;</button>
+      </div>
+      <form id="partnershipForm">
+        <input type="hidden" id="partEditId">
+        <div class="modal-body">
+          <div style="background:var(--cream-300); padding:18px; border-radius:14px; margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <h4 id="partModalOrgName" style="font-size:1.15rem; color:var(--forest-900);">Organization Name</h4>
+              <span id="partModalTypeBadge" class="badge badge-published">Type</span>
+            </div>
+            <div class="form-grid" style="font-size:0.86rem; row-gap:6px;">
+              <p><strong>Contact Person:</strong> <span id="partModalContact"></span></p>
+              <p><strong>Designation:</strong> <span id="partModalDesignation"></span></p>
+              <p><strong>Mobile:</strong> <span id="partModalMobile"></span></p>
+              <p><strong>Email:</strong> <span id="partModalEmail"></span></p>
+              <p><strong>District & PIN:</strong> <span id="partModalAddress"></span></p>
+              <p><strong>Duration Proposed:</strong> <span id="partModalDuration"></span></p>
+              <p class="form-group-full"><strong>Focus Areas:</strong> <span id="partModalFocus"></span></p>
+              <p class="form-group-full"><strong>Districts Covered:</strong> <span id="partModalDistricts"></span></p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Application Status *</label>
+              <select id="partModalStatus" class="form-control" required>
+                <option value="Pending">Pending Review</option>
+                <option value="Reviewed">Under Review</option>
+                <option value="Approved">Approved (MOU Prepared)</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Staff Internal Notes & Evaluation Summary</label>
+              <textarea id="partModalNotes" class="form-control" rows="3" placeholder="Enter review outcome, student headcount, or funding notes..."></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('partnershipModal')">Cancel</button>
+          <button type="submit" class="btn btn-lime">Save Evaluation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 7. EDIT CONTENT BLOCK MODAL -->
+  <div class="modal-backdrop" id="contentEditModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Edit Bilingual Website Text</h3>
+        <button class="modal-close-btn" onclick="closeModal('contentEditModal')">&times;</button>
+      </div>
+      <form id="contentEditForm">
+        <input type="hidden" id="contentEditKey">
+        <div class="modal-body">
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;" id="contentEditDesc"></p>
+
+          <div class="form-group" style="margin-bottom:16px;">
+            <label class="form-label">English Text</label>
+            <textarea id="contentEditEn" class="form-control" rows="3" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tamil Text (தமிழ்)</label>
+            <textarea id="contentEditTa" class="form-control" rows="3" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('contentEditModal')">Cancel</button>
+          <button type="submit" class="btn btn-lime">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 8. ADD STAFF USER MODAL -->
+  <div class="modal-backdrop" id="userModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Create Staff Admin Account</h3>
+        <button class="modal-close-btn" onclick="closeModal('userModal')">&times;</button>
+      </div>
+      <form id="userForm">
+        <div class="modal-body">
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="uName" class="form-control" required placeholder="e.g. S. Prakash">
+          </div>
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Username *</label>
+            <input type="text" id="uUsername" class="form-control" required placeholder="e.g. prakash_eco">
+          </div>
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Official Email *</label>
+            <input type="email" id="uEmail" class="form-control" required placeholder="prakash@mannummaramum.org">
+          </div>
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Password * (min 8 chars)</label>
+            <input type="password" id="uPassword" class="form-control" required minlength="8" placeholder="Enter secure password">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Role Privileges</label>
+            <select id="uRole" class="form-control">
+              <option value="admin">Administrator (Full CRUD on projects, events, community)</option>
+              <option value="editor">Content Editor (Can edit descriptions & gallery)</option>
+              <option value="super_admin">Super Administrator (Full privileges + staff management)</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('userModal')">Cancel</button>
+          <button type="submit" class="btn btn-forest">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 9. GENERAL CONFIRMATION MODAL (DESTRUCTIVE ACTIONS) -->
+  <div class="modal-backdrop" id="confirmModal">
+    <div class="modal-window" style="max-width:440px;">
+      <div class="modal-header">
+        <h3 id="confirmModalTitle">Confirm Action</h3>
+        <button class="modal-close-btn" onclick="closeModal('confirmModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmModalMsg" style="font-size:0.95rem; color:var(--text-main); line-height:1.5;">Are you sure you want to proceed?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="closeModal('confirmModal')">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmModalBtn">Delete Permanently</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

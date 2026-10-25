@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+package-lock.json.bak
+
+# Environment variables & secrets (CRITICAL: Never commit to public repos)
+.env
+.env.local
+.env.production
+!.env.example
+!.env.production.example
+
+# SQLite Database (Stores local admin hashes & live submissions)
+data/*.db
+data/*.db-journal
+
+# Temporary logs & debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+
+# OS & IDE directories
+.vscode/
+.idea/
+scratch/
+
+# Backup files
+*.BACKUP.html
+*.ORIGINAL.html
+*.PRE_REMOVAL_BACKUP.html
+*.bak
+*.bak2
+
+# Temporary screenshots and design references
+scratch_*.png
+scratch_*.jpg
+scratch_*.jpeg
+
+# Nested project screenshots and test images
+mannum-maramum-website/screenshot_*.png
+mannum-maramum-website/test_*.png

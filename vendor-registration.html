@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mannum Maramum Iyakkam | Vendor Registration Portal</title>
+  <meta name="description" content="Official Vendor Registration Portal for Mannum Maramum Iyakkam. Join our mission to protect nature, restore waterbodies, and promote a greener future." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =========================================================================
+       THEME VARIABLES - MANNUM MARAMUM NATURE-INSPIRED GREEN PALETTE
+       ========================================================================= */
+    :root {
+      --primary: #2E7D32;            /* Primary green */
+      --primary-dark: #1B5E20;       /* Dark green */
+      --primary-hover: #256629;
+      --primary-light: #E8F5E9;      /* Light green background */
+      --primary-focus: rgba(46, 125, 50, 0.22);
+      --primary-gradient: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+      
+      --accent-soft: #E8F5E9;
+      --border-color: #C8E6C9;       /* Soft green borders */
+      --border-focus: #2E7D32;
+
+      --bg-page: #F4F9F4;            /* Nature light green-tinted page background */
+      --bg-card: #FFFFFF;            /* Pure white cards */
+      --bg-card-alt: #F7FAF7;        /* Soft subtle green tint */
+      --bg-input: #FFFFFF;
+
+      --text-main: #222222;          /* Clean dark text */
+      --text-muted: #555555;
+      --text-subtle: #777777;
+      
+      --error-color: #dc2626;
+      --error-bg: #fef2f2;
+      --error-border: #fca5a5;
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 10px -1px rgba(46, 125, 50, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+      --shadow-card: 0 8px 24px -4px rgba(46, 125, 50, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.02);
+      --shadow-lg: 0 16px 36px -6px rgba(27, 94, 32, 0.2);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      padding: 24px 16px 80px;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    /* =========================================================================
+       HEADER & NAVIGATION BAR
+       ========================================================================= */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 16px 24px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand-logo-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+      flex-shrink: 0;
+      background: #FFFFFF;
+      padding: 2px;
+    }
+
+    .brand-icon-fallback {
+      width: 48px;
+      height: 48px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 22px;
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.28);
+      flex-shrink: 0;
+    }
+
+    .brand-text h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-text span {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .header-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #FFFFFF;
+      color: var(--primary-dark);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .back-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      transform: translateX(-2px);
+    }
+
+    /* =========================================================================
+       HERO BANNER
+       ========================================================================= */
+    .hero {
+      text-align: center;
+      margin-bottom: 28px;
+      padding: 42px 24px 36px;
+      background: var(--primary-gradient);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 12px 30px -5px rgba(27, 94, 32, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -40px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      display: inline-block;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #C8E6C9;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #E8F5E9;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* =========================================================================
+       FORM CARDS & SECTIONS
+       ========================================================================= */
+    .form-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .form-card:hover {
+      border-color: #A5D6A7;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1.5px solid var(--border-color);
+    }
+
+    .section-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1.5px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .req-star {
+      color: var(--error-color);
+      margin-left: 2px;
+    }
+
+    /* =========================================================================
+       INTERACTIVE SELECTION GRIDS (VENDOR TYPE & DURATION)
+       ========================================================================= */
+    .selectable-grid {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .select-card {
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px 18px;
+      background: var(--bg-card-alt);
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .select-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      background: #FFFFFF;
+    }
+
+    .select-card.active {
+      border-color: var(--primary);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px var(--primary-focus), var(--shadow-md);
+    }
+
+    .select-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .select-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .select-card.active .select-card-title {
+      color: var(--primary-dark);
+    }
+
+    .select-card .hint-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      display: block;
+    }
+
+    .check-indicator {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: transparent;
+      background: #FFFFFF;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .select-card.active .check-indicator {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .price-list {
+      list-style: none;
+      margin-top: 10px;
+      border-top: 1px dashed var(--border-color);
+      padding-top: 10px;
+      font-size: 0.86rem;
+    }
+
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      color: var(--text-muted);
+    }
+
+    .price-item strong {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    /* Duration Specific Cards */
+    .duration-card {
+      text-align: center;
+      padding: 24px 16px;
+      position: relative;
+    }
+
+    .duration-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .select-card.active .duration-name {
+      color: var(--primary-dark);
+    }
+
+    .duration-price {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .duration-tag {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    /* =========================================================================
+       FORM CONTROLS & GRID SYSTEM
+       ========================================================================= */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px 20px;
+    }
+
+    .col-span-2 {
+      grid-column: span 2;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+    }
+
+    .input-hint {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      background: var(--bg-input);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--primary-focus);
+      background: #FFFFFF;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    /* Custom Checkbox Group */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 14px;
+      margin-top: 4px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card-alt);
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+
+    .checkbox-label:hover {
+      background: var(--primary-light);
+      border-color: #A5D6A7;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* =========================================================================
+       SEARCHABLE DISTRICTS / SERVICE AREAS
+       ========================================================================= */
+    .service-area-box {
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      background: var(--bg-card-alt);
+    }
+
+    .area-tools {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .area-quick-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      padding: 5px 12px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .pill-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .district-search-input {
+      padding: 8px 12px;
+      font-size: 0.84rem;
+      max-width: 240px;
+    }
+
+    .district-tags-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-height: 220px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+    }
+
+    .district-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      background: #F1F8F1;
+      border: 1px solid var(--border-color);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      user-select: none;
+      transition: var(--transition);
+    }
+
+    .district-chip:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .district-chip.selected {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    .district-chip.selected::after {
+      content: '✓';
+      font-size: 11px;
+    }
+
+    .selected-count-bar {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* =========================================================================
+       DOCUMENT UPLOADS
+       ========================================================================= */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .doc-upload-box {
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      background: var(--bg-card-alt);
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .doc-upload-box:hover {
+      border-color: var(--primary);
+      background: #FFFFFF;
+    }
+
+    .doc-upload-box.has-file {
+      border-style: solid;
+      border-color: var(--primary);
+      background: #F4FBF4;
+    }
+
+    .doc-icon {
+      font-size: 28px;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .doc-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .doc-hint {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .doc-filename {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      word-break: break-all;
+    }
+
+    .doc-file-input {
+      display: none;
+    }
+
+    /* =========================================================================
+       PAYMENT DETAILS & SBI / UPI QR SECTION
+       ========================================================================= */
+    .payment-container {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .bank-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .bank-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--border-color);
+    }
+
+    .bank-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 0.88rem;
+      border-bottom: 1px dashed #E0E0E0;
+    }
+
+    .bank-row:last-child {
+      border-bottom: none;
+    }
+
+    .bank-label {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .bank-val {
+      font-weight: 700;
+      color: var(--text-main);
+      text-align: right;
+    }
+
+    .upi-box {
+      margin-top: 16px;
+      padding: 14px;
+      background: var(--primary-light);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .qr-frame {
+      width: 90px;
+      height: 90px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .qr-frame svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .upi-details {
+      flex: 1;
+    }
+
+    .upi-id-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: var(--primary-dark);
+      margin-top: 4px;
+      user-select: all;
+    }
+
+    .fee-summary-card {
+      background: var(--bg-card-alt);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .fee-summary-header {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--border-color);
+    }
+
+    .fee-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 0.9rem;
+    }
+
+    .fee-total-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0 6px;
+      margin-top: 8px;
+      border-top: 2px solid var(--border-color);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    /* =========================================================================
+       DECLARATION & SUBMISSION
+       ========================================================================= */
+    .declaration-box {
+      background: #F7FAF7;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+
+    .declaration-text {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .consent-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      cursor: pointer;
+    }
+
+    .consent-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--primary);
+    }
+
+    .submit-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      max-width: 420px;
+      padding: 16px 28px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: var(--primary-gradient);
+      border: none;
+      border-radius: var(--radius-full);
+      box-shadow: 0 8px 24px rgba(27, 94, 32, 0.3);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(27, 94, 32, 0.4);
+      background: linear-gradient(135deg, #154c19 0%, #256629 100%);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .security-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Validation Errors */
+    .field-error-msg {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--error-color);
+      margin-top: 3px;
+      display: none;
+    }
+
+    .has-error input,
+    .has-error select,
+    .has-error textarea,
+    .has-error .doc-upload-box {
+      border-color: var(--error-color) !important;
+      background: var(--error-bg) !important;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12) !important;
+    }
+
+    .has-error .field-error-msg {
+      display: block;
+    }
+
+    /* =========================================================================
+       SUCCESS MODAL
+       ========================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.68);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 16px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 38px 32px;
+      max-width: 540px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modalPop {
+      0% { opacity: 0; transform: scale(0.92); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-icon-wrap {
+      width: 76px;
+      height: 76px;
+      border-radius: var(--radius-full);
+      background: var(--primary-light);
+      color: var(--primary);
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+    }
+
+    .modal-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .modal-ref-pill {
+      display: inline-block;
+      margin: 8px 0 16px;
+      padding: 6px 18px;
+      background: var(--primary-light);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-full);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: 0.5px;
+    }
+
+    .modal-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.55;
+    }
+
+    .modal-summary-box {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      text-align: left;
+      margin-bottom: 24px;
+      font-size: 0.88rem;
+    }
+
+    .modal-summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .modal-summary-row:last-child {
+      border-bottom: none;
+      font-weight: 800;
+      color: var(--primary-dark);
+      font-size: 1rem;
+      padding-top: 8px;
+    }
+
+    .modal-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .btn-secondary {
+      padding: 12px 20px;
+      border: 1.5px solid var(--border-color);
+      background: #FFFFFF;
+      color: var(--text-main);
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .btn-primary-modal {
+      padding: 12px 24px;
+      border: none;
+      background: var(--primary-gradient);
+      color: #FFFFFF;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .btn-primary-modal:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* =========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================= */
+    @media (max-width: 768px) {
+      body { padding: 16px 12px 60px; }
+      .hero { padding: 32px 18px 28px; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero-subtitle { font-size: 0.98rem; }
+      .form-card { padding: 22px 18px; }
+      .grid-2, .grid-3, .form-grid, .checkbox-grid, .docs-grid, .payment-container {
+        grid-template-columns: 1fr;
+      }
+      .col-span-2 { grid-column: span 1; }
+      .header-bar { flex-direction: column; align-items: flex-start; }
+      .header-actions { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Header Bar with Mannum Maramum Iyakkam Branding -->
+    <header class="header-bar" role="banner">
+      <a href="/" class="brand-mark" aria-label="Mannum Maramum Iyakkam Home">
+        <img src="/logo.png" alt="Mannum Maramum Logo" class="brand-logo-img" onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='flex';" />
+        <div id="brandFallback" class="brand-icon-fallback" style="display: none;">MM</div>
+        <div class="brand-text">
+          <h2>Mannum Maramum Iyakkam</h2>
+          <span>Environmental Foundation &amp; Green Earth Mission</span>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <div class="header-badge">Official Vendor Portal</div>
+        <a href="/" class="back-btn" title="Return to Main Website">← Back to Website</a>
+      </div>
+    </header>
+
+    <!-- Page Hero Banner -->
+    <div class="hero">
+      <h1>Mannum Maramum Iyakkam</h1>
+      <div class="hero-subtitle">Vendor Registration Portal</div>
+      <p>Join our mission to protect nature, restore waterbodies, and promote a greener future.</p>
+    </div>
+
+    <!-- MAIN REGISTRATION FORM -->
+    <form id="vendorRegistrationForm" novalidate autocomplete="on">
+
+      <!-- ===================================================================
+           1. VENDOR TYPE
+           =================================================================== -->
+      <section class="form-card" id="sectionVendorType">
+        <div class="section-header">
+          <span class="section-num">1</span>
+          <div>
+            <h2 class="section-title">Vendor Type <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Select your primary vendor or service provider category</p>
+          </div>
+        </div>
+
+        <div class="selectable-grid grid-2" id="vendorTypeGrid">
+          <!-- Option 1: Plant Nursery & Saplings -->
+          <div class="select-card active" data-vendor-type="Plant Nursery & Sapling Provider" data-tier="nursery" tabindex="0" role="radio" aria-checked="true">
+            <div>
+              <div class="select-card-header">
+                <div>
+                  <div class="select-card-title">Plant Nursery &amp; Saplings</div>
+                  <span class="hint-text">Native tree nurseries, Miyawaki &amp; fruit saplings</span>
+                </div>
+                <div class="check-indicator">&check;</div>
+              </div>
+              <ul class="price-list">
+                <li class="price-item"><span>1 Year:</span> <strong>₹5,000/-</strong></li>
+                <li class="price-item"><span>2 Years:</span> <strong>₹9,000/-</strong></li>
+                <li class="price-item"><span>3 Years:</span> <strong>₹13,000/-</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Option 2: Seeds & Organic Compost -->
+          <div class="select-card" data-vendor-type="Seeds, Organic Compost & Bio-Fertilizers" data-tier="compost" tabindex="0" role="radio" aria-checked="false">
+            <div>
+              <div class="select-card-header">
+                <div>
+                  <div class="select-card-title">Seeds &amp; Bio-Fertilizers</div>
+                  <span class="hint-text">Native seed banks, vermicompost &amp; organic manure</span>
+                </div>
+                <div class="check-indicator">&check;</div>
+              </div>
+              <ul class="price-list">
+                <li class="price-item"><span>1 Year:</span> <strong>₹5,000/-</strong></li>
+                <li class="price-item"><span>2 Years:</span> <strong>₹9,000/-</strong></li>
+                <li class="price-item"><span>3 Years:</span> <strong>₹13,000/-</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Option 3: Lake Cleaning & Earthmoving Equipment -->
+          <div class="select-card" data-vendor-type="Lake Restoration & Heavy Machinery" data-tier="machinery" tabindex="0" role="radio" aria-checked="false">
+            <div>
+              <div class="select-card-header">
+                <div>
+                  <div class="select-card-title">Lake Restoration &amp; Machinery</div>
+                  <span class="hint-text">JCB, excavators, desilting pumps &amp; earthmovers</span>
+                </div>
+                <div class="check-indicator">&check;</div>
+              </div>
+              <ul class="price-list">
+                <li class="price-item"><span>1 Year:</span> <strong>₹8,000/-</strong></li>
+                <li class="price-item"><span>2 Years:</span> <strong>₹14,500/-</strong></li>
+                <li class="price-item"><span>3 Years:</span> <strong>₹21,000/-</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Option 4: Water Conservation & Eco-Products -->
+          <div class="select-card" data-vendor-type="Water Conservation & Eco-Products" data-tier="eco" tabindex="0" role="radio" aria-checked="false">
+            <div>
+              <div class="select-card-header">
+                <div>
+                  <div class="select-card-title">Eco-Products &amp; Irrigation</div>
+                  <span class="hint-text">Drip irrigation, solar pumps, tree guards &amp; geotextiles</span>
+                </div>
+                <div class="check-indicator">&check;</div>
+              </div>
+              <ul class="price-list">
+                <li class="price-item"><span>1 Year:</span> <strong>₹5,000/-</strong></li>
+                <li class="price-item"><span>2 Years:</span> <strong>₹9,000/-</strong></li>
+                <li class="price-item"><span>3 Years:</span> <strong>₹13,000/-</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" id="selectedVendorType" name="vendor_type" value="Plant Nursery & Sapling Provider" />
+      </section>
+
+      <!-- ===================================================================
+           2. REGISTRATION DURATION
+           =================================================================== -->
+      <section class="form-card" id="sectionDuration">
+        <div class="section-header">
+          <span class="section-num">2</span>
+          <div>
+            <h2 class="section-title">Registration Duration <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Select the membership validity period. Prices adapt to the chosen vendor category.</p>
+          </div>
+        </div>
+
+        <div class="selectable-grid grid-3" id="durationGrid">
+          <!-- 1 Year -->
+          <div class="select-card duration-card active" data-duration="1 Year" data-duration-years="1" tabindex="0" role="radio" aria-checked="true">
+            <div class="check-indicator" style="position: absolute; top: 12px; right: 12px;">&check;</div>
+            <div class="duration-name">1 Year</div>
+            <div class="duration-price" id="priceDisplay1Year">₹5,000/-</div>
+            <div class="duration-tag">Standard Plan</div>
+          </div>
+
+          <!-- 2 Years -->
+          <div class="select-card duration-card" data-duration="2 Years" data-duration-years="2" tabindex="0" role="radio" aria-checked="false">
+            <div class="check-indicator" style="position: absolute; top: 12px; right: 12px;">&check;</div>
+            <div class="duration-name">2 Years</div>
+            <div class="duration-price" id="priceDisplay2Years">₹9,000/-</div>
+            <div class="duration-tag">Save 10%</div>
+          </div>
+
+          <!-- 3 Years -->
+          <div class="select-card duration-card" data-duration="3 Years" data-duration-years="3" tabindex="0" role="radio" aria-checked="false">
+            <div class="check-indicator" style="position: absolute; top: 12px; right: 12px;">&check;</div>
+            <div class="duration-name">3 Years</div>
+            <div class="duration-price" id="priceDisplay3Years">₹13,000/-</div>
+            <div class="duration-tag">Best Value</div>
+          </div>
+        </div>
+        <input type="hidden" id="selectedDuration" name="duration" value="1 Year" />
+        <input type="hidden" id="registrationAmount" name="amount" value="5000" />
+      </section>
+
+      <!-- ===================================================================
+           3. COMPANY / BUSINESS DETAILS
+           =================================================================== -->
+      <section class="form-card" id="sectionCompanyDetails">
+        <div class="section-header">
+          <span class="section-num">3</span>
+          <div>
+            <h2 class="section-title">Company / Business Details <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Official registered entity and taxation information</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group col-span-2" id="groupCompanyName">
+            <label for="companyName">Company / Enterprise Legal Name <span class="req-star">*</span></label>
+            <input type="text" id="companyName" name="company_name" placeholder="e.g. Green Earth Agro &amp; Nursery Farms" required autocomplete="organization" />
+            <div class="field-error-msg">Company / Enterprise Name is required.</div>
+          </div>
+
+          <div class="form-group" id="groupBusinessType">
+            <label for="businessType">Business Entity Type</label>
+            <select id="businessType" name="business_type">
+              <option value="Proprietorship" selected>Sole Proprietorship</option>
+              <option value="Partnership">Partnership Firm</option>
+              <option value="Private Limited">Private Limited Company</option>
+              <option value="LLP">Limited Liability Partnership (LLP)</option>
+              <option value="FPO">Farmer Producer Organisation (FPO)</option>
+              <option value="NGO / Trust">Trust / Non-Profit / Society</option>
+              <option value="Self Help Group">Self Help Group (SHG)</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="groupEstablishedYear">
+            <label for="establishedYear">Year Established</label>
+            <input type="number" id="establishedYear" name="established_year" placeholder="e.g. 2018" min="1950" max="2026" />
+          </div>
+
+          <div class="form-group" id="groupGst">
+            <label for="gstNo">GSTIN (Optional for small nurseries)</label>
+            <input type="text" id="gstNo" name="gst_no" placeholder="33AAAAA0000A1Z5" maxlength="15" style="text-transform: uppercase;" />
+            <span class="input-hint">15-character GST identification number</span>
+          </div>
+
+          <div class="form-group" id="groupPan">
+            <label for="panNo">PAN Number (Entity / Proprietor) <span class="req-star">*</span></label>
+            <input type="text" id="panNo" name="pan_no" placeholder="ABCDE1234F" maxlength="10" required style="text-transform: uppercase;" />
+            <div class="field-error-msg">Valid 10-character PAN number is required.</div>
+          </div>
+
+          <div class="form-group col-span-2" id="groupWebsite">
+            <label for="website">Website or Social Catalog URL</label>
+            <input type="url" id="website" name="website" placeholder="https://www.exampleagro.com or Instagram handle" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           4. CONTACT INFORMATION
+           =================================================================== -->
+      <section class="form-card" id="sectionContactInfo">
+        <div class="section-header">
+          <span class="section-num">4</span>
+          <div>
+            <h2 class="section-title">Contact Information <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Primary point of contact for Mannum Maramum Iyakkam operations</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group" id="groupContactName">
+            <label for="contactName">Contact Person Name <span class="req-star">*</span></label>
+            <input type="text" id="contactName" name="contact_name" placeholder="e.g. K. Sundararajan" required autocomplete="name" />
+            <div class="field-error-msg">Contact Person Name is required.</div>
+          </div>
+
+          <div class="form-group" id="groupDesignation">
+            <label for="designation">Designation / Role</label>
+            <input type="text" id="designation" name="designation" placeholder="e.g. Managing Director / Nursery Head" />
+          </div>
+
+          <div class="form-group" id="groupMobile">
+            <label for="mobile">Primary Mobile / WhatsApp Number <span class="req-star">*</span></label>
+            <input type="tel" id="mobile" name="mobile" placeholder="9876543210" maxlength="10" required autocomplete="tel" />
+            <div class="field-error-msg">Valid 10-digit mobile number is required.</div>
+          </div>
+
+          <div class="form-group" id="groupAltMobile">
+            <label for="altMobile">Alternate Contact Number</label>
+            <input type="tel" id="altMobile" name="alt_mobile" placeholder="044-24567890 or 9444123456" />
+          </div>
+
+          <div class="form-group col-span-2" id="groupEmail">
+            <label for="email">Official Email Address <span class="req-star">*</span></label>
+            <input type="email" id="email" name="email" placeholder="contact@greenearthagro.com" required autocomplete="email" />
+            <div class="field-error-msg">Valid email address is required.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           5. BUSINESS ADDRESS
+           =================================================================== -->
+      <section class="form-card" id="sectionBusinessAddress">
+        <div class="section-header">
+          <span class="section-num">5</span>
+          <div>
+            <h2 class="section-title">Business Address <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Registered office or nursery depot location</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group col-span-2" id="groupAddress">
+            <label for="address">Street Address, Door No., Land / Survey No. <span class="req-star">*</span></label>
+            <textarea id="address" name="address" placeholder="e.g. Plot No. 12, Green Agro Park, ECR Main Road" rows="2" required></textarea>
+            <div class="field-error-msg">Street address is required.</div>
+          </div>
+
+          <div class="form-group" id="groupDistrict">
+            <label for="districtSelect">District <span class="req-star">*</span></label>
+            <select id="districtSelect" name="district" required>
+              <option value="">-- Select Tamil Nadu District --</option>
+              <option value="Ariyalur">Ariyalur</option>
+              <option value="Chengalpattu">Chengalpattu</option>
+              <option value="Chennai" selected>Chennai</option>
+              <option value="Coimbatore">Coimbatore</option>
+              <option value="Cuddalore">Cuddalore</option>
+              <option value="Dharmapuri">Dharmapuri</option>
+              <option value="Dindigul">Dindigul</option>
+              <option value="Erode">Erode</option>
+              <option value="Kallakurichi">Kallakurichi</option>
+              <option value="Kancheepuram">Kancheepuram</option>
+              <option value="Karur">Karur</option>
+              <option value="Krishnagiri">Krishnagiri</option>
+              <option value="Madurai">Madurai</option>
+              <option value="Mayiladuthurai">Mayiladuthurai</option>
+              <option value="Nagapattinam">Nagapattinam</option>
+              <option value="Kanniyakumari">Kanniyakumari</option>
+              <option value="Namakkal">Namakkal</option>
+              <option value="Perambalur">Perambalur</option>
+              <option value="Pudukkottai">Pudukkottai</option>
+              <option value="Ramanathapuram">Ramanathapuram</option>
+              <option value="Ranipet">Ranipet</option>
+              <option value="Salem">Salem</option>
+              <option value="Sivaganga">Sivaganga</option>
+              <option value="Tenkasi">Tenkasi</option>
+              <option value="Thanjavur">Thanjavur</option>
+              <option value="Theni">Theni</option>
+              <option value="Thoothukudi">Thoothukudi</option>
+              <option value="Tiruchirappalli">Tiruchirappalli</option>
+              <option value="Tirunelveli">Tirunelveli</option>
+              <option value="Tirupathur">Tirupathur</option>
+              <option value="Tiruppur">Tiruppur</option>
+              <option value="Tiruvallur">Tiruvallur</option>
+              <option value="Tiruvannamalai">Tiruvannamalai</option>
+              <option value="Tiruvarur">Tiruvarur</option>
+              <option value="Vellore">Vellore</option>
+              <option value="Viluppuram">Viluppuram</option>
+              <option value="Virudhunagar">Virudhunagar</option>
+            </select>
+            <div class="field-error-msg">District is required.</div>
+          </div>
+
+          <div class="form-group" id="groupState">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" value="Tamil Nadu" readonly style="background: #F5F5F5;" />
+          </div>
+
+          <div class="form-group" id="groupPincode">
+            <label for="pincode">Pincode <span class="req-star">*</span></label>
+            <input type="text" id="pincode" name="pincode" placeholder="600001" maxlength="6" required />
+            <div class="field-error-msg">Valid 6-digit Pincode is required.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           6. PRODUCTS OR SERVICES OFFERED
+           =================================================================== -->
+      <section class="form-card" id="sectionProductsServices">
+        <div class="section-header">
+          <span class="section-num">6</span>
+          <div>
+            <h2 class="section-title">Products or Services Offered <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Specific materials, saplings, or restoration capabilities you provide</p>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label>Select Categories Supplied:</label>
+          <div class="checkbox-grid">
+            <label class="checkbox-label">
+              <input type="checkbox" name="product_category" value="Native Tree Saplings (Neem, Pungan, Marudham, etc.)" checked />
+              <span>Native Tree Saplings &amp; Miyawaki Plants</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="product_category" value="Organic Vermicompost & Soil Conditioners" checked />
+              <span>Organic Compost &amp; Vermicompost</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="product_category" value="Lake Desilting & Excavator Equipment" />
+              <span>Lake Desilting &amp; JCB Machinery</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="product_category" value="Drip Irrigation, Rain Guns & Solar Pumps" />
+              <span>Drip Irrigation &amp; Solar Pumps</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="product_category" value="Tree Guards, Bamboo Fences & Geotextiles" />
+              <span>Tree Guards &amp; Bamboo Fencing</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="product_category" value="Afforestation Labor & Site Plantation" />
+              <span>Plantation Labor &amp; Site Execution</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" id="groupServiceDescription" style="margin-bottom: 16px;">
+          <label for="serviceDescription">Detailed Description of Products or Services <span class="req-star">*</span></label>
+          <textarea id="serviceDescription" name="service_description" placeholder="Describe your available plant species, stock levels, equipment models, or past green projects (min 10 characters)..." rows="3" required></textarea>
+          <div class="field-error-msg">Please provide a detailed description (at least 10 characters).</div>
+        </div>
+
+        <div class="form-group" id="groupCapacity">
+          <label for="capacity">Supply / Handling Capacity (Optional)</label>
+          <input type="text" id="capacity" name="capacity" placeholder="e.g. 25,000 native saplings/month or 4 JCB excavators" />
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           7. SERVICE AREAS (TAMIL NADU DISTRICTS)
+           =================================================================== -->
+      <section class="form-card" id="sectionServiceAreas">
+        <div class="section-header">
+          <span class="section-num">7</span>
+          <div>
+            <h2 class="section-title">Operational Service Areas <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Select the districts in Tamil Nadu where your team can supply or operate</p>
+          </div>
+        </div>
+
+        <div class="service-area-box">
+          <div class="area-tools">
+            <div class="area-quick-actions">
+              <button type="button" class="pill-btn" id="btnSelectAllDistricts">Select All (38)</button>
+              <button type="button" class="pill-btn" id="btnSelectChennaiCluster">Chennai &amp; Suburbs</button>
+              <button type="button" class="pill-btn" id="btnSelectKonguCluster">Kongu Region</button>
+              <button type="button" class="pill-btn" id="btnSelectSouthCluster">South TN</button>
+              <button type="button" class="pill-btn" id="btnClearDistricts" style="color: var(--error-color);">Clear</button>
+            </div>
+            <input type="text" id="districtSearch" class="district-search-input" placeholder="Search district..." />
+          </div>
+
+          <div class="district-tags-pool" id="districtChipsContainer">
+            <!-- 38 Tamil Nadu Districts populated by JS -->
+          </div>
+
+          <div class="selected-count-bar">
+            <span>Selected Districts: <strong id="selectedDistrictsCount" style="color: var(--primary-dark);">0</strong> of 38</span>
+            <span class="input-hint">Click any chip to toggle selection</span>
+          </div>
+        </div>
+        <div class="field-error-msg" id="errorDistricts">Please select at least one operational district.</div>
+      </section>
+
+      <!-- ===================================================================
+           8. REQUIRED DOCUMENTS
+           =================================================================== -->
+      <section class="form-card" id="sectionRequiredDocuments">
+        <div class="section-header">
+          <span class="section-num">8</span>
+          <div>
+            <h2 class="section-title">Required Documents</h2>
+            <p class="section-subtitle">Upload verification proofs for your vendor profile (PDF, JPG, PNG - max 5MB each)</p>
+          </div>
+        </div>
+
+        <div class="docs-grid">
+          <!-- Document 1: Business Registration / GST / Udyam -->
+          <div class="doc-upload-box" id="boxDocReg" onclick="document.getElementById('fileDocReg').click()">
+            <input type="file" id="fileDocReg" class="doc-file-input" accept=".pdf,.jpg,.jpeg,.png" />
+            <div class="doc-icon">📄</div>
+            <div class="doc-title">Registration / GST / Udyam Certificate</div>
+            <div class="doc-hint">Click or drag &amp; drop to upload</div>
+            <div class="doc-filename" id="nameDocReg"></div>
+          </div>
+
+          <!-- Document 2: PAN Card Copy -->
+          <div class="doc-upload-box" id="boxDocPan" onclick="document.getElementById('fileDocPan').click()">
+            <input type="file" id="fileDocPan" class="doc-file-input" accept=".pdf,.jpg,.jpeg,.png" />
+            <div class="doc-icon">🪪</div>
+            <div class="doc-title">PAN Card Copy</div>
+            <div class="doc-hint">Click or drag &amp; drop to upload</div>
+            <div class="doc-filename" id="nameDocPan"></div>
+          </div>
+
+          <!-- Document 3: Product Catalog / Profile -->
+          <div class="doc-upload-box" id="boxDocCatalog" onclick="document.getElementById('fileDocCatalog').click()">
+            <input type="file" id="fileDocCatalog" class="doc-file-input" accept=".pdf,.jpg,.jpeg,.png" />
+            <div class="doc-icon">🌱</div>
+            <div class="doc-title">Nursery Stock / Equipment Catalog</div>
+            <div class="doc-hint">Click or drag &amp; drop to upload</div>
+            <div class="doc-filename" id="nameDocCatalog"></div>
+          </div>
+
+          <!-- Document 4: Bank Proof -->
+          <div class="doc-upload-box" id="boxDocBank" onclick="document.getElementById('fileDocBank').click()">
+            <input type="file" id="fileDocBank" class="doc-file-input" accept=".pdf,.jpg,.jpeg,.png" />
+            <div class="doc-icon">🏦</div>
+            <div class="doc-title">Cancelled Cheque / Passbook Copy</div>
+            <div class="doc-hint">Click or drag &amp; drop to upload</div>
+            <div class="doc-filename" id="nameDocBank"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           9. PAYMENT DETAILS
+           =================================================================== -->
+      <section class="form-card" id="sectionPaymentDetails">
+        <div class="section-header">
+          <span class="section-num">9</span>
+          <div>
+            <h2 class="section-title">Payment Details <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Official NGO bank account &amp; UPI details for vendor onboarding fee</p>
+          </div>
+        </div>
+
+        <div class="payment-container">
+          <!-- Bank & UPI Information -->
+          <div>
+            <div class="bank-card">
+              <div class="bank-title">
+                <span>🏛️</span>
+                <span>Mannum Maramum Iyakkam Bank Details</span>
+              </div>
+              <div class="bank-row">
+                <span class="bank-label">Account Name:</span>
+                <span class="bank-val">Mannum Maramum Iyakkam</span>
+              </div>
+              <div class="bank-row">
+                <span class="bank-label">Bank:</span>
+                <span class="bank-val">State Bank of India (SBI)</span>
+              </div>
+              <div class="bank-row">
+                <span class="bank-label">Account No:</span>
+                <span class="bank-val">39824578120</span>
+              </div>
+              <div class="bank-row">
+                <span class="bank-label">IFSC Code:</span>
+                <span class="bank-val">SBIN0001234</span>
+              </div>
+              <div class="bank-row">
+                <span class="bank-label">Account Type:</span>
+                <span class="bank-val">Current Account</span>
+              </div>
+            </div>
+
+            <!-- UPI QR Box -->
+            <div class="upi-box">
+              <div class="qr-frame">
+                <!-- Clean Nature Green QR Code Vector -->
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="100" height="100" fill="#ffffff" />
+                  <rect x="10" y="10" width="26" height="26" fill="#1B5E20" />
+                  <rect x="14" y="14" width="18" height="18" fill="#ffffff" />
+                  <rect x="18" y="18" width="10" height="10" fill="#1B5E20" />
+                  <rect x="64" y="10" width="26" height="26" fill="#1B5E20" />
+                  <rect x="68" y="14" width="18" height="18" fill="#ffffff" />
+                  <rect x="72" y="18" width="10" height="10" fill="#1B5E20" />
+                  <rect x="10" y="64" width="26" height="26" fill="#1B5E20" />
+                  <rect x="14" y="68" width="18" height="18" fill="#ffffff" />
+                  <rect x="18" y="72" width="10" height="10" fill="#1B5E20" />
+                  <rect x="42" y="12" width="6" height="6" fill="#2E7D32" />
+                  <rect x="50" y="20" width="6" height="6" fill="#2E7D32" />
+                  <rect x="44" y="30" width="8" height="6" fill="#1B5E20" />
+                  <rect x="12" y="44" width="8" height="8" fill="#2E7D32" />
+                  <rect x="26" y="48" width="8" height="6" fill="#1B5E20" />
+                  <rect x="42" y="42" width="16" height="16" fill="#1B5E20" />
+                  <rect x="46" y="46" width="8" height="8" fill="#ffffff" />
+                  <rect x="64" y="44" width="8" height="6" fill="#2E7D32" />
+                  <rect x="78" y="48" width="12" height="6" fill="#1B5E20" />
+                  <rect x="44" y="64" width="6" height="10" fill="#2E7D32" />
+                  <rect x="54" y="72" width="8" height="8" fill="#1B5E20" />
+                  <rect x="68" y="66" width="10" height="8" fill="#2E7D32" />
+                  <rect x="80" y="76" width="10" height="12" fill="#1B5E20" />
+                </svg>
+              </div>
+              <div class="upi-details">
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-dark); text-transform: uppercase;">Scan &amp; Pay via UPI</span>
+                <div class="upi-id-badge" title="Click to copy UPI ID">mannummaramum@sbi</div>
+                <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px;">Google Pay, PhonePe, Paytm, BHIM</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fee Summary & Transaction Input -->
+          <div class="fee-summary-card">
+            <div class="fee-summary-header">Fee Calculation Summary</div>
+            <div class="fee-row">
+              <span class="bank-label">Vendor Category:</span>
+              <span class="bank-val" id="summaryCategoryText">Plant Nursery</span>
+            </div>
+            <div class="fee-row">
+              <span class="bank-label">Duration:</span>
+              <span class="bank-val" id="summaryDurationText">1 Year</span>
+            </div>
+            <div class="fee-row">
+              <span class="bank-label">GST / Onboarding:</span>
+              <span class="bank-val" style="color: var(--primary-dark);">Included (100% Tax Compliant)</span>
+            </div>
+            <div class="fee-total-row">
+              <span>Total Payable:</span>
+              <span id="summaryTotalAmount">₹5,000/-</span>
+            </div>
+
+            <!-- Transaction Reference Inputs -->
+            <div style="margin-top: 18px;" class="form-group" id="groupTxnRef">
+              <label for="transactionRef">Transaction Reference / UTR Number <span class="req-star">*</span></label>
+              <input type="text" id="transactionRef" name="transaction_ref" placeholder="e.g. 329847192847 or UPI Ref ID" required />
+              <div class="field-error-msg">Transaction reference / UTR number is required.</div>
+            </div>
+
+            <div class="form-group" id="groupPaymentDate" style="margin-top: 12px;">
+              <label for="paymentDate">Date of Payment</label>
+              <input type="date" id="paymentDate" name="payment_date" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           10. DECLARATION AND CONSENT
+           =================================================================== -->
+      <section class="form-card" id="sectionDeclaration">
+        <div class="section-header">
+          <span class="section-num">10</span>
+          <div>
+            <h2 class="section-title">Declaration and Consent <span class="req-star">*</span></h2>
+            <p class="section-subtitle">Environmental commitment and verification undertaking</p>
+          </div>
+        </div>
+
+        <div class="declaration-box">
+          <p class="declaration-text">
+            I / We hereby solemnly declare that all particulars furnished in this registration are true, authentic, and complete to the best of our knowledge. As a verified vendor partner of <strong>Mannum Maramum Iyakkam</strong>, we pledge to uphold eco-conscious standards, supply high-grade native flora, organic inputs, or environmentally safe machinery, and strictly avoid hazardous, non-biodegradable or unauthorized materials in our operations.
+          </p>
+
+          <label class="consent-label" id="labelConsent">
+            <input type="checkbox" id="declarationConsent" name="declaration_accepted" required />
+            <span>I have read, understood, and accept the Terms &amp; Environmental Code of Conduct of Mannum Maramum Iyakkam. <span class="req-star">*</span></span>
+          </label>
+          <div class="field-error-msg" id="errorConsent">You must accept the declaration to submit registration.</div>
+        </div>
+
+        <div class="submit-bar">
+          <button type="submit" class="btn-submit" id="btnSubmitRegistration">
+            <span id="submitBtnText">Complete Vendor Registration</span>
+            <span id="submitSpinner" style="display: none;">⏳ Submitting...</span>
+          </button>
+          <div class="security-note">
+            <span>🔒</span>
+            <span>256-Bit Encrypted Secure Submission &bull; Verified NGO Portal</span>
+          </div>
+        </div>
+      </section>
+
+    </form>
+
+    <!-- Footer -->
+    <footer style="text-align: center; margin-top: 36px; color: var(--text-muted); font-size: 0.85rem;">
+      <p>&copy; 2026 Mannum Maramum Iyakkam. All rights reserved. &bull; Registered Non-Profit Environmental Foundation</p>
+      <p style="margin-top: 4px;"><a href="/" style="color: var(--primary); text-decoration: none; font-weight: 700;">Home</a> &bull; <a href="/admin/login" style="color: var(--primary); text-decoration: none; font-weight: 700;">Admin Portal</a></p>
+    </footer>
+
+  </div>
+
+  <!-- =========================================================================
+       SUCCESS CONFIRMATION MODAL
+       ========================================================================= -->
+  <div class="modal-backdrop" id="successModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-icon-wrap">&check;</div>
+      <h2 class="modal-title" id="modalTitle">Registration Submitted!</h2>
+      <div class="modal-ref-pill" id="modalRefNo">MMI-VND-000000</div>
+      <p class="modal-desc">
+        Thank you for joining hands with Mannum Maramum Iyakkam! Your vendor registration and payment details have been recorded successfully.
+      </p>
+
+      <div class="modal-summary-box">
+        <div class="modal-summary-row">
+          <span>Enterprise:</span>
+          <strong id="modalCompanyName">-</strong>
+        </div>
+        <div class="modal-summary-row">
+          <span>Vendor Type:</span>
+          <span id="modalVendorType">-</span>
+        </div>
+        <div class="modal-summary-row">
+          <span>Duration:</span>
+          <span id="modalDuration">-</span>
+        </div>
+        <div class="modal-summary-row">
+          <span>Transaction UTR:</span>
+          <strong id="modalTxnRef">-</strong>
+        </div>
+        <div class="modal-summary-row">
+          <span>Total Fee:</span>
+          <strong id="modalAmount" style="color: var(--primary-dark);">-</strong>
+        </div>
+      </div>
+
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 22px;">
+        Our administrative desk will verify your transaction reference within 1-2 business days. An official digital vendor credential will be dispatched to your registered email address.
+      </p>
+
+      <div class="modal-btns">
+        <button type="button" class="btn-secondary" onclick="window.print()">🖨️ Print Receipt</button>
+        <a href="/" class="btn-primary-modal">Return to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FRONTEND JAVASCRIPT LOGIC
+       ========================================================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Pricing Structure Matrix
+      const PRICING_MATRIX = {
+        'nursery': { 1: 5000, 2: 9000, 3: 13000 },
+        'compost': { 1: 5000, 2: 9000, 3: 13000 },
+        'machinery': { 1: 8000, 2: 14500, 3: 21000 },
+        'eco': { 1: 5000, 2: 9000, 3: 13000 }
+      };
+
+      let currentTier = 'nursery';
+      let currentYears = 1;
+
+      // DOM Elements
+      const vendorTypeCards = document.querySelectorAll('#vendorTypeGrid .select-card');
+      const durationCards = document.querySelectorAll('#durationGrid .select-card');
+      const hiddenVendorType = document.getElementById('selectedVendorType');
+      const hiddenDuration = document.getElementById('selectedDuration');
+      const hiddenAmount = document.getElementById('registrationAmount');
+
+      const price1YearEl = document.getElementById('priceDisplay1Year');
+      const price2YearsEl = document.getElementById('priceDisplay2Years');
+      const price3YearsEl = document.getElementById('priceDisplay3Years');
+
+      const summaryCategoryText = document.getElementById('summaryCategoryText');
+      const summaryDurationText = document.getElementById('summaryDurationText');
+      const summaryTotalAmount = document.getElementById('summaryTotalAmount');
+
+      // 2. Update Dynamic Price Displays
+      function updatePricing() {
+        const prices = PRICING_MATRIX[currentTier] || PRICING_MATRIX['nursery'];
+        price1YearEl.textContent = `₹${prices[1].toLocaleString('en-IN')}/-`;
+        price2YearsEl.textContent = `₹${prices[2].toLocaleString('en-IN')}/-`;
+        price3YearsEl.textContent = `₹${prices[3].toLocaleString('en-IN')}/-`;
+
+        const finalAmount = prices[currentYears];
+        hiddenAmount.value = finalAmount;
+        summaryTotalAmount.textContent = `₹${finalAmount.toLocaleString('en-IN')}/-`;
+      }
+
+      // Vendor Type Card Click Handlers
+      vendorTypeCards.forEach(card => {
+        card.addEventListener('click', () => {
+          vendorTypeCards.forEach(c => {
+            c.classList.remove('active');
+            c.setAttribute('aria-checked', 'false');
+          });
+          card.classList.add('active');
+          card.setAttribute('aria-checked', 'true');
+
+          const typeName = card.getAttribute('data-vendor-type');
+          currentTier = card.getAttribute('data-tier') || 'nursery';
+          hiddenVendorType.value = typeName;
+          summaryCategoryText.textContent = typeName.split('&')[0].trim();
+
+          updatePricing();
+        });
+      });
+
+      // Duration Card Click Handlers
+      durationCards.forEach(card => {
+        card.addEventListener('click', () => {
+          durationCards.forEach(c => {
+            c.classList.remove('active');
+            c.setAttribute('aria-checked', 'false');
+          });
+          card.classList.add('active');
+          card.setAttribute('aria-checked', 'true');
+
+          currentYears = parseInt(card.getAttribute('data-duration-years'), 10) || 1;
+          const durationName = card.getAttribute('data-duration');
+          hiddenDuration.value = durationName;
+          summaryDurationText.textContent = durationName;
+
+          updatePricing();
+        });
+      });
+
+      // 3. 38 Tamil Nadu Districts Tag Selector
+      const TN_DISTRICTS = [
+        "Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore",
+        "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kancheepuram",
+        "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam",
+        "Kanniyakumari", "Namakkal", "Perambalur", "Pudukkottai", "Ramanathapuram",
+        "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur",
+        "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur",
+        "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore",
+        "Viluppuram", "Virudhunagar"
+      ];
+
+      const selectedDistricts = new Set(["Chennai", "Chengalpattu", "Tiruvallur", "Kancheepuram"]);
+      const chipsContainer = document.getElementById('districtChipsContainer');
+      const countEl = document.getElementById('selectedDistrictsCount');
+      const searchInput = document.getElementById('districtSearch');
+
+      function renderDistrictChips(filter = '') {
+        chipsContainer.innerHTML = '';
+        const normFilter = filter.toLowerCase().trim();
+
+        TN_DISTRICTS.forEach(d => {
+          if (normFilter && !d.toLowerCase().includes(normFilter)) return;
+
+          const chip = document.createElement('div');
+          chip.className = `district-chip ${selectedDistricts.has(d) ? 'selected' : ''}`;
+          chip.textContent = d;
+          chip.addEventListener('click', () => {
+            if (selectedDistricts.has(d)) {
+              selectedDistricts.delete(d);
+            } else {
+              selectedDistricts.add(d);
+            }
+            renderDistrictChips(searchInput.value);
+            countEl.textContent = selectedDistricts.size;
+          });
+          chipsContainer.appendChild(chip);
+        });
+        countEl.textContent = selectedDistricts.size;
+      }
+
+      renderDistrictChips();
+
+      searchInput.addEventListener('input', (e) => {
+        renderDistrictChips(e.target.value);
+      });
+
+      document.getElementById('btnSelectAllDistricts').addEventListener('click', () => {
+        TN_DISTRICTS.forEach(d => selectedDistricts.add(d));
+        renderDistrictChips(searchInput.value);
+      });
+
+      document.getElementById('btnClearDistricts').addEventListener('click', () => {
+        selectedDistricts.clear();
+        renderDistrictChips(searchInput.value);
+      });
+
+      document.getElementById('btnSelectChennaiCluster').addEventListener('click', () => {
+        ["Chennai", "Chengalpattu", "Tiruvallur", "Kancheepuram"].forEach(d => selectedDistricts.add(d));
+        renderDistrictChips(searchInput.value);
+      });
+
+      document.getElementById('btnSelectKonguCluster').addEventListener('click', () => {
+        ["Coimbatore", "Tiruppur", "Erode", "Salem", "Namakkal", "Karur"].forEach(d => selectedDistricts.add(d));
+        renderDistrictChips(searchInput.value);
+      });
+
+      document.getElementById('btnSelectSouthCluster').addEventListener('click', () => {
+        ["Madurai", "Dindigul", "Theni", "Virudhunagar", "Tirunelveli", "Tenkasi", "Thoothukudi", "Kanniyakumari"].forEach(d => selectedDistricts.add(d));
+        renderDistrictChips(searchInput.value);
+      });
+
+      // 4. Document File Upload Handlers (Visual Feedback)
+      const docConfigs = [
+        { fileId: 'fileDocReg', boxId: 'boxDocReg', nameId: 'nameDocReg' },
+        { fileId: 'fileDocPan', boxId: 'boxDocPan', nameId: 'nameDocPan' },
+        { fileId: 'fileDocCatalog', boxId: 'boxDocCatalog', nameId: 'nameDocCatalog' },
+        { fileId: 'fileDocBank', boxId: 'boxDocBank', nameId: 'nameDocBank' }
+      ];
+
+      docConfigs.forEach(cfg => {
+        const fileIn = document.getElementById(cfg.fileId);
+        const boxEl = document.getElementById(cfg.boxId);
+        const nameEl = document.getElementById(cfg.nameId);
+
+        fileIn.addEventListener('change', () => {
+          if (fileIn.files && fileIn.files[0]) {
+            const f = fileIn.files[0];
+            boxEl.classList.add('has-file');
+            nameEl.textContent = `✓ ${f.name} (${(f.size / 1024).toFixed(1)} KB)`;
+          } else {
+            boxEl.classList.remove('has-file');
+            nameEl.textContent = '';
+          }
+        });
+      });
+
+      // Set today's date in Payment Date field by default
+      const paymentDateInput = document.getElementById('paymentDate');
+      if (paymentDateInput) {
+        paymentDateInput.value = new Date().toISOString().split('T')[0];
+      }
+
+      // 5. Form Validation & AJAX Submission
+      const form = document.getElementById('vendorRegistrationForm');
+      const submitBtn = document.getElementById('btnSubmitRegistration');
+      const submitBtnText = document.getElementById('submitBtnText');
+      const submitSpinner = document.getElementById('submitSpinner');
+      const modal = document.getElementById('successModalBackdrop');
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Clear previous error states
+        document.querySelectorAll('.has-error').forEach(el => el.classList.remove('has-error'));
+
+        let isValid = true;
+        let firstInvalidField = null;
+
+        function markInvalid(groupId) {
+          const grp = document.getElementById(groupId);
+          if (grp) {
+            grp.classList.add('has-error');
+            if (!firstInvalidField) firstInvalidField = grp;
+          }
+          isValid = false;
+        }
+
+        // Validate Company Name
+        const compName = document.getElementById('companyName').value.trim();
+        if (!compName) markInvalid('groupCompanyName');
+
+        // Validate PAN
+        const panNo = document.getElementById('panNo').value.trim().toUpperCase();
+        if (!panNo || panNo.length < 8) markInvalid('groupPan');
+
+        // Validate Contact Name
+        const contName = document.getElementById('contactName').value.trim();
+        if (!contName) markInvalid('groupContactName');
+
+        // Validate Mobile
+        const mob = document.getElementById('mobile').value.trim();
+        if (!mob || mob.length < 10) markInvalid('groupMobile');
+
+        // Validate Email
+        const eml = document.getElementById('email').value.trim();
+        if (!eml || !eml.includes('@')) markInvalid('groupEmail');
+
+        // Validate Address & District & Pincode
+        const addr = document.getElementById('address').value.trim();
+        if (!addr) markInvalid('groupAddress');
+
+        const dist = document.getElementById('districtSelect').value;
+        if (!dist) markInvalid('groupDistrict');
+
+        const pin = document.getElementById('pincode').value.trim();
+        if (!pin || pin.length < 6) markInvalid('groupPincode');
+
+        // Validate Service Description
+        const desc = document.getElementById('serviceDescription').value.trim();
+        if (!desc || desc.length < 10) markInvalid('groupServiceDescription');
+
+        // Validate Districts Covered
+        if (selectedDistricts.size === 0) {
+          document.getElementById('sectionServiceAreas').classList.add('has-error');
+          if (!firstInvalidField) firstInvalidField = document.getElementById('sectionServiceAreas');
+          isValid = false;
+        }
+
+        // Validate Transaction Reference
+        const txn = document.getElementById('transactionRef').value.trim();
+        if (!txn) markInvalid('groupTxnRef');
+
+        // Validate Consent
+        const consent = document.getElementById('declarationConsent').checked;
+        if (!consent) {
+          document.getElementById('sectionDeclaration').classList.add('has-error');
+          if (!firstInvalidField) firstInvalidField = document.getElementById('sectionDeclaration');
+          isValid = false;
+        }
+
+        if (!isValid) {
+          if (firstInvalidField) {
+            firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return;
+        }
+
+        // Gather Selected Products
+        const prodCheckboxes = document.querySelectorAll('input[name="product_category"]:checked');
+        const selectedProducts = Array.from(prodCheckboxes).map(cb => cb.value);
+
+        // Build Payload
+        const payload = {
+          vendor_type: hiddenVendorType.value,
+          duration: hiddenDuration.value,
+          amount: parseFloat(hiddenAmount.value) || 5000,
+          company_name: compName,
+          business_type: document.getElementById('businessType').value,
+          established_year: document.getElementById('establishedYear').value || null,
+          gst_no: document.getElementById('gstNo').value.trim().toUpperCase() || null,
+          pan_no: panNo,
+          website: document.getElementById('website').value.trim() || null,
+          contact_name: contName,
+          designation: document.getElementById('designation').value.trim() || null,
+          mobile: mob,
+          alt_mobile: document.getElementById('altMobile').value.trim() || null,
+          email: eml,
+          address: addr,
+          district: dist,
+          state: 'Tamil Nadu',
+          pincode: pin,
+          products_services: selectedProducts,
+          service_description: desc,
+          capacity: document.getElementById('capacity').value.trim() || null,
+          districts_covered: Array.from(selectedDistricts),
+          payment_method: 'UPI / SBI Direct Transfer',
+          transaction_ref: txn,
+          payment_date: paymentDateInput.value || new Date().toISOString().split('T')[0],
+          declaration_accepted: consent ? 1 : 0
+        };
+
+        // UI Loading State
+        submitBtn.disabled = true;
+        submitBtnText.style.display = 'none';
+        submitSpinner.style.display = 'inline';
+
+        try {
+          const apiBase = window.API_BASE_URL || window.__API_URL__ || '';
+          const res = await fetch(`${apiBase}/api/vendors`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await res.json();
+
+          if (res.ok && data.success) {
+            // Populate Modal
+            document.getElementById('modalRefNo').textContent = data.reference_no;
+            document.getElementById('modalCompanyName').textContent = compName;
+            document.getElementById('modalVendorType').textContent = payload.vendor_type;
+            document.getElementById('modalDuration').textContent = payload.duration;
+            document.getElementById('modalTxnRef').textContent = txn;
+            document.getElementById('modalAmount').textContent = `₹${payload.amount.toLocaleString('en-IN')}/-`;
+
+            modal.classList.add('active');
+            form.reset();
+          } else {
+            alert(data.message || 'Error submitting registration. Please check all fields and try again.');
+          }
+        } catch (err) {
+          console.error('Submission error:', err);
+          alert('Could not connect to the Mannum Maramum server. Please ensure the backend is running.');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtnText.style.display = 'inline';
+          submitSpinner.style.display = 'none';
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

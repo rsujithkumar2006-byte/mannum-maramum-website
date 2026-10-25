@@ -1,0 +1,32 @@
+{
+  "name": "mannum-maramum-admin-system",
+  "version": "1.0.0",
+  "description": "Mannum Maramum Iyakkam Environmental NGO - Official Public Website & Secure Admin Management Portal",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "seed": "node scripts/seed.js",
+    "reset-admin": "node scripts/reset-admin.js",
+    "test": "node scripts/test-system.js",
+    "validate-lifecycle": "node scripts/validate-project-lifecycle.js"
+  },
+  "keywords": [
+    "ngo",
+    "environment",
+    "admin-panel",
+    "mannum-maramum"
+  ],
+  "author": "Mannum Maramum Iyakkam",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "sqlite3": "^5.1.7"
+  }
+}
