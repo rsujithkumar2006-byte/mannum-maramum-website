@@ -15,20 +15,30 @@ async function seed() {
   // 1. Seed Admin Users
   const existingAdmin = await get('SELECT * FROM users WHERE username = ?', ['admin']);
   if (!existingAdmin) {
+    const adminPass = process.env.ADMIN_INITIAL_PASSWORD || 'Admin@123';
+    const editorPass = process.env.EDITOR_INITIAL_PASSWORD || 'Editor@123';
     const salt = await bcrypt.genSalt(10);
-    const superAdminHash = await bcrypt.hash('Admin@123', salt);
+    const superAdminHash = await bcrypt.hash(adminPass, salt);
     await run(
       `INSERT INTO users (username, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)`,
       ['admin', 'admin@mannummaramum.org', superAdminHash, 'Mannum Maramum Administrator', 'super_admin']
     );
-    console.log('✓ Created Super Admin user: admin / admin@mannummaramum.org (Password: Admin@123)');
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('✓ Created Super Admin user: admin / admin@mannummaramum.org (Password: Admin@123)');
+    } else {
+      console.log('✓ Initialized Super Admin user: admin / admin@mannummaramum.org');
+    }
 
-    const editorHash = await bcrypt.hash('Editor@123', salt);
+    const editorHash = await bcrypt.hash(editorPass, salt);
     await run(
       `INSERT INTO users (username, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)`,
       ['editor', 'editor@mannummaramum.org', editorHash, 'Field Outreach Coordinator', 'editor']
     );
-    console.log('✓ Created Editor user: editor / editor@mannummaramum.org (Password: Editor@123)');
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('✓ Created Editor user: editor / editor@mannummaramum.org (Password: Editor@123)');
+    } else {
+      console.log('✓ Initialized Editor user: editor / editor@mannummaramum.org');
+    }
   } else {
     console.log('✓ Admin accounts already present.');
   }
