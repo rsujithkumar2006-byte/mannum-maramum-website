@@ -22,14 +22,23 @@ const vendorRoutes = require('./routes/vendors');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const HOST = process.env.HOST || '0.0.0.0';
 
 // Security & Parsing Middleware
 app.use(cors());
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 
+// Uploads storage path (supports Render Persistent Disk via UPLOAD_DIR or local fallback)
+const uploadsDirectory = process.env.UPLOAD_DIR 
+  ? path.resolve(process.env.UPLOAD_DIR) 
+  : path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDirectory)) {
+  fs.mkdirSync(uploadsDirectory, { recursive: true });
+}
+
 // Static Assets
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(uploadsDirectory));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/admin', express.static(path.join(__dirname, 'public', 'admin')));
@@ -123,12 +132,12 @@ async function startServer() {
     // Auto-seed if database is fresh
     await seed();
 
-    const server = app.listen(PORT, () => {
+    const server = app.listen(PORT, HOST, () => {
       console.log(`====================================================`);
       console.log(`🌿 MANNUM MARAMUM IYAKKAM NGO PLATFORM READY`);
-      console.log(`🌐 Public Website : http://localhost:${PORT}/`);
-      console.log(`🔒 Admin Portal   : http://localhost:${PORT}/admin/login`);
-      console.log(`⚙️  API Endpoints  : http://localhost:${PORT}/api/health`);
+      console.log(`🌐 Public Website : http://${HOST === '0.0.0.0' ? 'localhost' : HOST}:${PORT}/`);
+      console.log(`🔒 Admin Portal   : http://${HOST === '0.0.0.0' ? 'localhost' : HOST}:${PORT}/admin/login`);
+      console.log(`⚙️  API Endpoints  : http://${HOST === '0.0.0.0' ? 'localhost' : HOST}:${PORT}/api/health`);
       console.log(`====================================================`);
     });
 

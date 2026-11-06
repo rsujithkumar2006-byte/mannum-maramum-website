@@ -12,6 +12,9 @@
     "test": "node scripts/test-system.js",
     "validate-lifecycle": "node scripts/validate-project-lifecycle.js"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "keywords": [
     "ngo",
     "environment",

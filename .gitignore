@@ -13,6 +13,13 @@ package-lock.json.bak
 data/*.db
 data/*.db-journal
 
+# User-generated uploads & sensitive documents (preserve authentic gallery seed images)
+uploads/documents/*
+uploads/covers/*
+uploads/general/*
+!uploads/gallery/
+!uploads/gallery/*
+
 # Temporary logs & debug files
 npm-debug.log*
 yarn-debug.log*
