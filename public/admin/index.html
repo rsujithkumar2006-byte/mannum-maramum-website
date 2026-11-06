@@ -69,6 +69,12 @@
           <span>Donations</span>
         </a>
 
+        <a class="nav-item" data-view="vendors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <span>Vendors</span>
+          <span class="nav-badge" id="badgeVendors">0</span>
+        </a>
+
         <span class="nav-label">Configuration</span>
         <a class="nav-item" data-view="impact">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
@@ -522,6 +528,53 @@
               </thead>
               <tbody id="donationsTableBody">
                 <tr><td colspan="8" style="text-align:center; padding:30px;">Loading donations...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================== 7B. VENDORS VIEW ==================== -->
+        <section id="view-vendors" class="view-panel">
+          <div class="action-bar">
+            <div class="search-filter-wrap">
+              <div class="search-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="vendorSearchInput" placeholder="Search by company, contact, or ref #..." class="search-input">
+              </div>
+
+              <select id="vendorStatusFilter" class="filter-select">
+                <option value="">All Statuses</option>
+                <option value="Pending Verification">Pending Verification</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+
+              <select id="vendorTypeFilter" class="filter-select">
+                <option value="">All Vendor Types</option>
+                <option value="Nursery & Sapling Provider">Nursery & Sapling Provider</option>
+                <option value="Equipment & Agro Tools">Equipment & Agro Tools</option>
+                <option value="Organic Manure & Fertilizer">Organic Manure & Fertilizer</option>
+                <option value="Water & Irrigation Supplies">Water & Irrigation Supplies</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Ref #</th>
+                  <th>Company / Business</th>
+                  <th>Vendor Type</th>
+                  <th>Contact Person</th>
+                  <th>Phone</th>
+                  <th>District</th>
+                  <th>Status</th>
+                  <th>Registered</th>
+                </tr>
+              </thead>
+              <tbody id="vendorsTableBody">
+                <tr><td colspan="8" style="text-align:center; padding:30px;">Loading vendor applications...</td></tr>
               </tbody>
             </table>
           </div>

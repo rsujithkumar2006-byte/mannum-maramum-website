@@ -191,6 +191,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadImpact();
   await loadContent();
   await loadStaffUsers();
+  await loadVendors();
 
   // Setup search & filter listeners
   setupFilters();
@@ -216,6 +217,7 @@ function switchView(viewId) {
     volunteers: { title: 'Volunteer Coordination', sub: 'Manage registered nature volunteers, assignments & contact data' },
     partnerships: { title: 'Institutional Partnerships', sub: 'Evaluate college, corporate CSR, and NGO collaboration applications' },
     donations: { title: 'Donation Records', sub: 'Track and verify environmental tree adoption and nursery contributions' },
+    vendors: { title: 'Vendor Management', sub: 'Review registered nurseries, seedling providers, and equipment suppliers' },
     impact: { title: 'Verified Impact Reports', sub: 'Update approved palm seeds, trees planted, and locations covered' },
     content: { title: 'Website Content Management', sub: 'Manage Tamil and English bilingual website copy and announcements' },
     settings: { title: 'Admin Settings & Staff', sub: 'Update personal credentials and manage administrative staff roles' }
@@ -939,6 +941,64 @@ function exportDonationsCSV() {
 }
 
 // ==========================================================================
+// 7B. VENDORS CONTROLLER
+// ==========================================================================
+
+let vendorsCache = [];
+
+async function loadVendors() {
+  try {
+    const searchEl = document.getElementById('vendorSearchInput');
+    const statusEl = document.getElementById('vendorStatusFilter');
+    const typeEl = document.getElementById('vendorTypeFilter');
+
+    const search = searchEl ? searchEl.value : '';
+    const status = statusEl ? statusEl.value : '';
+    const vendor_type = typeEl ? typeEl.value : '';
+
+    let url = `/api/vendors?search=${encodeURIComponent(search)}&status=${encodeURIComponent(status)}&vendor_type=${encodeURIComponent(vendor_type)}`;
+    const res = await apiFetch(url);
+    if (!res || !res.success) return;
+
+    vendorsCache = res.vendors || [];
+    const badgeEl = document.getElementById('badgeVendors');
+    if (badgeEl) badgeEl.textContent = vendorsCache.length;
+    renderVendorsTable(vendorsCache);
+  } catch (err) {
+    console.error('Vendors load error:', err);
+  }
+}
+
+function renderVendorsTable(list) {
+  const tbody = document.getElementById('vendorsTableBody');
+  if (!tbody) return;
+
+  if (!list || list.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:30px;">No vendor applications found.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = list.map(v => `
+    <tr>
+      <td><code style="font-size:0.8rem; background:rgba(15,45,26,0.06); padding:2px 6px; border-radius:4px; font-weight:600;">${escapeHtml(v.reference_no || '—')}</code></td>
+      <td>
+        <div style="font-weight:700; color:var(--forest-900); font-size:0.95rem;">${escapeHtml(v.company_name)}</div>
+        ${v.website ? `<a href="${escapeHtml(v.website)}" target="_blank" style="font-size:0.75rem; color:var(--forest-700); text-decoration:none;">${escapeHtml(v.website)}</a>` : ''}
+      </td>
+      <td><span class="tpill" style="display:inline-block; font-size:0.75rem; padding:3px 8px;">${escapeHtml(v.vendor_type || 'General')}</span></td>
+      <td>
+        <div style="font-weight:600;">${escapeHtml(v.contact_name)}</div>
+        <div style="font-size:0.78rem; color:var(--text-muted);">${escapeHtml(v.email)}</div>
+      </td>
+      <td>${escapeHtml(v.mobile || '—')}</td>
+      <td>${escapeHtml(v.district || '—')}</td>
+      <td><span class="badge badge-${(v.status || 'pending').toLowerCase().replace(/\s+/g, '-')}">${escapeHtml(v.status || 'Pending')}</span></td>
+      <td>${(v.created_at || '').slice(0, 10)}</td>
+    </tr>
+  `).join('');
+}
+
+// ==========================================================================
 // 8. IMPACT CONTROLLER
 // ==========================================================================
 
@@ -1388,7 +1448,7 @@ function setupForms() {
 
 function setupFilters() {
   // Search inputs with debounce
-  ['projSearchInput', 'eventsSearchInput', 'volSearchInput', 'partSearchInput', 'donSearchInput'].forEach(id => {
+  ['projSearchInput', 'eventsSearchInput', 'volSearchInput', 'partSearchInput', 'donSearchInput', 'vendorSearchInput'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     let timer = null;
@@ -1400,6 +1460,7 @@ function setupFilters() {
         else if (id === 'volSearchInput') loadVolunteers();
         else if (id === 'partSearchInput') loadPartnerships();
         else if (id === 'donSearchInput') loadDonations();
+        else if (id === 'vendorSearchInput') loadVendors();
       }, 300);
     });
   });
@@ -1414,6 +1475,10 @@ function setupFilters() {
   document.getElementById('volStatusFilter').addEventListener('change', loadVolunteers);
   ['partTypeFilter', 'partStatusFilter'].forEach(id => {
     document.getElementById(id).addEventListener('change', loadPartnerships);
+  });
+  ['vendorStatusFilter', 'vendorTypeFilter'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', loadVendors);
   });
 }
 

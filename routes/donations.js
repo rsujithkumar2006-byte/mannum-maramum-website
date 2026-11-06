@@ -78,29 +78,69 @@ router.get('/export', authenticateToken, async (req, res) => {
 // POST /api/donations (Public submission connected to #donorForm)
 router.post('/', async (req, res) => {
   try {
-    const { donor_name, donor_email, donor_phone, donor_pan = '', amount, donation_type = 'one-time', transaction_ref = '', notes = '' } = req.body;
+    const {
+      donor_name,
+      donor_email,
+      donor_phone,
+      donor_pan = '',
+      amount,
+      donation_type = 'Individual Donation',
+      transaction_ref = '',
+      notes = '',
+      city_district = '',
+      contact_person = '',
+      payment_status = 'Awaiting Offline Verification'
+    } = req.body;
 
     const parsedAmount = parseFloat(amount);
-    if (!donor_name || !donor_email || !donor_phone || isNaN(parsedAmount) || parsedAmount <= 0) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const cleanPhone = (donor_phone || '').replace(/[\s\-\+\(\)]/g, '');
+
+    if (!donor_name || !donor_name.trim() || !donor_email || !donor_phone || isNaN(parsedAmount) || parsedAmount <= 0) {
       return res.status(400).json({
         success: false,
-        message: 'Valid donor name, email, phone number, and donation amount are required.'
+        message: 'Valid donor name, email, phone number, and positive donation amount are required.'
+      });
+    }
+
+    if (!emailRegex.test(donor_email.trim())) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide a valid email address.'
+      });
+    }
+
+    if (cleanPhone.length < 7 || cleanPhone.length > 15) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide a valid mobile number.'
       });
     }
 
     const ref = transaction_ref || `MMI-${Date.now().toString().slice(-6)}-${Math.floor(Math.random() * 900 + 100)}`;
 
+    let combinedNotes = notes ? notes.trim() : '';
+    const extraDetails = [];
+    if (contact_person) extraDetails.push(`Contact: ${contact_person.trim()}`);
+    if (city_district) extraDetails.push(`Location: ${city_district.trim()}`);
+    if (extraDetails.length > 0) {
+      combinedNotes = combinedNotes ? `${combinedNotes} | ${extraDetails.join(' | ')}` : extraDetails.join(' | ');
+    }
+
     const result = await run(
       `INSERT INTO donations (donor_name, donor_email, donor_phone, donor_pan, amount, donation_type, payment_status, transaction_ref, notes)
-       VALUES (?, ?, ?, ?, ?, ?, 'Verified', ?, ?)`,
-      [donor_name.trim(), donor_email.trim(), donor_phone.trim(), donor_pan.trim().toUpperCase(), parsedAmount, donation_type, ref, notes.trim()]
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [donor_name.trim(), donor_email.trim(), donor_phone.trim(), donor_pan.trim().toUpperCase(), parsedAmount, donation_type, payment_status, ref, combinedNotes]
     );
 
     return res.status(201).json({
       success: true,
-      message: 'Thank you for your generous contribution to Mannum Maramum Iyakkam! Your support helps plant trees and protect native soil.',
+      message: 'Thank you for your generous contribution pledge to Mannum Maramum Iyakkam! Your support helps plant trees and protect native soil.',
       donationId: result.id,
-      transactionRef: ref
+      transactionRef: ref,
+      transaction_ref: ref,
+      paymentStatus: payment_status,
+      payment_status: payment_status
     });
   } catch (error) {
     console.error('Donation record error:', error);

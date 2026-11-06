@@ -283,39 +283,39 @@ footer{background:var(--forest-900);color:rgba(247,242,231,.7);padding:50px 28px
 }
 
 /* 1. Donation Type Selectable Pills/Cards */
-.dntypes {
+.dntypes-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 26px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
 }
 .dn-type-card {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 16px 20px;
-  border-radius: 999px;
-  border: 1.5px solid var(--forest-800);
-  background: var(--cream);
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(15, 29, 20, 0.2);
+  background: #ffffff;
   color: var(--forest-950);
   font-family: inherit;
-  font-size: 0.98rem;
+  font-size: 0.94rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.22s ease;
   user-select: none;
-  text-align: center;
+  text-align: left;
 }
 .dn-type-card:hover {
-  background: rgba(183, 226, 58, 0.18);
-  border-color: var(--forest-900);
+  background: rgba(183, 226, 58, 0.15);
+  border-color: var(--forest-800);
 }
 .dn-type-card.active {
   background: var(--forest-900) !important;
   color: #ffffff !important;
   border-color: var(--forest-900) !important;
-  box-shadow: 0 4px 14px rgba(14, 42, 30, 0.25);
+  box-shadow: 0 4px 14px rgba(14, 42, 30, 0.22);
 }
 .dn-type-radio-circle {
   width: 18px;
@@ -327,6 +327,9 @@ footer{background:var(--forest-900);color:rgba(247,242,231,.7);padding:50px 28px
   justify-content: center;
   flex-shrink: 0;
 }
+.dn-type-card.active .dn-type-radio-circle {
+  border-color: var(--lime);
+}
 .dn-type-card.active .dn-type-radio-circle::after {
   content: "";
   width: 8px;
@@ -335,12 +338,44 @@ footer{background:var(--forest-900);color:rgba(247,242,231,.7);padding:50px 28px
   background: var(--lime);
 }
 
+/* Frequency Row */
+.dn-freq-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.dn-freq-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--forest-900);
+  color: #ffffff;
+  font-size: 0.90rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(14, 42, 30, 0.15);
+}
+.dn-freq-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--lime);
+  display: inline-block;
+}
+
 /* 2. Amount Buttons */
 .dnamounts {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+}
+@media (max-width: 600px) {
+  .dnamounts {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .dnamt {
   padding: 14px 10px;
@@ -367,6 +402,24 @@ footer{background:var(--forest-900);color:rgba(247,242,231,.7);padding:50px 28px
   font-weight: 800;
   box-shadow: 0 4px 12px rgba(143, 191, 31, 0.35);
   transform: translateY(-1px);
+}
+.dn-amount-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(183, 226, 58, 0.18);
+  border: 1.5px solid rgba(143, 191, 31, 0.5);
+  padding: 12px 18px;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  color: var(--forest-950);
+  font-weight: 700;
+}
+.dn-amount-preview strong {
+  font-size: 1.35rem;
+  color: var(--forest-900);
+  font-weight: 800;
 }
 .dn-custom-wrap {
   display: none;
@@ -714,6 +767,65 @@ footer{background:var(--forest-900);color:rgba(247,242,231,.7);padding:50px 28px
   font-size: 1.05rem;
   color: var(--forest-900);
 }
+.dn-ref-box {
+  background: var(--forest-950);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin: 18px auto;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(10, 31, 21, 0.2);
+}
+.dn-ref-label {
+  font-size: 0.80rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.7);
+}
+.dn-ref-code {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--lime);
+  font-family: monospace, sans-serif;
+}
+.dn-status-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.80rem;
+  font-weight: 700;
+  background: #fef3c7;
+  color: #92400e;
+  margin-top: 4px;
+  border: 1px solid #fde68a;
+}
+.dn-next-steps {
+  background: var(--cream);
+  border: 1px solid rgba(15, 29, 20, 0.15);
+  border-radius: 16px;
+  padding: 18px 22px;
+  margin: 20px auto;
+  max-width: 480px;
+  text-align: left;
+}
+.dn-next-steps h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--forest-900);
+  margin-bottom: 8px;
+}
+.dn-next-steps ol {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.86rem;
+  color: var(--forest-950);
+  line-height: 1.55;
+}
 .dn-demo-notice {
   font-size: 0.78rem;
   color: #64748b;
@@ -935,48 +1047,110 @@ footer{background:var(--forest-900);color:rgba(247,242,231,.7);padding:50px 28px
   color: var(--lime);
 }
 
-/* 2. Duration Cards */
-.mmi-dur-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.mmi-dur-card {
-  border: 2px solid rgba(15, 29, 20, 0.14);
+/* 2. Duration Dropdown & Custom Selector */
+.mmi-dur-selector-container {
   background: var(--cream);
+  border: 1.5px solid rgba(15, 29, 20, 0.12);
   border-radius: 18px;
-  padding: 22px 18px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.22s ease;
-  user-select: none;
+  padding: 20px 22px;
+  margin-top: 4px;
 }
-.mmi-dur-card:hover {
-  border-color: var(--forest-800);
-  transform: translateY(-2px);
+.mmi-dur-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 8px;
 }
-.mmi-dur-card.active {
-  background: var(--forest-900);
-  border-color: var(--forest-900);
-  color: #ffffff;
-  box-shadow: 0 8px 24px rgba(10, 31, 21, 0.16);
+.mmi-select-wrapper {
+  position: relative;
+  flex: 1 1 280px;
+  max-width: 440px;
 }
-.mmi-dur-name {
-  font-size: 1.15rem;
-  font-weight: 800;
+.mmi-select-wrapper select.mmi-duration-dropdown {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #ffffff;
+  border: 1.8px solid rgba(15, 29, 20, 0.16);
+  border-radius: 14px;
+  padding: 13px 44px 13px 18px;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--forest-950);
-  margin-bottom: 4px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(10, 31, 21, 0.04);
 }
-.mmi-dur-card.active .mmi-dur-name {
-  color: #ffffff;
+.mmi-select-wrapper select.mmi-duration-dropdown:hover {
+  border-color: var(--forest-800);
 }
-.mmi-dur-sub {
-  font-size: 0.8rem;
-  color: rgba(15, 29, 20, 0.65);
+.mmi-select-wrapper select.mmi-duration-dropdown:focus {
+  outline: none;
+  border-color: var(--forest-800);
+  box-shadow: 0 0 0 4px rgba(27, 67, 50, 0.14);
+}
+.mmi-select-arrow {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--forest-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mmi-custom-dur-wrap {
+  flex: 0 1 180px;
+}
+.mmi-custom-dur-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.mmi-custom-dur-input {
+  width: 100%;
+  background: #ffffff;
+  border: 1.8px solid rgba(15, 29, 20, 0.16);
+  border-radius: 14px;
+  padding: 13px 56px 13px 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--forest-950);
+  font-family: inherit;
+  box-shadow: 0 2px 6px rgba(10, 31, 21, 0.04);
+  transition: all 0.2s ease;
+}
+.mmi-custom-dur-input:focus {
+  outline: none;
+  border-color: var(--forest-800);
+  box-shadow: 0 0 0 4px rgba(27, 67, 50, 0.14);
+}
+.mmi-custom-dur-suffix {
+  position: absolute;
+  right: 16px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--forest-800);
+  pointer-events: none;
+}
+.mmi-dur-help-msg {
+  font-size: 0.85rem;
   font-weight: 600;
+  color: rgba(15, 29, 20, 0.7);
+  margin-top: 10px;
+  margin-bottom: 2px;
 }
-.mmi-dur-card.active .mmi-dur-sub {
-  color: var(--lime);
+#grpPartDuration.has-error select.mmi-duration-dropdown,
+#grpPartDuration.has-error input.mmi-custom-dur-input {
+  border-color: #d90429;
+  background: #fffafa;
+}
+#grpPartDuration.has-error #errPartDuration {
+  display: block;
 }
 
 .mmi-duration-note {
@@ -1492,6 +1666,13 @@ footer{background:var(--forest-900);color:rgba(247,242,231,.7);padding:50px 28px
   }
   .mmi-part-card {
     padding: 24px 20px;
+  }
+  .mmi-select-wrapper {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+  .mmi-custom-dur-wrap {
+    flex: 1 1 100%;
   }
 }
 /* ---------- Go Green Gen-Z Activity Modal & Tile Interaction ---------- */
@@ -2124,7 +2305,209 @@ body.lang-ta .navlinks {
   font-size: 0.95rem !important;
 }
 
-/* Hero Section */
+/* Navigation Dropdowns (Desktop & Mobile) */
+header {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 120 !important;
+}
+
+.navbar {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.navlinks {
+  overflow: visible !important;
+}
+
+.nav-dropdown {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.nav-dropdown-trigger {
+  background: none !important;
+  border: none !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 0 0 6px 0 !important;
+  transition: color 0.2s ease !important;
+  line-height: inherit !important;
+  white-space: nowrap !important;
+}
+
+.nav-dropdown-trigger:hover,
+.nav-dropdown-trigger:focus-visible,
+.nav-dropdown.open .nav-dropdown-trigger {
+  color: #ffffff !important;
+}
+
+.nav-dropdown-trigger:focus-visible {
+  outline: 2px solid var(--lime, #b7e23a) !important;
+  outline-offset: 3px !important;
+  border-radius: 4px !important;
+}
+
+.dropdown-arrow {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  transition: transform 0.22s ease !important;
+  flex-shrink: 0 !important;
+}
+
+.nav-dropdown.open .dropdown-arrow {
+  transform: rotate(180deg) !important;
+}
+
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(22, 60, 37, 0.12);
+  box-shadow: 0 16px 36px -4px rgba(10, 31, 20, 0.24), 0 4px 14px rgba(0, 0, 0, 0.08);
+  padding: 8px 6px;
+  z-index: 1000;
+  flex-direction: column;
+  gap: 2px;
+  animation: navDropdownFadeIn 0.2s ease-out;
+}
+
+.nav-dropdown-menu.open {
+  display: flex !important;
+}
+
+@keyframes navDropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 9px 14px !important;
+  color: #163c25 !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  border-radius: 8px !important;
+  border-left: 3px solid transparent !important;
+  transition: all 0.18s ease !important;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+}
+
+.dropdown-item::after,
+.nav-dropdown-menu a::after {
+  display: none !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus-visible {
+  background: rgba(183, 226, 58, 0.18) !important;
+  color: #0a1f15 !important;
+  border-left-color: #163c25 !important;
+  transform: translateX(3px) !important;
+  outline: none !important;
+}
+
+.dropdown-item:focus-visible {
+  box-shadow: inset 0 0 0 2px #163c25 !important;
+}
+
+/* Mobile Navigation Accordions */
+.mob-dropdown {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mob-dropdown-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 10px 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+
+.mob-dropdown-trigger:hover,
+.mob-dropdown-trigger:focus-visible,
+.mob-dropdown.open .mob-dropdown-trigger {
+  color: var(--lime, #b7e23a);
+}
+
+.mob-dropdown-trigger:focus-visible {
+  outline: 2px solid var(--lime, #b7e23a);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.mob-dropdown-arrow {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mob-dropdown.open .mob-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.mob-dropdown-menu {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 0 12px 14px;
+}
+
+.mob-dropdown.open .mob-dropdown-menu {
+  display: flex !important;
+}
+
+.mob-dropdown-item {
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  padding: 7px 0 !important;
+  text-decoration: none !important;
+  border: none !important;
+  transition: color 0.18s ease, transform 0.18s ease !important;
+  display: block !important;
+}
+
+.mob-dropdown-item:hover,
+.mob-dropdown-item:focus-visible {
+  color: var(--lime, #b7e23a) !important;
+  transform: translateX(4px) !important;
+  outline: none;
+}
+
+
 .hero {
   position: relative !important;
   min-height: 100vh !important;
@@ -2491,360 +2874,467 @@ h1.hero-h {
 
 
 /* ==========================================================================
-   YEAR-BASED INTERACTIVE GALLERY STYLES
+   COMPACT YEAR-BASED ALBUM GALLERY STYLES
    ========================================================================== */
 .gallery {
   background: var(--cream-2, #EDE6D6);
-  padding: 80px 24px;
+  padding: 64px 24px 72px;
   position: relative;
 }
 .gallery-wrapper {
-  max-width: 1040px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
-/* Year Selector Tabs */
-.gallery-year-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 34px;
+/* 1. Year Albums Grid (Phase 1) */
+.gallery-albums-view {
+  width: 100%;
 }
-.gallery-year-tabs {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  background: rgba(15, 29, 20, 0.06);
-  padding: 7px;
-  border-radius: 999px;
-  border: 1px solid rgba(15, 29, 20, 0.08);
+.gallery-albums-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
-.gallery-year-btn {
-  background: transparent;
-  color: var(--forest-900, #0f2d1a);
-  border: none;
-  outline: none;
-  border-radius: 999px;
-  padding: 9px 20px;
-  font-size: 0.92rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.2, 0, 0.2, 1);
-  white-space: nowrap;
-}
-.gallery-year-btn:hover {
-  background: rgba(18, 53, 36, 0.12);
-  color: #123524;
-}
-.gallery-year-btn.active {
-  background: #123524;
-  color: #b7e23a;
-  box-shadow: 0 4px 14px rgba(18, 53, 36, 0.3);
-  transform: translateY(-1px);
-}
-
-/* Viewer Card */
-.gallery-viewer-card {
+.album-card {
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 12px 36px rgba(15, 29, 20, 0.09);
-  border: 1px solid rgba(15, 29, 20, 0.1);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(15, 45, 26, 0.12);
+  box-shadow: 0 4px 16px rgba(15, 45, 26, 0.06);
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.2, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: left;
 }
-
-/* Stage & Large Image Viewport */
-.gallery-stage {
+.album-card:hover, .album-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: #2E7D32;
+  box-shadow: 0 12px 28px rgba(15, 45, 26, 0.14);
+  outline: none;
+}
+.album-card-cover {
+  width: 100%;
+  height: 125px;
   position: relative;
   background: #0b1911;
-  width: 100%;
-  height: clamp(300px, 48vw, 540px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
-.gallery-main-img-box {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-}
-.gallery-main-img-box img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 12px;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  user-select: none;
-}
-.gallery-main-img-box img.img-switching {
-  opacity: 0.2;
-  transform: scale(0.98);
-}
-
-/* Floating Badges */
-.gallery-badge-year {
-  position: absolute;
-  top: 16px;
-  left: 18px;
-  background: rgba(18, 53, 36, 0.88);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  color: #b7e23a;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  padding: 5px 13px;
-  border-radius: 999px;
-  border: 1px solid rgba(183, 226, 58, 0.35);
-  z-index: 5;
-}
-.gallery-badge-counter {
-  position: absolute;
-  top: 16px;
-  right: 18px;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  color: #ffffff;
-  font-size: 0.76rem;
-  font-weight: 700;
-  padding: 5px 12px;
-  border-radius: 999px;
-  z-index: 5;
-}
-
-/* Previous & Next Buttons */
-.gallery-arrow-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  color: #123524;
-  border: none;
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-  transition: all 0.22s ease;
-}
-.gallery-arrow-btn.prev-btn {
-  left: 16px;
-}
-.gallery-arrow-btn.next-btn {
-  right: 16px;
-}
-.gallery-arrow-btn:hover {
-  background: #123524;
-  color: #b7e23a;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-}
-.gallery-arrow-btn:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* Flipkart-Style Navigation Dots */
-.gallery-dots-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  padding: 16px 12px 12px;
-  background: #ffffff;
-}
-.gallery-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: rgba(18, 53, 36, 0.22);
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.25s cubic-bezier(0.2, 0, 0.2, 1);
-}
-.gallery-dot:hover {
-  background: rgba(18, 53, 36, 0.5);
-}
-.gallery-dot.active {
-  width: 24px;
-  height: 9px;
-  background: #2E7D32;
-  box-shadow: 0 0 8px rgba(46, 125, 50, 0.45);
-}
-
-/* Photo Information Card */
-.gallery-info-box {
-  padding: 12px 28px 20px;
-  background: #ffffff;
-  border-bottom: 1px solid rgba(15, 29, 20, 0.08);
-}
-.gallery-info-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 6px;
-}
-.gallery-info-title {
-  font-size: 1.22rem;
-  font-weight: 800;
-  color: var(--forest-900, #0f2d1a);
-  margin: 0;
-  line-height: 1.35;
-}
-.gallery-info-pill {
-  background: rgba(183, 226, 58, 0.25);
-  color: #123524;
-  font-size: 0.74rem;
-  font-weight: 800;
-  padding: 4px 11px;
-  border-radius: 999px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-.gallery-info-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 10px;
-  color: #2E7D32;
-  font-size: 0.84rem;
-  font-weight: 700;
-}
-.gallery-meta-loc {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-.gallery-info-desc {
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: rgba(15, 29, 20, 0.72);
-  margin: 0;
-}
-
-/* Photo Thumbnails Strip */
-.gallery-thumbs-container {
-  padding: 18px 24px 22px;
-  background: #fdfbf7;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.gallery-thumbs-track {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  width: max-content;
-  margin: 0 auto;
-}
-.gallery-thumb-btn {
-  width: 82px;
-  height: 58px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 2.5px solid transparent;
-  padding: 0;
-  background: #0b1911;
-  cursor: pointer;
-  opacity: 0.55;
-  transition: all 0.22s ease;
-  flex-shrink: 0;
-}
-.gallery-thumb-btn img {
+.album-card-cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease;
   display: block;
 }
-.gallery-thumb-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
+.album-card:hover .album-card-cover img {
+  transform: scale(1.06);
 }
-.gallery-thumb-btn.active {
-  border-color: #2E7D32;
-  opacity: 1;
-  box-shadow: 0 0 10px rgba(46, 125, 50, 0.45);
-  transform: translateY(-2px) scale(1.04);
+.album-card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #123524 0%, #1e5338 100%);
+  color: rgba(255, 255, 255, 0.85);
+  gap: 6px;
+}
+.album-placeholder-icon {
+  font-size: 1.8rem;
+}
+.album-placeholder-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(183, 226, 58, 0.9);
+  font-weight: 700;
+}
+.album-card-body {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #ffffff;
+  flex-grow: 1;
+}
+.album-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.album-year-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--forest-900, #0f2d1a);
+  margin: 0;
+  line-height: 1.2;
+}
+.album-count-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(46, 125, 50, 0.12);
+  color: #1e5e22;
+  white-space: nowrap;
+}
+.album-count-badge.empty {
+  background: rgba(15, 29, 20, 0.06);
+  color: rgba(15, 29, 20, 0.55);
+}
+.album-card-desc {
+  font-size: 0.76rem;
+  color: rgba(15, 29, 20, 0.65);
+  margin: 0;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.album-card-action {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #2E7D32;
+}
+.album-card-action svg {
+  transition: transform 0.2s ease;
+}
+.album-card:hover .album-card-action svg {
+  transform: translateX(3px);
 }
 
-/* Empty State Card */
-.gallery-empty-state {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 60px 24px;
-  text-align: center;
-  box-shadow: 0 12px 36px rgba(15, 29, 20, 0.08);
-  border: 1px dashed rgba(15, 29, 20, 0.2);
-  max-width: 680px;
-  margin: 0 auto;
+/* 2. Single Album Photos View (Phase 2) */
+.gallery-photos-view {
+  width: 100%;
 }
-.gallery-empty-icon {
-  font-size: 3.2rem;
-  margin-bottom: 14px;
+.gallery-album-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(15, 29, 20, 0.12);
 }
-.gallery-empty-title {
-  font-size: 1.4rem;
+.btn-back-albums {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--forest-900, #0f2d1a);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+.btn-back-albums:hover {
+  background: #2E7D32;
+  transform: translateX(-2px);
+  box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35);
+}
+.gallery-album-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gallery-album-title {
+  font-size: 1.35rem;
+  font-weight: 800;
   color: var(--forest-900, #0f2d1a);
+  margin: 0;
+}
+.gallery-album-count-badge {
+  background: rgba(183, 226, 58, 0.3);
+  color: var(--forest-900, #0f2d1a);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+/* Photo Grid */
+.gallery-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.photo-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 29, 20, 0.1);
+  box-shadow: 0 4px 14px rgba(15, 29, 20, 0.06);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+.photo-card:hover {
+  transform: translateY(-4px);
+  border-color: #2E7D32;
+  box-shadow: 0 10px 24px rgba(15, 29, 20, 0.14);
+}
+.photo-card-img-wrap {
+  width: 100%;
+  height: 155px; /* Within 130-170px requirement */
+  overflow: hidden;
+  background: #0b1911;
+  position: relative;
+}
+.photo-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Required */
+  display: block;
+  transition: transform 0.35s ease;
+}
+.photo-card:hover .photo-card-img-wrap img {
+  transform: scale(1.05);
+}
+.photo-card-body {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+  background: #ffffff;
+}
+.photo-card-title {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--forest-900, #0f2d1a);
+  margin: 0;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.photo-card-loc {
+  font-size: 0.72rem;
+  color: #2E7D32;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+}
+
+/* Empty Album View */
+.gallery-empty-album {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 45px 24px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(15, 29, 20, 0.06);
+  border: 1px dashed rgba(15, 29, 20, 0.2);
+  max-width: 540px;
+  margin: 30px auto;
+}
+.gallery-empty-album .gallery-empty-icon {
+  font-size: 2.8rem;
   margin-bottom: 10px;
 }
-.gallery-empty-text {
-  font-size: 0.95rem;
+.gallery-empty-album h4 {
+  font-size: 1.2rem;
+  color: var(--forest-900, #0f2d1a);
+  margin: 0 0 8px;
+}
+.gallery-empty-album p {
+  font-size: 0.88rem;
   color: rgba(15, 29, 20, 0.68);
-  line-height: 1.6;
-  max-width: 500px;
+  line-height: 1.55;
   margin: 0 auto;
+}
+
+/* Lightbox Modal */
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.gallery-lightbox-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 26, 17, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.gallery-lightbox-content {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  max-width: 760px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  animation: lightboxFadeIn 0.22s ease-out;
+}
+@keyframes lightboxFadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.gallery-lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(15, 45, 26, 0.75);
+  color: #ffffff;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.gallery-lightbox-close:hover {
+  background: #0f2d1a;
+  transform: scale(1.1);
+}
+.gallery-lightbox-img-wrap {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 50vh, 460px);
+  background: #0b1911;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.gallery-lightbox-img-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+}
+.gallery-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f2d1a;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.gallery-lightbox-nav.prev { left: 12px; }
+.gallery-lightbox-nav.next { right: 12px; }
+.gallery-lightbox-nav:hover {
+  background: #0f2d1a;
+  color: #b7e23a;
+  transform: translateY(-50%) scale(1.08);
+}
+.gallery-lightbox-info {
+  padding: 14px 20px 18px;
+  background: #ffffff;
+}
+.lightbox-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.lightbox-info-header h4 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--forest-900, #0f2d1a);
+  margin: 0;
+}
+.lightbox-badge {
+  background: rgba(46, 125, 50, 0.12);
+  color: #1e5e22;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.lightbox-meta {
+  font-size: 0.78rem;
+  color: #2E7D32;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.lightbox-desc {
+  font-size: 0.82rem;
+  color: rgba(15, 29, 20, 0.75);
+  line-height: 1.45;
+  margin: 0;
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .gallery-albums-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .gallery-photos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+}
+@media (max-width: 680px) {
   .gallery {
-    padding: 60px 14px;
+    padding: 50px 16px;
   }
-  .gallery-year-tabs {
-    border-radius: 18px;
-    gap: 6px;
-    padding: 5px;
+  .gallery-albums-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
-  .gallery-year-btn {
-    padding: 7px 14px;
-    font-size: 0.84rem;
+  .album-card-cover {
+    height: 105px;
   }
-  .gallery-arrow-btn {
-    width: 38px;
-    height: 38px;
+  .album-year-title {
+    font-size: 1.1rem;
   }
-  .gallery-info-box {
-    padding: 12px 18px 16px;
+  .gallery-photos-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 photos per row on mobile */
+    gap: 10px;
   }
-  .gallery-info-title {
-    font-size: 1.05rem;
+  .photo-card-img-wrap {
+    height: 120px;
   }
-  .gallery-thumbs-container {
-    padding: 14px 14px 18px;
-    margin: 0 -14px;
+  .photo-card-body {
+    padding: 8px 10px 10px;
   }
-  .gallery-thumbs-track {
-    margin: 0;
-    padding: 0 14px;
-  }
-  .gallery-thumb-btn {
-    width: 70px;
-    height: 50px;
+  .photo-card-title {
+    font-size: 0.78rem;
   }
 }
 
@@ -2861,11 +3351,63 @@ h1.hero-h {
         <div class="brand-since" data-i="brand_since">Since 2019</div>
       </div>
     </a>
-    <nav class="navlinks">
+    <nav class="navlinks" aria-label="Main Navigation">
       <a href="#home" class="active" data-i="n_home">Home</a>
-      <a href="#about" data-i="n_about">About Us</a>
-      <a href="#whatwedo" data-i="n_work">Our Initiatives</a>
-      <a href="#gallery" data-i="n_gallery">Gallery</a>
+
+      <!-- 1. ABOUT US DROPDOWN -->
+      <div class="nav-dropdown" id="navDropdownWrap-about">
+        <button type="button" class="nav-dropdown-trigger" id="navDropdownTrigger-about" aria-haspopup="true" aria-expanded="false" aria-controls="navDropdown-about" onclick="toggleNavDropdown('navDropdownWrap-about', this, event)">
+          <span data-i="n_about">About Us</span>
+          <svg class="dropdown-arrow" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" focusable="false"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" id="navDropdown-about" role="menu" aria-labelledby="navDropdownTrigger-about">
+          <a href="#about" role="menuitem" class="dropdown-item" data-i="dd_about_us" onclick="handleDropdownOptionClick(event, '#about')">About Us</a>
+          <a href="#mission" role="menuitem" class="dropdown-item" data-i="dd_our_mission" onclick="handleDropdownOptionClick(event, '#mission')">Our Mission</a>
+          <a href="#team" role="menuitem" class="dropdown-item" data-i="dd_our_team" onclick="handleDropdownOptionClick(event, '#team')">Our Team</a>
+          <a href="#impact" role="menuitem" class="dropdown-item" data-i="dd_our_impact" onclick="handleDropdownOptionClick(event, '#impact')">Our Impact</a>
+          <a href="#gallery" role="menuitem" class="dropdown-item" data-i="dd_gallery" onclick="handleDropdownOptionClick(event, '#gallery')">Gallery</a>
+          <a href="#contact" role="menuitem" class="dropdown-item" data-i="dd_contact_us" onclick="handleDropdownOptionClick(event, '#contact')">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- 2. GET INVOLVED DROPDOWN -->
+      <div class="nav-dropdown" id="navDropdownWrap-involved">
+        <button type="button" class="nav-dropdown-trigger" id="navDropdownTrigger-involved" aria-haspopup="true" aria-expanded="false" aria-controls="navDropdown-involved" onclick="toggleNavDropdown('navDropdownWrap-involved', this, event)">
+          <span data-i="n_get_involved">Get Involved</span>
+          <svg class="dropdown-arrow" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" focusable="false"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" id="navDropdown-involved" role="menu" aria-labelledby="navDropdownTrigger-involved">
+          <a href="#volunteer" role="menuitem" class="dropdown-item" data-i="dd_join_volunteer" onclick="handleDropdownOptionClick(event, '#volunteer', true)">Join as a Volunteer</a>
+          <a href="#donate" role="menuitem" class="dropdown-item" data-i="dd_donate" onclick="handleDropdownOptionClick(event, '#donate')">Donate</a>
+          <a href="#partnership" role="menuitem" class="dropdown-item" data-i="dd_become_partner" onclick="handleDropdownOptionClick(event, '#partnership')">Become a Partner</a>
+        </div>
+      </div>
+
+      <!-- 3. PROJECTS DROPDOWN -->
+      <div class="nav-dropdown" id="navDropdownWrap-projects">
+        <button type="button" class="nav-dropdown-trigger" id="navDropdownTrigger-projects" aria-haspopup="true" aria-expanded="false" aria-controls="navDropdown-projects" onclick="toggleNavDropdown('navDropdownWrap-projects', this, event)">
+          <span data-i="n_projects">Projects</span>
+          <svg class="dropdown-arrow" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" focusable="false"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" id="navDropdown-projects" role="menu" aria-labelledby="navDropdownTrigger-projects">
+          <a href="#tree-plantation" role="menuitem" class="dropdown-item" data-i="dd_tree_plantation" onclick="handleDropdownOptionClick(event, '#tree-plantation')">Tree Plantation</a>
+          <a href="#palm-seed-planting" role="menuitem" class="dropdown-item" data-i="dd_palm_seed_planting" onclick="handleDropdownOptionClick(event, '#palm-seed-planting')">Palm Seed Planting</a>
+          <a href="#lake-restoration" role="menuitem" class="dropdown-item" data-i="dd_lake_restoration" onclick="handleDropdownOptionClick(event, '#lake-restoration')">Lake Restoration</a>
+          <a href="#environmental-awareness" role="menuitem" class="dropdown-item" data-i="dd_env_awareness" onclick="handleDropdownOptionClick(event, '#environmental-awareness')">Environmental Awareness</a>
+        </div>
+      </div>
+
+      <!-- 4. GALLERY DROPDOWN -->
+      <div class="nav-dropdown" id="navDropdownWrap-gallery">
+        <button type="button" class="nav-dropdown-trigger" id="navDropdownTrigger-gallery" aria-haspopup="true" aria-expanded="false" aria-controls="navDropdown-gallery" onclick="toggleNavDropdown('navDropdownWrap-gallery', this, event)">
+          <span data-i="n_gallery">Gallery</span>
+          <svg class="dropdown-arrow" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true" focusable="false"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" id="navDropdown-gallery" role="menu" aria-labelledby="navDropdownTrigger-gallery">
+          <a href="#gallery" role="menuitem" class="dropdown-item" data-i="dd_photo_gallery" onclick="handleDropdownOptionClick(event, '#gallery')">Photo Gallery</a>
+        </div>
+      </div>
+
       <a href="#contact" data-i="n_contact">Contact</a>
     </nav>
     <div class="headerright">
@@ -2874,21 +3416,73 @@ h1.hero-h {
         <button id="btnEn" class="on" onclick="setLang('en')">EN</button>
         <button id="btnTa" onclick="setLang('ta')">தமிழ்</button>
       </div>
-      <a href="/vendor-registration" class="joinbtn" data-i="joinnow">Donate Now</a>
+      <a href="#partnership" class="joinbtn" data-i="joinnow">Partner With Us</a>
       <button class="burger" aria-label="menu" onclick="toggleMobileNav()">☰</button>
     </div>
   </div>
   <div class="mobilenav" id="mobileNav">
     <div class="mobilenav-links">
       <a href="#home" class="active" data-i="n_home" onclick="closeMobileNav()">Home</a>
-      <a href="#about" data-i="n_about" onclick="closeMobileNav()">About Us</a>
-      <a href="#whatwedo" data-i="n_work" onclick="closeMobileNav()">Our Initiatives</a>
-      <a href="#gallery" data-i="n_gallery" onclick="closeMobileNav()">Gallery</a>
+
+      <!-- 1. Mobile About Us Accordion -->
+      <div class="mob-dropdown" id="mobDropdown-about">
+        <button type="button" class="mob-dropdown-trigger" id="mobDropdownTrigger-about" aria-haspopup="true" aria-expanded="false" aria-controls="mobDropdownMenu-about" onclick="toggleMobileDropdown('mobDropdown-about', this)">
+          <span data-i="n_about">About Us</span>
+          <svg class="mob-dropdown-arrow" viewBox="0 0 10 6" width="12" height="7" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mob-dropdown-menu" id="mobDropdownMenu-about" role="menu">
+          <a href="#about" class="mob-dropdown-item" role="menuitem" data-i="dd_about_us" onclick="handleDropdownOptionClick(event, '#about', false, true)">About Us</a>
+          <a href="#mission" class="mob-dropdown-item" role="menuitem" data-i="dd_our_mission" onclick="handleDropdownOptionClick(event, '#mission', false, true)">Our Mission</a>
+          <a href="#team" class="mob-dropdown-item" role="menuitem" data-i="dd_our_team" onclick="handleDropdownOptionClick(event, '#team', false, true)">Our Team</a>
+          <a href="#impact" class="mob-dropdown-item" role="menuitem" data-i="dd_our_impact" onclick="handleDropdownOptionClick(event, '#impact', false, true)">Our Impact</a>
+          <a href="#gallery" class="mob-dropdown-item" role="menuitem" data-i="dd_gallery" onclick="handleDropdownOptionClick(event, '#gallery', false, true)">Gallery</a>
+          <a href="#contact" class="mob-dropdown-item" role="menuitem" data-i="dd_contact_us" onclick="handleDropdownOptionClick(event, '#contact', false, true)">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- 2. Mobile Get Involved Accordion -->
+      <div class="mob-dropdown" id="mobDropdown-involved">
+        <button type="button" class="mob-dropdown-trigger" id="mobDropdownTrigger-involved" aria-haspopup="true" aria-expanded="false" aria-controls="mobDropdownMenu-involved" onclick="toggleMobileDropdown('mobDropdown-involved', this)">
+          <span data-i="n_get_involved">Get Involved</span>
+          <svg class="mob-dropdown-arrow" viewBox="0 0 10 6" width="12" height="7" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mob-dropdown-menu" id="mobDropdownMenu-involved" role="menu">
+          <a href="#volunteer" class="mob-dropdown-item" role="menuitem" data-i="dd_join_volunteer" onclick="handleDropdownOptionClick(event, '#volunteer', true, true)">Join as a Volunteer</a>
+          <a href="#donate" class="mob-dropdown-item" role="menuitem" data-i="dd_donate" onclick="handleDropdownOptionClick(event, '#donate', false, true)">Donate</a>
+          <a href="#partnership" class="mob-dropdown-item" role="menuitem" data-i="dd_become_partner" onclick="handleDropdownOptionClick(event, '#partnership', false, true)">Become a Partner</a>
+        </div>
+      </div>
+
+      <!-- 3. Mobile Projects Accordion -->
+      <div class="mob-dropdown" id="mobDropdown-projects">
+        <button type="button" class="mob-dropdown-trigger" id="mobDropdownTrigger-projects" aria-haspopup="true" aria-expanded="false" aria-controls="mobDropdownMenu-projects" onclick="toggleMobileDropdown('mobDropdown-projects', this)">
+          <span data-i="n_projects">Projects</span>
+          <svg class="mob-dropdown-arrow" viewBox="0 0 10 6" width="12" height="7" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mob-dropdown-menu" id="mobDropdownMenu-projects" role="menu">
+          <a href="#tree-plantation" class="mob-dropdown-item" role="menuitem" data-i="dd_tree_plantation" onclick="handleDropdownOptionClick(event, '#tree-plantation', false, true)">Tree Plantation</a>
+          <a href="#palm-seed-planting" class="mob-dropdown-item" role="menuitem" data-i="dd_palm_seed_planting" onclick="handleDropdownOptionClick(event, '#palm-seed-planting', false, true)">Palm Seed Planting</a>
+          <a href="#lake-restoration" class="mob-dropdown-item" role="menuitem" data-i="dd_lake_restoration" onclick="handleDropdownOptionClick(event, '#lake-restoration', false, true)">Lake Restoration</a>
+          <a href="#environmental-awareness" class="mob-dropdown-item" role="menuitem" data-i="dd_env_awareness" onclick="handleDropdownOptionClick(event, '#environmental-awareness', false, true)">Environmental Awareness</a>
+        </div>
+      </div>
+
+      <!-- 4. Mobile Gallery Accordion -->
+      <div class="mob-dropdown" id="mobDropdown-gallery">
+        <button type="button" class="mob-dropdown-trigger" id="mobDropdownTrigger-gallery" aria-haspopup="true" aria-expanded="false" aria-controls="mobDropdownMenu-gallery" onclick="toggleMobileDropdown('mobDropdown-gallery', this)">
+          <span data-i="n_gallery">Gallery</span>
+          <svg class="mob-dropdown-arrow" viewBox="0 0 10 6" width="12" height="7" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mob-dropdown-menu" id="mobDropdownMenu-gallery" role="menu">
+          <a href="#gallery" class="mob-dropdown-item" role="menuitem" data-i="dd_photo_gallery" onclick="handleDropdownOptionClick(event, '#gallery', false, true)">Photo Gallery</a>
+        </div>
+      </div>
+
       <a href="#contact" data-i="n_contact" onclick="closeMobileNav()">Contact</a>
     </div>
     <div class="mobilenav-actions">
       <a href="#gogreen" class="btn-nature-activities mob-naturebtn" data-i="btn_nature" onclick="closeMobileNav(); scrollToNatureActivities(event);">⚡ WILD MODE ON</a>
-      <a href="/vendor-registration" class="joinbtn mob-joinbtn" data-i="joinnow" onclick="closeMobileNav()">Donate Now</a>
+      <a href="#partnership" class="joinbtn mob-joinbtn" data-i="joinnow" onclick="closeMobileNav()">Partner With Us</a>
     </div>
   </div>
 </header>
@@ -2906,7 +3500,7 @@ h1.hero-h {
       </div>
     </div>
 
-    <div class="impactcard">
+    <div class="impactcard" id="impact" style="scroll-margin-top: 110px;">
       <div class="impactrow"><div class="ic">🌴</div><div><div class="num">14L+</div><div class="lbl" data-i="i_seeds">Palm Tree Seeds</div></div></div>
       <div class="impactrow"><div class="ic">🌳</div><div><div class="num">42,500+</div><div class="lbl" data-i="i_trees">Trees Planted</div></div></div>
       <div class="impactrow" id="heroVolunteersStat"><div class="ic">👥</div><div><div class="num" id="heroVolunteerCount">6,000+</div><div class="lbl" data-i="i_volunteers">Volunteers</div></div></div>
@@ -2920,32 +3514,34 @@ h1.hero-h {
 </div>
 
 <section class="whatwedo" id="whatwedo">
+  <div id="projects" style="scroll-margin-top: 110px;"></div>
   <div class="wwd-head">
     <h2><span data-i="wwd_title">What We Do</span> 🍃</h2>
   </div>
   <div class="wwd-grid">
-    <div class="wwd-item">
+    <div class="wwd-item" id="tree-plantation" style="scroll-margin-top: 110px;">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21V11"/><path d="M12 11C8 11 5 8.5 5 5c3.5 0 6 2 7 6Z"/><path d="M12 11c4 0 7-2.5 7-6-3.5 0-6 2-7 6Z"/></svg>
       <h3 data-i="w1t">Plantation</h3>
       <p data-i="w1d">Plant more trees, grow a better future.</p>
     </div>
-    <div class="wwd-item">
+    <div class="wwd-item" id="palm-seed-planting" style="scroll-margin-top: 110px;">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 20c0-5 3-8 6-8s6 3 6 8"/><circle cx="12" cy="9" r="3.5"/></svg>
       <h3 data-i="w2t">Soil Care</h3>
       <p data-i="w2d">Keep soil healthy, keep life healthy.</p>
     </div>
-    <div class="wwd-item">
+    <div class="wwd-item" id="lake-restoration" style="scroll-margin-top: 110px;">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c3.5 4 6 7.5 6 10.5a6 6 0 1 1-12 0C6 10.5 8.5 7 12 3Z"/></svg>
       <h3 data-i="w3t">Water Saving</h3>
       <p data-i="w3d">Every drop counts, save for tomorrow.</p>
     </div>
-    <div class="wwd-item">
+    <div class="wwd-item" id="environmental-awareness" style="scroll-margin-top: 110px;">
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V9c4 0 6 2 8 2s4-2 8-2v10c-4 0-6-2-8-2s-4 2-8 2Z"/></svg>
       <h3 data-i="w4t">Eco Education</h3>
       <p data-i="w4d">Spread awareness, build a greener future.</p>
     </div>
   </div>
-  <div class="wwd-about" id="about">
+  <div id="mission" style="scroll-margin-top: 110px;"></div>
+  <div class="wwd-about" id="about" style="scroll-margin-top: 110px;">
     <p data-i="about_p">Mannum Maramum Iyakkam (Reg. No. 16/2023) is a non-profit environmental organisation based in Tiruchirappalli, Tamil Nadu, active since 2019 — working toward 1 crore palm tree seeds and 1 lakh trees by 2030.</p>
   </div>
 </section>
@@ -3023,75 +3619,65 @@ h1.hero-h {
   </div>
 
   <div class="gallery-wrapper">
-    <!-- 1. Year Selector Bar -->
-    <div class="gallery-year-container">
-      <div class="gallery-year-tabs" id="galYearTabs" role="tablist" aria-label="Select Year">
-        <!-- Automatically generated by JavaScript (2019 to current calendar year and beyond) -->
+    <!-- View 1: Year Albums Selection Grid (Initially visible) -->
+    <div class="gallery-albums-view" id="galAlbumsView">
+      <div class="gallery-albums-grid" id="galAlbumsGrid">
+        <!-- Automatically rendered via JS: 2019 to 2026 album cards -->
       </div>
     </div>
 
-    <!-- 2. Active Year Content View -->
-    <div class="gallery-content-view" id="galleryContentView">
-      
-      <!-- 2.1 Large Photo Viewer -->
-      <div class="gallery-viewer-card" id="galleryViewerCard">
-        <div class="gallery-stage" id="galleryStage">
-          <!-- Previous Button -->
-          <button class="gallery-arrow-btn prev-btn" id="galPrevBtn" aria-label="Previous photo">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-
-          <!-- Main Image -->
-          <div class="gallery-main-img-box">
-            <img id="galMainImg" src="/uploads/gallery/gallery-6.jpg" alt="Cauvery Bank Mega Palm Seed Drive" />
-          </div>
-
-          <!-- Next Button -->
-          <button class="gallery-arrow-btn next-btn" id="galNextBtn" aria-label="Next photo">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-
-          <!-- Badges -->
-          <span class="gallery-badge-year" id="galBadgeYear">2024</span>
-          <span class="gallery-badge-counter" id="galBadgeCounter">Photo 1 of 9</span>
+    <!-- View 2: Single Year Album Photo Grid (Initially hidden) -->
+    <div class="gallery-photos-view" id="galPhotosView" style="display: none;">
+      <div class="gallery-album-header">
+        <button type="button" class="btn-back-albums" id="galBackToAlbumsBtn" aria-label="Back to year albums">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span>Back to Albums</span>
+        </button>
+        <div class="gallery-album-title-wrap">
+          <h3 class="gallery-album-title" id="galSelectedYearTitle">2024 Album</h3>
+          <span class="gallery-album-count-badge" id="galSelectedYearCount">9 Photos</span>
         </div>
-
-        <!-- 2.2 Flipkart-Style Navigation Dots -->
-        <div class="gallery-dots-container" id="galDotsContainer" aria-label="Image indicators">
-          <!-- 5 dynamic dots rendered via JS -->
-        </div>
-
-        <!-- 2.3 Photo Information Card -->
-        <div class="gallery-info-box">
-          <div class="gallery-info-top">
-            <h3 class="gallery-info-title" id="galInfoTitle">50,000 palm seeds — Cauvery bank, Mukkombu</h3>
-            <span class="gallery-info-pill" id="galInfoPill">2024 Drive</span>
-          </div>
-          <div class="gallery-info-meta" id="galInfoMeta">
-            <span class="gallery-meta-loc">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 7.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span id="galLocText">Cauvery River Bank, Mukkombu</span>
-            </span>
-          </div>
-          <p class="gallery-info-desc" id="galInfoDesc">Flagship environmental drive sowing 50,000 palm seeds along the Cauvery river bund to prevent soil erosion.</p>
-        </div>
-
-        <!-- 2.4 Photo Thumbnails Strip -->
-        <div class="gallery-thumbs-container">
-          <div class="gallery-thumbs-track" id="galThumbsTrack">
-            <!-- Dynamic thumbnails rendered via JS -->
-          </div>
-        </div>
-
       </div>
 
-      <!-- Empty State for Years with 0 Photos -->
-      <div class="gallery-empty-state" id="galleryEmptyState" style="display: none;">
+      <!-- Photo Grid -->
+      <div class="gallery-photos-grid" id="galPhotosGrid">
+        <!-- Rendered via JS: Compact cards (3-4 per row desktop, 2 per row mobile) -->
+      </div>
+
+      <!-- Empty State for Year with 0 Photos -->
+      <div class="gallery-empty-album" id="galEmptyAlbum" style="display: none;">
         <div class="gallery-empty-icon">🌿</div>
-        <h3 class="gallery-empty-title">Photos Coming Soon</h3>
-        <p class="gallery-empty-text">Field photographs and archival documentation for year <strong id="emptyYearNumber">2019</strong> are currently being curated and digitized. Please check back soon!</p>
+        <h4>No photos available for this year</h4>
+        <p>Field photographs and archival documentation for year <strong id="galEmptyYearSpan">2019</strong> are currently being curated and will be uploaded soon.</p>
+        <button type="button" class="btn-back-albums" onclick="window.showAlbumsView()" style="margin-top: 16px;">
+          <span>Browse Other Albums</span>
+        </button>
       </div>
+    </div>
+  </div>
 
+  <!-- Lightbox / Modal for viewing high-res photo -->
+  <div class="gallery-lightbox" id="galLightbox" aria-modal="true" role="dialog" style="display: none;">
+    <div class="gallery-lightbox-overlay" id="galLightboxOverlay"></div>
+    <div class="gallery-lightbox-content">
+      <button type="button" class="gallery-lightbox-close" id="galLightboxClose" aria-label="Close photo preview">&times;</button>
+      <div class="gallery-lightbox-img-wrap">
+        <button type="button" class="gallery-lightbox-nav prev" id="galLightboxPrev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <img id="galLightboxImg" src="" alt="" />
+        <button type="button" class="gallery-lightbox-nav next" id="galLightboxNext" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="gallery-lightbox-info">
+        <div class="lightbox-info-header">
+          <h4 id="galLightboxTitle"></h4>
+          <span class="lightbox-badge" id="galLightboxBadge"></span>
+        </div>
+        <p class="lightbox-meta" id="galLightboxMeta"></p>
+        <p class="lightbox-desc" id="galLightboxDesc"></p>
+      </div>
     </div>
   </div>
 </section>
@@ -3156,6 +3742,734 @@ h1.hero-h {
   <span id="gzToastMsg">Awesome! Step outside and experience nature today.</span>
 </div>
 
+<!-- ========================================================================= -->
+<!-- UNIFIED DONATION SECTION: SUPPORT OUR MISSION                             -->
+<!-- ========================================================================= -->
+<section class="donate" id="donate">
+  <div class="teamhead">
+    <div class="eyebrow2" data-i="dn_eyebrow">SUPPORT OUR MISSION</div>
+    <h2 data-i="dn_title">SUPPORT OUR MISSION</h2>
+    <p class="sub" data-i="dn_desc">Your contribution helps us support tree plantation, palm seed planting, lake restoration, and environmental awareness activities.</p>
+  </div>
+
+  <div class="donatewrap">
+    <!-- UNIFIED DONATION FORM CARD -->
+    <div class="dn-card" id="dnFormCard">
+      <form id="donorForm" novalidate onsubmit="handleDonationSubmit(event)">
+
+        <!-- 1. DONOR TYPE SELECTION -->
+        <div id="grpDonationType" style="margin-bottom: 24px;">
+          <div class="dn-section-title">
+            <span data-i="dn_type_lbl">Donation Type</span>
+            <span class="dn-req-star">*</span>
+          </div>
+          <p style="font-size:0.86rem; color:var(--forest-800); margin:-6px 0 14px 0;" data-i="dn_type_sub">
+            Select your donor category to view relevant details
+          </p>
+
+          <div class="dntypes-grid">
+            <div class="dn-type-card active" id="btnTypeIndividual" onclick="setDonationType('Individual Donation', this)" role="button" tabindex="0">
+              <span class="dn-type-radio-circle"></span>
+              <span data-i="dn_type_ind">Individual Donation</span>
+            </div>
+            <div class="dn-type-card" id="btnTypeCorporate" onclick="setDonationType('Corporate Donation', this)" role="button" tabindex="0">
+              <span class="dn-type-radio-circle"></span>
+              <span data-i="dn_type_corp">Corporate Donation</span>
+            </div>
+            <div class="dn-type-card" id="btnTypeInstitutional" onclick="setDonationType('Institutional Donation', this)" role="button" tabindex="0">
+              <span class="dn-type-radio-circle"></span>
+              <span data-i="dn_type_inst">Institutional Donation</span>
+            </div>
+            <div class="dn-type-card" id="btnTypeNgo" onclick="setDonationType('NGO / Trust Donation', this)" role="button" tabindex="0">
+              <span class="dn-type-radio-circle"></span>
+              <span data-i="dn_type_ngo">NGO / Trust Donation</span>
+            </div>
+            <div class="dn-type-card" id="btnTypeCommunity" onclick="setDonationType('Community Group Donation', this)" role="button" tabindex="0">
+              <span class="dn-type-radio-circle"></span>
+              <span data-i="dn_type_comm">Community Group Donation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. DONATION FREQUENCY -->
+        <div id="grpDonationFreq" style="margin-bottom: 24px;">
+          <div class="dn-section-title">
+            <span data-i="dn_freq_lbl">Donation Frequency</span>
+          </div>
+          <div class="dn-freq-row">
+            <span class="dn-freq-badge">
+              <span class="dot"></span>
+              <span data-i="dn_freq_onetime">One-time Donation</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- 3. DONATION AMOUNT -->
+        <div id="grpDonationAmount" style="margin-bottom: 24px;">
+          <div class="dn-section-title">
+            <span data-i="dn_amt_lbl">Donation Amount</span>
+            <span class="dn-req-star">*</span>
+          </div>
+
+          <div class="dnamounts">
+            <button type="button" class="dnamt active" onclick="setDonationAmount(500, this)">₹500</button>
+            <button type="button" class="dnamt" onclick="setDonationAmount(1000, this)">₹1,000</button>
+            <button type="button" class="dnamt" onclick="setDonationAmount(2500, this)">₹2,500</button>
+            <button type="button" class="dnamt" onclick="setDonationAmount(5000, this)">₹5,000</button>
+            <button type="button" class="dnamt" onclick="setDonationAmount(10000, this)">₹10,000</button>
+            <button type="button" class="dnamt" id="btnCustomAmt" onclick="setCustomAmountMode(this)" data-i="dn_amt_custom">Custom Amount</button>
+          </div>
+
+          <!-- Custom Amount Box -->
+          <div class="dn-custom-wrap" id="customAmountWrap">
+            <div class="dn-custom-input-box">
+              <span class="dn-currency-symbol">₹</span>
+              <input type="number" id="dnCustomInput" min="1" step="1" data-i-ph="dn_custom_ph" placeholder="Enter amount in ₹ (minimum ₹1)" oninput="handleCustomInput(this)" onkeydown="handleCustomInputKeydown(event)" />
+            </div>
+            <div class="dn-field-error" id="errCustomAmount" style="margin-top:6px;"></div>
+          </div>
+
+          <!-- Selected Amount Display Banner -->
+          <div class="dn-amount-preview" id="dnSelectedPreview">
+            <span data-i="dn_selected_amt_lbl">Selected Donation Amount:</span>
+            <strong id="dnSelectedAmtDisplay">₹500</strong>
+          </div>
+        </div>
+
+        <!-- 4. DONOR RELEVANT FIELDS -->
+        <div class="dnform">
+          <div class="dn-section-title">
+            <span id="dnDetailsSectionTitle" data-i="dn_details_lbl">Donor Information</span>
+            <span class="dn-req-star">*</span>
+          </div>
+
+          <!-- Field 1: Name / Org Name (Dynamic) -->
+          <div class="dn-field-group" id="groupDnOrgOrName">
+            <label for="dnOrgOrName">
+              <span id="lblDnOrgOrName" data-i="dn_lbl_fullname">Full Name</span>
+              <span class="dn-req-star">*</span>
+            </label>
+            <input type="text" id="dnOrgOrName" placeholder="Enter your full name" required />
+            <div class="dn-field-error" id="errDnOrgOrName"></div>
+          </div>
+
+          <!-- Field 2: Contact Person (Visible only for non-Individual) -->
+          <div class="dn-field-group" id="groupDnContactPerson" style="display: none;">
+            <label for="dnContactPerson">
+              <span id="lblDnContactPerson" data-i="dn_lbl_contact">Contact Person</span>
+              <span class="dn-req-star">*</span>
+            </label>
+            <input type="text" id="dnContactPerson" placeholder="Name of authorized contact person" />
+            <div class="dn-field-error" id="errDnContactPerson"></div>
+          </div>
+
+          <!-- Row: Mobile & Email -->
+          <div class="dnrow">
+            <div class="dn-field-group" id="groupDnMobile">
+              <label for="dnMobile">
+                <span id="lblDnMobile" data-i="dn_lbl_mobile">Mobile Number</span>
+                <span class="dn-req-star">*</span>
+              </label>
+              <input type="tel" id="dnMobile" placeholder="10-digit mobile number" maxlength="15" required />
+              <div class="dn-field-error" id="errDnMobile"></div>
+            </div>
+
+            <div class="dn-field-group" id="groupDnEmail">
+              <label for="dnEmail">
+                <span id="lblDnEmail" data-i="dn_lbl_email">Email Address</span>
+                <span class="dn-req-star">*</span>
+              </label>
+              <input type="email" id="dnEmail" placeholder="name@example.com" required />
+              <div class="dn-field-error" id="errDnEmail"></div>
+            </div>
+          </div>
+
+          <!-- Row: City / District & Optional PAN -->
+          <div class="dnrow">
+            <div class="dn-field-group" id="groupDnCity">
+              <label for="dnCity">
+                <span id="lblDnCity" data-i="dn_lbl_city">City / District</span>
+                <span class="dn-req-star">*</span>
+              </label>
+              <input type="text" id="dnCity" placeholder="City or District (e.g. Tiruchirappalli)" required />
+              <div class="dn-field-error" id="errDnCity"></div>
+            </div>
+
+            <div class="dn-field-group" id="groupDnPan">
+              <label for="dnPan">
+                <span id="lblDnPan" data-i="dn_lbl_pan">PAN Number (Optional for 80G Tax Exemption)</span>
+              </label>
+              <input type="text" id="dnPan" placeholder="ABCDE1234F" maxlength="10" style="text-transform: uppercase;" />
+            </div>
+          </div>
+
+          <!-- 5. MANUAL PAYMENT INSTRUCTIONS & STATUS NOTE -->
+          <div style="background: rgba(14, 42, 30, 0.05); border: 1.5px dashed rgba(14, 42, 30, 0.2); border-radius: 16px; padding: 20px; margin-top: 10px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <span style="font-size:1.15rem;">🏛️</span>
+              <strong style="color:var(--forest-900); font-size:0.96rem;" data-i="dn_pay_inst_title">Direct Bank Transfer / UPI Instructions</strong>
+            </div>
+            <p style="font-size:0.85rem; color:var(--forest-800); margin:0 0 12px 0; line-height:1.5;" data-i="dn_pay_inst_desc">
+              Please transfer your contribution to the official Mannum Maramum Iyakkam bank account. Quote your generated Reference Number in the transfer remarks.
+            </p>
+            <div style="font-size:0.86rem; color:var(--forest-950); display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+              <div><strong>Account Name:</strong> Mannum Maramum Iyakkam</div>
+              <div><strong>Bank:</strong> State Bank of India (Official NGO A/c)</div>
+              <div><strong>Mode:</strong> NEFT / RTGS / IMPS / UPI</div>
+              <div><strong>Verification:</strong> Reconciled by NGO Team</div>
+            </div>
+            <div style="margin-top:12px; padding:8px 12px; background:#fffbeb; border-radius:8px; border:1px solid #fef3c7; font-size:0.82rem; color:#92400e; display:flex; align-items:center; gap:6px;">
+              <span>ℹ️</span>
+              <span data-i="dn_status_expl">Payment Status: Submitting this form creates an official pledge awaiting offline transfer reconciliation. Receipts are issued once bank payment is confirmed.</span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="dnsubmit" id="btnSubmitDonation">
+            <span id="btnSubmitDonationText" data-i="dn_btn_submit">Submit Donation Pledge</span> ➔
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 6. CONFIRMATION CARD (Revealed upon submission) -->
+    <div class="dn-success-card" id="dnSuccessCard">
+      <div class="dn-success-icon">✓</div>
+      <h3 data-i="dn_succ_title">Donation Pledge Recorded Successfully! 🌱</h3>
+      <p data-i="dn_succ_subtitle">Thank you for contributing to environmental restoration with Mannum Maramum Iyakkam.</p>
+
+      <div class="dn-ref-box">
+        <span class="dn-ref-label" data-i="dn_succ_ref_lbl">Donation Reference Number</span>
+        <span class="dn-ref-code" id="successRefCode">MMI-000000-000</span>
+        <span class="dn-status-badge" id="successPaymentStatus" data-i="dn_succ_status_val">Awaiting Offline Transfer Verification</span>
+      </div>
+
+      <div class="dn-success-details">
+        <div class="dn-success-row">
+          <span data-i="dn_lbl_donor_name">Donor / Organisation:</span>
+          <strong id="successDonorName">—</strong>
+        </div>
+        <div class="dn-success-row" id="rowSuccessContact" style="display:none;">
+          <span data-i="dn_lbl_contact">Contact Person:</span>
+          <strong id="successContactPerson">—</strong>
+        </div>
+        <div class="dn-success-row">
+          <span data-i="dn_type_lbl">Donation Type:</span>
+          <strong id="successDonationType">—</strong>
+        </div>
+        <div class="dn-success-row">
+          <span data-i="dn_lbl_mobile">Mobile Number:</span>
+          <strong id="successMobile">—</strong>
+        </div>
+        <div class="dn-success-row">
+          <span data-i="dn_lbl_email">Email Address:</span>
+          <strong id="successEmail">—</strong>
+        </div>
+        <div class="dn-success-row">
+          <span data-i="dn_lbl_city">City / District:</span>
+          <strong id="successCity">—</strong>
+        </div>
+        <div class="dn-success-row">
+          <span data-i="dn_amt_lbl">Pledged Amount:</span>
+          <strong id="successAmount" style="color:var(--forest-900); font-size:1.15rem;">₹500</strong>
+        </div>
+      </div>
+
+      <div class="dn-next-steps">
+        <h4 data-i="dn_next_steps_title">Next Steps to Complete Your Donation</h4>
+        <ol>
+          <li data-i="dn_next_step_1">Transfer your pledged amount to the official Mannum Maramum Iyakkam bank account or via UPI.</li>
+          <li data-i="dn_next_step_2">Important: Enter your Donation Reference Number in the transaction remarks/notes so our team can identify your payment.</li>
+          <li data-i="dn_next_step_3">Once verified, an official 80G tax exemption receipt will be emailed to you.</li>
+        </ol>
+      </div>
+
+      <button type="button" class="dn-reset-btn" onclick="resetDonationForm()">
+        ↺ <span data-i="dn_btn_reset">Make Another Donation</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="mmi-partnership-section" id="partnership">
+  <div class="teamhead">
+    <div class="eyebrow2" data-i="part_eyebrow">PARTNERSHIP INITIATIVE</div>
+    <h2 data-i="part_title">MANNUM MARAMUM PARTNERSHIP REGISTRATION</h2>
+    <p class="sub" data-i="part_subtitle">Register your company or organisation to support environmental activities, tree plantation, palm seed planting, lake rejuvenation and sustainable development initiatives with Mannum Maramum Iyakkam.</p>
+  </div>
+
+  <div class="mmi-part-wrap">
+    <form id="mmiPartnershipForm" novalidate onsubmit="handlePartnershipSubmit(event)">
+
+      <!-- 1. PARTNERSHIP REGISTRATION TYPE -->
+      <div class="mmi-part-card" id="grpPartType">
+        <div class="mmi-step-title">
+          <div class="mmi-step-num">1</div>
+          <div>
+            <div class="mmi-step-heading"><span data-i="part_s1_title">Partnership Registration Type</span><span class="mmi-req-star">*</span></div>
+            <div class="mmi-step-sub" data-i="part_s1_sub">Select the category that best describes your organisation</div>
+          </div>
+        </div>
+
+        <div class="mmi-types-grid" id="mmiTypesGrid" role="radiogroup" aria-label="Partnership Registration Type">
+          <!-- Corporate Partner -->
+          <div class="mmi-type-card active" id="cardCorpPartner" onclick="selectPartnerType('Corporate Partner', this)" role="radio" aria-checked="true" tabindex="0">
+            <div class="mmi-type-top">
+              <div class="mmi-type-title" data-i="part_corp_title">Corporate Partner</div>
+              <div class="mmi-type-radio"></div>
+            </div>
+            <div class="mmi-type-desc" data-i="part_corp_desc">For corporate enterprises, private companies, industries, MSMEs & business establishments.</div>
+            <div class="mmi-type-badge" data-i="part_corp_badge">Corporate / Business</div>
+          </div>
+
+          <!-- Institutional Partner -->
+          <div class="mmi-type-card" id="cardInstPartner" onclick="selectPartnerType('Institutional Partner', this)" role="radio" aria-checked="false" tabindex="0">
+            <div class="mmi-type-top">
+              <div class="mmi-type-title" data-i="part_inst_title">Institutional Partner</div>
+              <div class="mmi-type-radio"></div>
+            </div>
+            <div class="mmi-type-desc" data-i="part_inst_desc">For educational institutions, colleges, schools, registered NGOs, environmental trusts & social bodies.</div>
+            <div class="mmi-type-badge" data-i="part_inst_badge">Institution / NGO / Trust</div>
+          </div>
+        </div>
+        <div class="mmi-err-msg" id="errPartType">Please select a Partnership Registration Type.</div>
+      </div>
+
+      <!-- 2. PARTNERSHIP DURATION -->
+      <div class="mmi-part-card" id="grpPartDuration">
+        <div class="mmi-step-title">
+          <div class="mmi-step-num">2</div>
+          <div>
+            <div class="mmi-step-heading"><span data-i="part_s2_title">Partnership Duration</span><span class="mmi-req-star">*</span></div>
+            <div class="mmi-step-sub" data-i="part_s2_sub">Choose your preferred partnership duration.</div>
+          </div>
+        </div>
+
+        <div class="mmi-dur-selector-container">
+          <label class="mmi-label" for="mmiDurationSelect">
+            <span data-i="part_dur_label">Partnership Duration</span><span class="mmi-req-star">*</span>
+          </label>
+
+          <div class="mmi-dur-controls-row">
+            <div class="mmi-select-wrapper">
+              <select id="mmiDurationSelect" class="mmi-select mmi-duration-dropdown" onchange="handleDurationDropdownChange(this.value)" aria-label="Partnership Duration">
+                <option value="1 Year" data-i="part_opt_1y">1 Year</option>
+                <option value="2 Years" data-i="part_opt_2y">2 Years</option>
+                <option value="3 Years" data-i="part_opt_3y">3 Years</option>
+                <option value="4 Years" data-i="part_opt_4y">4 Years</option>
+                <option value="5 Years" data-i="part_opt_5y">5 Years</option>
+                <option value="6 Years" data-i="part_opt_6y">6 Years</option>
+                <option value="7 Years" data-i="part_opt_7y">7 Years</option>
+                <option value="8 Years" data-i="part_opt_8y">8 Years</option>
+                <option value="9 Years" data-i="part_opt_9y">9 Years</option>
+                <option value="10 Years" data-i="part_opt_10y">10 Years</option>
+                <option value="custom" data-i="part_opt_custom">Custom Duration (1 - 10 Years)...</option>
+              </select>
+              <span class="mmi-select-arrow" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </div>
+
+            <!-- Custom duration input box (revealed when 'custom' is selected) -->
+            <div id="mmiCustomDurationWrap" class="mmi-custom-dur-wrap" style="display: none;">
+              <div class="mmi-custom-dur-inner">
+                <input
+                  type="number"
+                  id="mmiCustomDurationInput"
+                  class="mmi-input mmi-custom-dur-input"
+                  min="1"
+                  max="10"
+                  step="1"
+                  placeholder="1 - 10"
+                  aria-label="Custom duration in years"
+                  oninput="handleCustomDurationInput(this.value)"
+                  onkeydown="handleCustomDurationKeydown(event)"
+                />
+                <span class="mmi-custom-dur-suffix" data-i="part_years_unit">Years</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="mmi-dur-help-msg" data-i="part_dur_help">Choose your preferred partnership duration.</p>
+          <div class="mmi-err-msg" id="errPartDuration" data-i="part_err_dur_range">Please enter a valid whole number between 1 and 10 years.</div>
+        </div>
+
+        <div class="mmi-duration-note">
+          <span>🌿</span>
+          <span data-i="part_dur_note">Partnership details and project schedules will be confirmed by Mannum Maramum Iyakkam.</span>
+        </div>
+      </div>
+
+      <!-- 3. ORGANISATION DETAILS -->
+      <div class="mmi-part-card">
+        <div class="mmi-step-title">
+          <div class="mmi-step-num">3</div>
+          <div>
+            <div class="mmi-step-heading"><span data-i="part_s3_title">Organisation Details</span></div>
+            <div class="mmi-step-sub" data-i="part_s3_sub">Provide registered particulars of your organisation or company</div>
+          </div>
+        </div>
+
+        <div class="mmi-form-grid">
+          <div class="mmi-field-group mmi-col-span-2" id="grpOrgName">
+            <label class="mmi-label" for="mmiOrgName"><span data-i="part_org_name">Organisation / Company Name</span><span class="mmi-req-star">*</span></label>
+            <input type="text" id="mmiOrgName" class="mmi-input" placeholder="e.g. Green Heritage Private Limited / Zenith College" data-i-ph="part_org_name_ph" />
+            <div class="mmi-err-msg" id="errOrgName">Organisation / Company Name is required.</div>
+          </div>
+
+          <div class="mmi-field-group">
+            <label class="mmi-label" for="mmiOrgRegNo"><span data-i="part_org_regno">Registration Number</span> <span class="mmi-opt-tag" data-i="lbl_optional">(Optional)</span></label>
+            <input type="text" id="mmiOrgRegNo" class="mmi-input" placeholder="CIN / Society / Trust Reg No." data-i-ph="part_org_regno_ph" />
+          </div>
+
+          <div class="mmi-field-group">
+            <label class="mmi-label" for="mmiOrgGst"><span data-i="part_org_gst">GST Number</span> <span class="mmi-opt-tag" data-i="lbl_optional">(Optional)</span></label>
+            <input type="text" id="mmiOrgGst" class="mmi-input" placeholder="15-digit GSTIN (if applicable)" maxlength="15" style="text-transform: uppercase;" data-i-ph="part_org_gst_ph" />
+          </div>
+
+          <div class="mmi-field-group">
+            <label class="mmi-label" for="mmiOrgPan"><span data-i="part_org_pan">PAN Number</span> <span class="mmi-opt-tag" data-i="lbl_optional">(Optional)</span></label>
+            <input type="text" id="mmiOrgPan" class="mmi-input" placeholder="10-digit PAN (if applicable)" maxlength="10" style="text-transform: uppercase;" data-i-ph="part_org_pan_ph" />
+          </div>
+
+          <div class="mmi-field-group">
+            <label class="mmi-label" for="mmiOrgWebsite"><span data-i="part_org_web">Website</span> <span class="mmi-opt-tag" data-i="lbl_optional">(Optional)</span></label>
+            <input type="url" id="mmiOrgWebsite" class="mmi-input" placeholder="https://yourorganisation.org" data-i-ph="part_org_web_ph" />
+          </div>
+
+          <div class="mmi-field-group mmi-col-span-2" id="grpOrgAddress">
+            <label class="mmi-label" for="mmiOrgAddress"><span data-i="part_org_addr">Organisation Address</span><span class="mmi-req-star">*</span></label>
+            <textarea id="mmiOrgAddress" class="mmi-textarea" rows="2" placeholder="Building, Street, Area / Campus address..." data-i-ph="part_org_addr_ph"></textarea>
+            <div class="mmi-err-msg" id="errOrgAddress">Organisation Address is required.</div>
+          </div>
+
+          <div class="mmi-field-group" id="grpOrgDistrict">
+            <label class="mmi-label" for="mmiOrgDistrict"><span data-i="part_org_dist">City / District</span><span class="mmi-req-star">*</span></label>
+            <select id="mmiOrgDistrict" class="mmi-select">
+              <option value="" data-i="part_select_dist">-- Select District --</option>
+            </select>
+            <div class="mmi-err-msg" id="errOrgDistrict">Please select a District.</div>
+          </div>
+
+          <div class="mmi-field-group" id="grpOrgPin">
+            <label class="mmi-label" for="mmiOrgPin"><span data-i="part_org_pin">PIN Code</span> <span class="mmi-opt-tag" data-i="lbl_optional">(Optional)</span></label>
+            <input type="text" id="mmiOrgPin" class="mmi-input" placeholder="6-digit PIN code" maxlength="6" data-i-ph="part_org_pin_ph" />
+            <div class="mmi-err-msg" id="errOrgPin">Enter a valid 6-digit PIN code.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. CONTACT DETAILS -->
+      <div class="mmi-part-card">
+        <div class="mmi-step-title">
+          <div class="mmi-step-num">4</div>
+          <div>
+            <div class="mmi-step-heading"><span data-i="part_s4_title">Contact Details</span></div>
+            <div class="mmi-step-sub" data-i="part_s4_sub">Authorised representative or coordinator for partnership communication</div>
+          </div>
+        </div>
+
+        <div class="mmi-form-grid">
+          <div class="mmi-field-group" id="grpContactName">
+            <label class="mmi-label" for="mmiContactName"><span data-i="part_con_name">Contact Person Name</span><span class="mmi-req-star">*</span></label>
+            <input type="text" id="mmiContactName" class="mmi-input" placeholder="Full name of representative" data-i-ph="part_con_name_ph" />
+            <div class="mmi-err-msg" id="errContactName">Contact Person Name is required.</div>
+          </div>
+
+          <div class="mmi-field-group">
+            <label class="mmi-label" for="mmiContactDesignation"><span data-i="part_con_desig">Designation</span> <span class="mmi-opt-tag" data-i="lbl_optional">(Optional)</span></label>
+            <input type="text" id="mmiContactDesignation" class="mmi-input" placeholder="e.g. Director / CSR Lead / Principal" data-i-ph="part_con_desig_ph" />
+          </div>
+
+          <div class="mmi-field-group" id="grpContactMobile">
+            <label class="mmi-label" for="mmiContactMobile"><span data-i="part_con_mob">Mobile Number</span><span class="mmi-req-star">*</span></label>
+            <input type="tel" id="mmiContactMobile" class="mmi-input" placeholder="10-digit mobile number" maxlength="10" data-i-ph="part_con_mob_ph" />
+            <div class="mmi-err-msg" id="errContactMobile">Please enter a valid 10-digit mobile number.</div>
+          </div>
+
+          <div class="mmi-field-group" id="grpContactAltMobile">
+            <label class="mmi-label" for="mmiContactAltMobile"><span data-i="part_con_altmob">Alternate Mobile Number</span> <span class="mmi-opt-tag" data-i="lbl_optional">(Optional)</span></label>
+            <input type="tel" id="mmiContactAltMobile" class="mmi-input" placeholder="10-digit alternate mobile" maxlength="10" data-i-ph="part_con_altmob_ph" />
+            <div class="mmi-err-msg" id="errContactAltMobile">Alternate mobile must be 10 digits.</div>
+          </div>
+
+          <div class="mmi-field-group mmi-col-span-2" id="grpContactEmail">
+            <label class="mmi-label" for="mmiContactEmail"><span data-i="part_con_email">Email Address</span><span class="mmi-req-star">*</span></label>
+            <input type="email" id="mmiContactEmail" class="mmi-input" placeholder="name@organisation.com" data-i-ph="part_con_email_ph" />
+            <div class="mmi-err-msg" id="errContactEmail">Please enter a valid email address.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. PARTNERSHIP FOCUS -->
+      <div class="mmi-part-card" id="grpPartFocus">
+        <div class="mmi-step-title">
+          <div class="mmi-step-num">5</div>
+          <div>
+            <div class="mmi-step-heading"><span data-i="part_s5_title">Partnership Focus</span><span class="mmi-req-star">*</span></div>
+            <div class="mmi-step-sub" data-i="part_s5_sub">Select the environmental areas your organisation wishes to support (Multiple selections allowed)</div>
+          </div>
+        </div>
+
+        <div class="mmi-focus-grid" id="mmiFocusGrid">
+          <div class="mmi-focus-item active" onclick="toggleFocusArea(this, 'Tree Plantation')">
+            <div class="mmi-focus-check">&check;</div>
+            <div class="mmi-focus-icon">🌳</div>
+            <div class="mmi-focus-title" data-i="focus_tree">Tree Plantation</div>
+          </div>
+
+          <div class="mmi-focus-item active" onclick="toggleFocusArea(this, 'Palm Seed Plantation')">
+            <div class="mmi-focus-check">&check;</div>
+            <div class="mmi-focus-icon">🌴</div>
+            <div class="mmi-focus-title" data-i="focus_palm">Palm Seed Plantation</div>
+          </div>
+
+          <div class="mmi-focus-item" onclick="toggleFocusArea(this, 'Lake Rejuvenation')">
+            <div class="mmi-focus-check"></div>
+            <div class="mmi-focus-icon">💧</div>
+            <div class="mmi-focus-title" data-i="focus_lake">Lake Rejuvenation</div>
+          </div>
+
+          <div class="mmi-focus-item" onclick="toggleFocusArea(this, 'Environmental Awareness')">
+            <div class="mmi-focus-check"></div>
+            <div class="mmi-focus-icon">📢</div>
+            <div class="mmi-focus-title" data-i="focus_aware">Environmental Awareness</div>
+          </div>
+
+          <div class="mmi-focus-item" onclick="toggleFocusArea(this, 'Water & Soil Conservation')">
+            <div class="mmi-focus-check"></div>
+            <div class="mmi-focus-icon">🌱</div>
+            <div class="mmi-focus-title" data-i="focus_water_soil">Water & Soil Conservation</div>
+          </div>
+
+          <div class="mmi-focus-item" onclick="toggleFocusArea(this, 'Community Activities')">
+            <div class="mmi-focus-check"></div>
+            <div class="mmi-focus-icon">🤝</div>
+            <div class="mmi-focus-title" data-i="focus_community">Community Activities</div>
+          </div>
+
+          <div class="mmi-focus-item" onclick="toggleFocusArea(this, 'Sustainable Development')">
+            <div class="mmi-focus-check"></div>
+            <div class="mmi-focus-icon">♻️</div>
+            <div class="mmi-focus-title" data-i="focus_sustain">Sustainable Development</div>
+          </div>
+
+          <div class="mmi-focus-item" onclick="toggleFocusArea(this, 'Other')">
+            <div class="mmi-focus-check"></div>
+            <div class="mmi-focus-icon">✨</div>
+            <div class="mmi-focus-title" data-i="focus_other">Other</div>
+          </div>
+        </div>
+        <div class="mmi-err-msg" id="errPartFocus">Please select at least one Partnership Focus area.</div>
+      </div>
+
+      <!-- 6. ACTIVITY / PARTNERSHIP AREAS -->
+      <div class="mmi-part-card" id="grpPartAreas">
+        <div class="mmi-step-title">
+          <div class="mmi-step-num">6</div>
+          <div>
+            <div class="mmi-step-heading"><span data-i="part_s6_title">Activity / Partnership Areas</span><span class="mmi-req-star">*</span></div>
+            <div class="mmi-step-sub" data-i="part_s6_sub">Select the districts or areas where your organisation would like to support environmental activities.</div>
+          </div>
+        </div>
+
+        <div class="mmi-service-wrapper">
+          <div class="mmi-chips-box" id="mmiChipsBox">
+            <span class="mmi-placeholder-text" id="mmiChipsPlaceholder" data-i="part_areas_ph">Click to select districts / regions...</span>
+          </div>
+
+          <div class="mmi-dropdown-menu" id="mmiDropdownMenu">
+            <div class="mmi-search-bar">
+              <input type="text" id="mmiSearchDistricts" placeholder="Search districts..." data-i-ph="part_search_dist_ph" />
+              <button type="button" id="mmiBtnSelectAll" data-i="btn_select_all">Select All</button>
+              <button type="button" id="mmiBtnClearAll" class="mmi-btn-clear" data-i="btn_clear_all">Clear All</button>
+            </div>
+            <div class="mmi-opt-list" id="mmiOptList">
+              <!-- District checkboxes populated via JS -->
+            </div>
+          </div>
+        </div>
+        <div class="mmi-err-msg" id="errPartAreas">Please select at least one activity / partnership area.</div>
+      </div>
+
+      <!-- 7. ORGANISATION PROFILE -->
+      <div class="mmi-part-card">
+        <div class="mmi-step-title">
+          <div class="mmi-step-num">7</div>
+          <div>
+            <div class="mmi-step-heading"><span data-i="part_s7_title">Organisation Profile</span> <span class="mmi-opt-tag" data-i="lbl_optional">(Optional)</span></div>
+            <div class="mmi-step-sub" data-i="part_s7_sub">Brief overview of your organisation and environmental collaboration vision</div>
+          </div>
+        </div>
+
+        <div class="mmi-field-group">
+          <label class="mmi-label" for="mmiOrgProfile"><span data-i="part_org_prof_lbl">Brief Organisation Profile</span></label>
+          <textarea id="mmiOrgProfile" class="mmi-textarea" rows="4" placeholder="Briefly describe your organisation, activities, experience and how you would like to support environmental initiatives..." data-i-ph="part_org_prof_ph"></textarea>
+        </div>
+      </div>
+
+      <!-- 8. SUPPORTING DOCUMENTS -->
+      <div class="mmi-part-card">
+        <div class="mmi-step-title">
+          <div class="mmi-step-num">8</div>
+          <div>
+            <div class="mmi-step-heading"><span data-i="part_s8_title">Supporting Documents</span> <span class="mmi-opt-tag" data-i="lbl_optional">(Optional)</span></div>
+            <div class="mmi-step-sub" data-i="part_s8_sub">Attach relevant organisation documents for official records (PDF, PNG, JPG under 10MB)</div>
+          </div>
+        </div>
+
+        <div class="mmi-upload-grid">
+          <!-- Logo -->
+          <div class="mmi-upload-card" onclick="triggerDocUpload('fileOrgLogo')">
+            <div class="mmi-upload-icon">🏷️</div>
+            <div class="mmi-upload-title" data-i="doc_logo">Organisation Logo</div>
+            <div class="mmi-upload-hint" data-i="doc_hint_img">PNG, JPG or SVG</div>
+            <div class="mmi-upload-btn" data-i="doc_btn_choose">Choose File</div>
+            <input type="file" id="fileOrgLogo" style="display:none;" accept="image/*" onchange="handleDocSelected(this, 'dispOrgLogo')" />
+            <div class="mmi-upload-status" id="dispOrgLogo"></div>
+          </div>
+
+          <!-- Reg Certificate -->
+          <div class="mmi-upload-card" onclick="triggerDocUpload('fileRegCert')">
+            <div class="mmi-upload-icon">📄</div>
+            <div class="mmi-upload-title" data-i="doc_regcert">Registration Certificate</div>
+            <div class="mmi-upload-hint" data-i="doc_hint_pdf">PDF or Image copy</div>
+            <div class="mmi-upload-btn" data-i="doc_btn_choose">Choose File</div>
+            <input type="file" id="fileRegCert" style="display:none;" accept=".pdf,image/*" onchange="handleDocSelected(this, 'dispRegCert')" />
+            <div class="mmi-upload-status" id="dispRegCert"></div>
+          </div>
+
+          <!-- GST Certificate -->
+          <div class="mmi-upload-card" onclick="triggerDocUpload('fileGstCert')">
+            <div class="mmi-upload-icon">📑</div>
+            <div class="mmi-upload-title" data-i="doc_gst">GST Certificate</div>
+            <div class="mmi-upload-hint" data-i="doc_hint_pdf">PDF or Image copy</div>
+            <div class="mmi-upload-btn" data-i="doc_btn_choose">Choose File</div>
+            <input type="file" id="fileGstCert" style="display:none;" accept=".pdf,image/*" onchange="handleDocSelected(this, 'dispGstCert')" />
+            <div class="mmi-upload-status" id="dispGstCert"></div>
+          </div>
+
+          <!-- PAN Card -->
+          <div class="mmi-upload-card" onclick="triggerDocUpload('filePanCard')">
+            <div class="mmi-upload-icon">💳</div>
+            <div class="mmi-upload-title" data-i="doc_pan">PAN Card</div>
+            <div class="mmi-upload-hint" data-i="doc_hint_pdf">PDF or Image copy</div>
+            <div class="mmi-upload-btn" data-i="doc_btn_choose">Choose File</div>
+            <input type="file" id="filePanCard" style="display:none;" accept=".pdf,image/*" onchange="handleDocSelected(this, 'dispPanCard')" />
+            <div class="mmi-upload-status" id="dispPanCard"></div>
+          </div>
+
+          <!-- Brochure / Profile -->
+          <div class="mmi-upload-card mmi-col-span-2" onclick="triggerDocUpload('fileBrochure')">
+            <div class="mmi-upload-icon">📚</div>
+            <div class="mmi-upload-title" data-i="doc_brochure">Organisation Profile / Brochure</div>
+            <div class="mmi-upload-hint" data-i="doc_hint_brochure">PDF overview of your organisation & CSR / social works</div>
+            <div class="mmi-upload-btn" data-i="doc_btn_choose">Choose File</div>
+            <input type="file" id="fileBrochure" style="display:none;" accept=".pdf,image/*" onchange="handleDocSelected(this, 'dispBrochure')" />
+            <div class="mmi-upload-status" id="dispBrochure"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. PARTNERSHIP CONTRIBUTION -->
+      <div class="mmi-part-card">
+        <div class="mmi-step-title">
+          <div class="mmi-step-num">9</div>
+          <div>
+            <div class="mmi-step-heading"><span data-i="part_s9_title">Partnership Contribution</span></div>
+            <div class="mmi-step-sub" data-i="part_s9_sub">Collaborative environmental participation and support overview</div>
+          </div>
+        </div>
+
+        <div class="mmi-contrib-box">
+          <div class="mmi-contrib-head">
+            <span class="mmi-contrib-badge" data-i="part_collab_badge">COLLABORATION FRAMEWORK</span>
+          </div>
+          <div class="mmi-contrib-text" data-i="part_contrib_desc">
+            Contribution details will be confirmed by Mannum Maramum Iyakkam. Collaborative engagement—whether through sapling plantation drives, seed supply, native nursery setup, water-body cleanup, or institutional CSR programs—will be tailored to your organisation's focus and planned directly with our coordinators.
+          </div>
+
+          <table class="mmi-contrib-summary-table">
+            <tbody>
+              <tr>
+                <td class="mmi-contrib-tbl-lbl" data-i="tbl_sel_partner">Selected Partner Type:</td>
+                <td class="mmi-contrib-tbl-val" id="mmiTblPartnerType">Corporate Partner</td>
+              </tr>
+              <tr>
+                <td class="mmi-contrib-tbl-lbl" data-i="tbl_sel_duration">Partnership Duration:</td>
+                <td class="mmi-contrib-tbl-val" id="mmiTblDuration">1 Year</td>
+              </tr>
+              <tr>
+                <td class="mmi-contrib-tbl-lbl" data-i="tbl_contrib_status">Contribution Status:</td>
+                <td class="mmi-contrib-tbl-val" style="color: var(--forest-800);" data-i="tbl_contrib_status_val">To be confirmed by Mannum Maramum Iyakkam</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 10. DECLARATION -->
+      <div class="mmi-part-card" id="grpPartDecl">
+        <div class="mmi-step-title">
+          <div class="mmi-step-num">10</div>
+          <div>
+            <div class="mmi-step-heading"><span data-i="part_s10_title">Declaration</span><span class="mmi-req-star">*</span></div>
+          </div>
+        </div>
+
+        <label class="mmi-decl-box" for="mmiDeclCheck">
+          <input type="checkbox" id="mmiDeclCheck" onchange="clearPartError('grpPartDecl', 'errPartDecl')" />
+          <div class="mmi-decl-text" data-i="part_decl_text">
+            I hereby declare that the information provided above is true and correct. I agree to support the environmental and sustainable development initiatives of Mannum Maramum Iyakkam.
+          </div>
+        </label>
+        <div class="mmi-err-msg" id="errPartDecl">You must agree to the declaration before submitting.</div>
+
+        <button type="submit" class="mmi-submit-btn" id="btnSubmitPartnership">
+          <span>🌿</span>
+          <span data-i="btn_submit_part">Submit Partnership Registration</span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<div class="mmi-modal-backdrop" id="mmiSuccessModal" role="dialog" aria-modal="true">
+  <div class="mmi-modal-card">
+    <div class="mmi-modal-icon">🌱</div>
+    <h3 class="mmi-modal-title" data-i="modal_succ_title">Partnership Registration Submitted</h3>
+    <p class="mmi-modal-desc" data-i="modal_succ_desc">Thank you for registering your interest in partnering with Mannum Maramum Iyakkam. Our team will review your details and contact you.</p>
+
+    <div class="mmi-modal-summary">
+      <div class="mmi-modal-row">
+        <span class="mmi-modal-lbl" data-i="modal_lbl_org">Organisation:</span>
+        <span class="mmi-modal-val" id="mmiModalOrgName">-</span>
+      </div>
+      <div class="mmi-modal-row">
+        <span class="mmi-modal-lbl" data-i="modal_lbl_type">Partner Type:</span>
+        <span class="mmi-modal-val" id="mmiModalType">Corporate Partner</span>
+      </div>
+      <div class="mmi-modal-row">
+        <span class="mmi-modal-lbl" data-i="modal_lbl_dur">Duration:</span>
+        <span class="mmi-modal-val" id="mmiModalDur">1 Year</span>
+      </div>
+      <div class="mmi-modal-row">
+        <span class="mmi-modal-lbl" data-i="modal_lbl_dist">District:</span>
+        <span class="mmi-modal-val" id="mmiModalDist">-</span>
+      </div>
+      <div class="mmi-modal-row">
+        <span class="mmi-modal-lbl" data-i="modal_lbl_focus">Focus Areas:</span>
+        <span class="mmi-modal-val" id="mmiModalFocusCount">-</span>
+      </div>
+    </div>
+
+    <button type="button" class="mmi-modal-btn" onclick="closePartnershipModal()" data-i="modal_btn_close">Done / Close</button>
+  </div>
+</div>
+
 <!-- Volunteer Registration Anchor Destination -->
 <div id="volunteer" class="volunteer-anchor" style="scroll-margin-top: 100px;"></div>
 <div id="volunteer-registration" class="volunteer-anchor" style="scroll-margin-top: 100px;"></div>
@@ -3176,7 +4490,8 @@ h1.hero-h {
     </div>
   </div>
   <div class="copyright" data-i="rights">© 2026 Mannum Maramum Iyakkam — All rights reserved.</div>
-  <div class="admin-access-link" style="text-align:center; padding-top:12px; font-size:0.75rem;">
+  <div class="footer-links" style="text-align:center; padding-top:12px; font-size:0.75rem; display:flex; justify-content:center; gap:24px; flex-wrap:wrap;">
+    <a href="/vendor-registration" style="color:var(--lime, #b7e23a); opacity:0.85; text-decoration:none; font-weight:600;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">📋 Vendor Registration</a>
     <a href="/admin/login" style="color:var(--lime, #b7e23a); opacity:0.85; text-decoration:none; font-weight:600;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">🔒 Admin Login</a>
   </div>
 </footer>
@@ -3186,12 +4501,27 @@ const T = {
   wm1:{en:"MANNUM",ta:"மண்ணும்"}, wm2:{en:"MARAMUM",ta:"மரமும்"},
   brand_since:{en:"Since 2019",ta:"2019 முதல்"},
   n_home:{en:"Home",ta:"முகப்பு"}, n_about:{en:"About Us",ta:"எங்களைப் பற்றி"},
+  n_projects:{en:"Projects",ta:"திட்டங்கள்"},
+  n_get_involved:{en:"Get Involved",ta:"இணையுங்கள்"},
+  dd_about_us:{en:"About Us",ta:"எங்களைப் பற்றி"},
+  dd_our_mission:{en:"Our Mission",ta:"எங்கள் நோக்கம்"},
+  dd_our_team:{en:"Our Team",ta:"எங்கள் குழு"},
+  dd_our_impact:{en:"Our Impact",ta:"நமது தாக்கம்"},
+  dd_gallery:{en:"Gallery",ta:"படத்தொகுப்பு"},
+  dd_contact_us:{en:"Contact Us",ta:"தொடர்பு கொள்ள"},
+  dd_join_volunteer:{en:"Join as a Volunteer",ta:"தன்னார்வலராக இணைய"},
+  dd_donate:{en:"Donate",ta:"நன்கொடை"},
+  dd_become_partner:{en:"Become a Partner",ta:"கூட்டாளியாக இணைய"},
+  dd_tree_plantation:{en:"Tree Plantation",ta:"மரக்கன்றுகள் நடுதல்"},
+  dd_palm_seed_planting:{en:"Palm Seed Planting",ta:"பனை விதை நடுதல்"},
+  dd_lake_restoration:{en:"Lake Restoration",ta:"ஏரி புனரமைப்பு"},
+  dd_env_awareness:{en:"Environmental Awareness",ta:"சுற்றுச்சூழல் விழிப்புணர்வு"},
+  dd_photo_gallery:{en:"Photo Gallery",ta:"புகைப்பட தொகுப்பு"},
   n_work:{en:"Our Initiatives",ta:"நமது முன்னெடுப்புகள்"},
   n_gallery:{en:"Gallery",ta:"படங்கள்"}, n_contact:{en:"Contact",ta:"தொடர்பு"},
   btn_nature:{en:"⚡ WILD MODE ON",ta:"⚡ WILD MODE ON"},
-  n_donate:{en:"Donate Now",ta:"நன்கொடை"},
   n_partnership:{en:"Partnership Registration",ta:"கூட்டாண்மை"},
-  joinnow:{en:"Donate Now",ta:"நன்கொடை"},
+  joinnow:{en:"Partner With Us",ta:"கூட்டாளியாக இணையுங்கள்"},
   eyebrow:{en:"LET'S HEAL THE EARTH",ta:"பூமியை மீட்டெடுப்போம்"},
   hh1:{en:"MANNUM",ta:"மண்ணும்"}, hh2:{en:"MARAMUM",ta:"மரமும்"},
   desc:{en:"We believe in a green tomorrow where nature and humanity grow together in harmony.",ta:"இயற்கையும் மனிதமும் இணைந்து வளரும் பசுமையான நாளை நாங்கள் நம்புகிறோம்."},
@@ -3272,37 +4602,212 @@ const T = {
   gal_e:{"en": "In pictures", "ta": "படங்களில்"},
   gal_title:{"en": "Gallery", "ta": "படத்தொகுப்பு"},
   gal_note:{"en": "Real photos from our plantation events.", "ta": "எங்கள் நடவு நிகழ்வுகளின் உண்மையான புகைப்படங்கள்."},
-  dn_e:{"en": "Proposed feature", "ta": "முன்மொழியப்பட்ட அம்சம்"},
-  dn_title:{"en": "Support Our Mission", "ta": "எங்கள் நோக்கத்திற்கு ஆதரவு தாருங்கள்"},
-  dn_note:{"en": "Donations and corporate partnerships help fund plantation drives, lake rejuvenation and awareness programs.", "ta": "நன்கொடைகள் மற்றும் கார்ப்பரேட் கூட்டாண்மைகள் நடவு, ஏரி புத்துயிர்ப்பு, விழிப்புணர்வு பணிகளுக்கு உதவுகின்றன."},
-  dn_one:{"en": "One-time Donation", "ta": "ஒரு முறை நன்கொடை"},
-  dn_corp:{"en": "Corporate Partner", "ta": "கார்ப்பரேட் பங்காளர்"},
-  dn_f_name:{"en": "Name / Company Name", "ta": "பெயர் / நிறுவனப் பெயர்"},
-  dn_f_phone:{"en": "Phone", "ta": "தொலைபேசி"},
-  dn_f_email:{"en": "Email", "ta": "மின்னஞ்சல்"},
-  dn_f_pan:{"en": "PAN (optional)", "ta": "PAN (விருப்பம்)"},
-  dn_f_submit:{"en": "Continue to Payment", "ta": "பணம் செலுத்த தொடரவும்"},
-  dn_paytitle:{"en": "Payment Details", "ta": "பணம் செலுத்தும் விவரங்கள்"},
-  dn_acc:{"en": "Account Name", "ta": "கணக்கு பெயர்"},
-  dn_bank:{"en": "Bank Name", "ta": "வங்கி பெயர்"},
-  dn_branch:{"en": "Branch", "ta": "கிளை"},
-  dn_no:{"en": "Account Number", "ta": "கணக்கு எண்"},
-  dn_ifsc:{"en": "IFSC Code", "ta": "IFSC குறியீடு"},
-  dn_upi:{"en": "UPI ID", "ta": "UPI ஐடி"},
-  dn_tbd:{"en": "To be updated", "ta": "விரைவில் புதுப்பிக்கப்படும்"},
-  dn_tbd2:{"en": "To be updated", "ta": "விரைவில் புதுப்பிக்கப்படும்"},
-  dn_tbd3:{"en": "To be updated", "ta": "விரைவில் புதுப்பிக்கப்படும்"},
-  dn_tbd4:{"en": "To be updated", "ta": "விரைவில் புதுப்பிக்கப்படும்"},
-  dn_tbd5:{"en": "To be updated", "ta": "விரைவில் புதுப்பிக்கப்படும்"},
-  dn_qr:{"en": "QR code will appear here", "ta": "QR குறியீடு இங்கே தோன்றும்"},
-  dn_scan:{"en": "Scan with any UPI app to pay", "ta": "எந்த UPI ஆப்-ஐயும் பயன்படுத்தி ஸ்கேன் செய்யவும்"},
-  dn_disc:{"en": "This is a proposed feature for the website. Real bank account, UPI ID and QR code must be added by the organization before accepting payments.", "ta": "இது இணையதளத்திற்கான ஒரு முன்மொழிவு. உண்மையான வங்கி, UPI, QR விவரங்களை அமைப்பினர் பின்னர் சேர்க்க வேண்டும்."},
-  dn_success:{"en": "Thank you! This form is a preview — payment isn't processed yet.", "ta": "நன்றி! இது ஒரு preview படிவம் — பணம் இன்னும் செயலாக்கப்படவில்லை."}
+  // DONATION SECTION TRANSLATIONS
+  n_donate: { en: "Donate", ta: "நன்கொடை" },
+  dn_eyebrow: { en: "SUPPORT OUR MISSION", ta: "எங்கள் நோக்கத்திற்கு ஆதரவு தாருங்கள்" },
+  dn_title: { en: "SUPPORT OUR MISSION", ta: "எங்கள் நோக்கத்திற்கு ஆதரவு தாருங்கள்" },
+  dn_desc: { en: "Your contribution helps us support tree plantation, palm seed planting, lake restoration, and environmental awareness activities.", ta: "மரம் நடுதல், பனை விதை நடுதல், ஏரி புனரமைப்பு மற்றும் சுற்றுச்சூழல் விழிப்புணர்வு பணிகளுக்கு உங்கள் பங்களிப்பு உதவுகிறது." },
+  dn_type_lbl: { en: "Donation Type", ta: "நன்கொடை வகை" },
+  dn_type_sub: { en: "Select your donor category to view relevant details", ta: "தொடர்புடைய விவரங்களைக் காண உங்கள் நன்கொடை வகையைத் தேர்ந்தெடுக்கவும்" },
+  dn_type_ind: { en: "Individual Donation", ta: "தனிநபர் நன்கொடை" },
+  dn_type_corp: { en: "Corporate Donation", ta: "நிறுவன நன்கொடை" },
+  dn_type_inst: { en: "Institutional Donation", ta: "அமைப்புக் கல்வி நிறுவன நன்கொடை" },
+  dn_type_ngo: { en: "NGO / Trust Donation", ta: "தன்னார்வ அமைப்பு / அறக்கட்டளை நன்கொடை" },
+  dn_type_comm: { en: "Community Group Donation", ta: "சமூகக் குழு நன்கொடை" },
+  dn_freq_lbl: { en: "Donation Frequency", ta: "நன்கொடை இடைவெளி" },
+  dn_freq_onetime: { en: "One-time Donation", ta: "ஒருமுறை நன்கொடை" },
+  dn_amt_lbl: { en: "Donation Amount", ta: "நன்கொடைத் தொகை" },
+  dn_amt_custom: { en: "Custom Amount", ta: "தனிப்பயன் தொகை" },
+  dn_selected_amt_lbl: { en: "Selected Donation Amount:", ta: "தேர்ந்தெடுக்கப்பட்ட தொகை:" },
+  dn_custom_ph: { en: "Enter amount in ₹ (minimum ₹1)", ta: "தொகையை ₹ இல் உள்ளிடவும் (குறைந்தபட்சம் ₹1)" },
+  dn_details_lbl: { en: "Donor Information", ta: "நன்கொடையாளர் விவரங்கள்" },
+  dn_lbl_fullname: { en: "Full Name", ta: "முழுப் பெயர்" },
+  dn_lbl_company: { en: "Company Name", ta: "நிறுவனத்தின் பெயர்" },
+  dn_lbl_inst: { en: "Institution Name", ta: "கல்வி / அமைப்பின் பெயர்" },
+  dn_lbl_ngo: { en: "Organisation Name", ta: "அமைப்பின் பெயர் / அறக்கட்டளை" },
+  dn_lbl_group: { en: "Group / Association Name", ta: "குழு / சங்கத்தின் பெயர்" },
+  dn_lbl_contact: { en: "Contact Person", ta: "தொடர்பு நபர்" },
+  dn_lbl_mobile: { en: "Mobile Number", ta: "கைபேசி எண்" },
+  dn_lbl_email: { en: "Email Address", ta: "மின்னஞ்சல் முகவரி" },
+  dn_lbl_biz_email: { en: "Business Email", ta: "வணிக மின்னஞ்சல்" },
+  dn_lbl_off_email: { en: "Official Email", ta: "அதிகாரப்பூர்வ மின்னஞ்சல்" },
+  dn_lbl_city: { en: "City / District", ta: "நகரம் / மாவட்டம்" },
+  dn_lbl_pan: { en: "PAN Number (Optional for 80G Tax Exemption)", ta: "பான் எண் (80G வரி விலக்கிற்கு விருப்பத்தேர்வு)" },
+  dn_pay_inst_title: { en: "Direct Bank Transfer / UPI Instructions", ta: "நேரடி வங்கிப் பரிமாற்றம் / UPI வழிமுறைகள்" },
+  dn_pay_inst_desc: { en: "Please transfer your contribution to the official Mannum Maramum Iyakkam bank account. Quote your generated Reference Number in the transfer remarks.", ta: "மண்ணும் மரமும் இயக்கத்தின் அதிகாரப்பூர்வ வங்கிக் கணக்கிற்குத் தொகையை அனுப்பவும். பரிவர்த்தனைக் குறிப்பில் உங்கள் குறிப்பு எண்ணைக் குறிப்பிடவும்." },
+  dn_status_expl: { en: "Payment Status: Submitting this form creates an official pledge awaiting offline transfer reconciliation. Receipts are issued once bank payment is confirmed.", ta: "பணம் செலுத்தும் நிலை: இந்த படிவத்தைச் சமர்ப்பிப்பது நேரடி சரிபார்ப்புக்கான உறுதிமொழியை உருவாக்குகிறது. வங்கி பரிவர்த்தனை உறுதி செய்யப்பட்டவுடன் ரசீது வழங்கப்படும்." },
+  dn_btn_submit: { en: "Submit Donation Pledge", ta: "நன்கொடை உறுதிமொழியை சமர்ப்பிக்கவும்" },
+  dn_submitting: { en: "Processing...", ta: "செயலாக்கப்படுகிறது..." },
+  dn_succ_title: { en: "Donation Pledge Recorded Successfully! 🌱", ta: "நன்கொடை உறுதிமொழி வெற்றிகரமாகப் பதிவு செய்யப்பட்டது! 🌱" },
+  dn_succ_subtitle: { en: "Thank you for contributing to environmental restoration with Mannum Maramum Iyakkam.", ta: "மண்ணும் மரமும் இயக்கத்தின் சுற்றுச்சூழல் பணிகளுக்கு பங்களித்தமைக்கு நன்றி." },
+  dn_succ_ref_lbl: { en: "Donation Reference Number", ta: "நன்கொடை குறிப்பு எண்" },
+  dn_succ_status_lbl: { en: "Payment Status:", ta: "பணம் செலுத்திய நிலை:" },
+  dn_succ_status_val: { en: "Awaiting Offline Transfer Verification", ta: "நேரடி பரிவர்த்தனை சரிபார்ப்பு நிலுவையில் உள்ளது" },
+  dn_lbl_donor_name: { en: "Donor / Organisation:", ta: "நன்கொடையாளர் / அமைப்பு:" },
+  dn_next_steps_title: { en: "Next Steps to Complete Your Donation", ta: "உங்கள் நன்கொடையை நிறைவு செய்வதற்கான அடுத்த படிகள்" },
+  dn_next_step_1: { en: "Transfer your pledged amount to the official Mannum Maramum Iyakkam bank account or via UPI.", ta: "உறுதியளிக்கப்பட்ட தொகையை மண்ணும் மரமும் இயக்கத்தின் வங்கிக் கணக்கிற்கு அல்லது UPI வழியாக செலுத்தவும்." },
+  dn_next_step_2: { en: "Important: Enter your Donation Reference Number in the transaction remarks/notes so our team can identify your payment.", ta: "முக்கியமானது: உங்கள் பணப் பரிமாற்றக் குறிப்பில் மேற்கண்ட குறிப்பு எண்ணைக் குறிப்பிடவும்." },
+  dn_next_step_3: { en: "Once verified, an official 80G tax exemption receipt will be emailed to you.", ta: "பரிவர்த்தனை சரிபார்க்கப்பட்டதும், 80G வரிவிலக்கு ரசீது உங்கள் மின்னஞ்சலுக்கு அனுப்பப்படும்." },
+  dn_btn_reset: { en: "Make Another Donation", ta: "மற்றொரு நன்கொடை அளிக்க" },
+  n_partnership: { en: "Partnership Registration", ta: "கூட்டாண்மை பதிவு" },
+  part_eyebrow: { en: "PARTNERSHIP INITIATIVE", ta: "கூட்டாண்மை முயற்சி" },
+  part_title: { en: "MANNUM MARAMUM PARTNERSHIP REGISTRATION", ta: "மண்ணும் மரமும் கூட்டாண்மை பதிவு" },
+  part_subtitle: {
+    en: "Register your company or organisation to support environmental activities, tree plantation, palm seed planting, lake rejuvenation and sustainable development initiatives with Mannum Maramum Iyakkam.",
+    ta: "மரம் நடுதல், பனை விதை நடுதல், ஏரி புனரமைப்பு மற்றும் நிலையான சுற்றுச்சூழல் வளர்ச்சி முயற்சிகளில் மண்ணும் மரமும் இயக்கத்துடன் இணைந்து செயல்பட உங்கள் நிறுவனம் அல்லது அமைப்பைப் பதிவு செய்யுங்கள்."
+  },
+  part_s1_title: { en: "Partnership Registration Type", ta: "கூட்டாண்மை பதிவு வகை" },
+  part_s1_sub: { en: "Select the category that best describes your organisation", ta: "உங்கள் நிறுவனத்தை விவரிக்கும் வகையைத் தேர்ந்தெடுக்கவும்" },
+  part_corp_title: { en: "Corporate Partner", ta: "நிறுவனக் கூட்டாளி" },
+  part_corp_desc: { en: "For corporate enterprises, private companies, industries, MSMEs & business establishments.", ta: "கார்ப்பரேட் நிறுவனங்கள், தனியார் நிறுவனங்கள், தொழிலகங்கள், குறு-சிறு வணிக அமைப்புகளுக்கு." },
+  part_corp_badge: { en: "Corporate / Business", ta: "வணிகம் / கார்ப்பரேட்" },
+  part_inst_title: { en: "Institutional Partner", ta: "அமைப்புக் கூட்டாளி" },
+  part_inst_desc: { en: "For educational institutions, colleges, schools, registered NGOs, environmental trusts & social bodies.", ta: "கல்வி நிறுவனங்கள், கல்லூரிகள், பள்ளிகள், தன்னார்வ தொண்டு நிறுவனங்கள், அறக்கட்டளைகளுக்கு." },
+  part_inst_badge: { en: "Institution / NGO / Trust", ta: "கல்வி / NGO / அறக்கட்டளை" },
+
+  part_s2_title: { en: "Partnership Duration", ta: "கூட்டாண்மை காலம்" },
+  part_s2_sub: { en: "Choose your preferred partnership duration.", ta: "உங்கள் விருப்பமான கூட்டாண்மை காலத்தைத் தேர்ந்தெடுக்கவும்." },
+  part_dur_label: { en: "Partnership Duration", ta: "கூட்டாண்மை காலம்" },
+  part_dur_help: { en: "Choose your preferred partnership duration.", ta: "உங்கள் விருப்பமான கூட்டாண்மை காலத்தைத் தேர்ந்தெடுக்கவும்." },
+  part_opt_1y: { en: "1 Year", ta: "1 ஆண்டு" },
+  part_opt_2y: { en: "2 Years", ta: "2 ஆண்டுகள்" },
+  part_opt_3y: { en: "3 Years", ta: "3 ஆண்டுகள்" },
+  part_opt_4y: { en: "4 Years", ta: "4 ஆண்டுகள்" },
+  part_opt_5y: { en: "5 Years", ta: "5 ஆண்டுகள்" },
+  part_opt_6y: { en: "6 Years", ta: "6 ஆண்டுகள்" },
+  part_opt_7y: { en: "7 Years", ta: "7 ஆண்டுகள்" },
+  part_opt_8y: { en: "8 Years", ta: "8 ஆண்டுகள்" },
+  part_opt_9y: { en: "9 Years", ta: "9 ஆண்டுகள்" },
+  part_opt_10y: { en: "10 Years", ta: "10 ஆண்டுகள்" },
+  part_opt_custom: { en: "Custom Duration (1 - 10 Years)...", ta: "தனிப்பயன் காலம் (1 - 10 ஆண்டுகள்)..." },
+  part_years_unit: { en: "Years", ta: "ஆண்டுகள்" },
+  part_err_dur_range: { en: "Please enter a valid whole number between 1 and 10 years.", ta: "தயவுசெய்து 1 முதல் 10 வரையிலான முழு எண்ணை உள்ளிடவும்." },
+  part_dur_note: { en: "Partnership details and project schedules will be confirmed by Mannum Maramum Iyakkam.", ta: "கூட்டாண்மை விவரங்கள் மற்றும் திட்ட அட்டவணைகள் மண்ணும் மரமும் இயக்கத்தால் உறுதிசெய்யப்படும்." },
+
+  part_s3_title: { en: "Organisation Details", ta: "அமைப்பின் விவரங்கள்" },
+  part_s3_sub: { en: "Provide registered particulars of your organisation or company", ta: "உங்கள் நிறுவனம் அல்லது அமைப்பின் பதிவு செய்யப்பட்ட விவரங்களை வழங்கவும்" },
+  part_org_name: { en: "Organisation / Company Name", ta: "அமைப்பு / நிறுவனத்தின் பெயர்" },
+  part_org_name_ph: { en: "e.g. Green Heritage Private Limited / Zenith College", ta: "எ.கா. கிரீன் ஹெரிட்டேஜ் பிரைவேட் லிமிடெட் / கல்லூரி" },
+  part_org_regno: { en: "Registration Number", ta: "பதிவு எண்" },
+  part_org_regno_ph: { en: "CIN / Society / Trust Reg No.", ta: "CIN / சங்கம் / அறக்கட்டளை பதிவு எண்" },
+  part_org_gst: { en: "GST Number", ta: "ஜிஎஸ்டி எண்" },
+  part_org_gst_ph: { en: "15-digit GSTIN (if applicable)", ta: "15-இலக்க GSTIN (இருப்பின்)" },
+  part_org_pan: { en: "PAN Number", ta: "பான் எண்" },
+  part_org_pan_ph: { en: "10-digit PAN (if applicable)", ta: "10-இலக்க PAN (இருப்பின்)" },
+  part_org_web: { en: "Website", ta: "இணையதளம்" },
+  part_org_web_ph: { en: "https://yourorganisation.org", ta: "https://yourorganisation.org" },
+  part_org_addr: { en: "Organisation Address", ta: "அமைப்பின் முகவரி" },
+  part_org_addr_ph: { en: "Building, Street, Area / Campus address...", ta: "கட்டடம், தெரு, பகுதி / வளாக முகவரி..." },
+  part_org_dist: { en: "City / District", ta: "நகரம் / மாவட்டம்" },
+  part_select_dist: { en: "-- Select District --", ta: "-- மாவட்டத்தைத் தேர்ந்தெடுக்கவும் --" },
+  part_org_pin: { en: "PIN Code", ta: "அஞ்சல் குறியீட்டு எண்" },
+  part_org_pin_ph: { en: "6-digit PIN code", ta: "6-இலக்க பின் கோடு" },
+
+  part_s4_title: { en: "Contact Details", ta: "தொடர்பு விவரங்கள்" },
+  part_s4_sub: { en: "Authorised representative or coordinator for partnership communication", ta: "கூட்டாண்மை தகவல் தொடர்பிற்கான அங்கீகரிக்கப்பட்ட பிரதிநிதி" },
+  part_con_name: { en: "Contact Person Name", ta: "தொடர்பு கொள்வோரின் பெயர்" },
+  part_con_name_ph: { en: "Full name of representative", ta: "பிரதிநிதியின் முழுப் பெயர்" },
+  part_con_desig: { en: "Designation", ta: "பதவி" },
+  part_con_desig_ph: { en: "e.g. Director / CSR Lead / Principal", ta: "எ.கா. இயக்குநர் / CSR தலைவர் / முதல்வர்" },
+  part_con_mob: { en: "Mobile Number", ta: "கைபேசி எண்" },
+  part_con_mob_ph: { en: "10-digit mobile number", ta: "10-இலக்க கைபேசி எண்" },
+  part_con_altmob: { en: "Alternate Mobile Number", ta: "மாற்று கைபேசி எண்" },
+  part_con_altmob_ph: { en: "10-digit alternate mobile", ta: "10-இலக்க மாற்று கைபேசி எண்" },
+  part_con_email: { en: "Email Address", ta: "மின்னஞ்சல் முகவரி" },
+  part_con_email_ph: { en: "name@organisation.com", ta: "name@organisation.com" },
+
+  part_s5_title: { en: "Partnership Focus", ta: "கூட்டாண்மை நோக்கம்" },
+  part_s5_sub: { en: "Select the environmental areas your organisation wishes to support", ta: "உங்கள் நிறுவனம் ஆதரிக்க விரும்பும் சுற்றுச்சூழல் பகுதிகளைத் தேர்ந்தெடுக்கவும்" },
+  focus_tree: { en: "Tree Plantation", ta: "மரம் நடுதல்" },
+  focus_palm: { en: "Palm Seed Plantation", ta: "பனை விதை நடுதல்" },
+  focus_lake: { en: "Lake Rejuvenation", ta: "ஏரி புனரமைப்பு" },
+  focus_aware: { en: "Environmental Awareness", ta: "சுற்றுச்சூழல் விழிப்புணர்வு" },
+  focus_water_soil: { en: "Water & Soil Conservation", ta: "நீர் மற்றும் மண் பாதுகாப்பு" },
+  focus_community: { en: "Community Activities", ta: "சமூக செயல்பாடுகள்" },
+  focus_sustain: { en: "Sustainable Development", ta: "நிலையான வளர்ச்சி" },
+  focus_other: { en: "Other", ta: "மற்றவை" },
+
+  part_s6_title: { en: "Activity / Partnership Areas", ta: "செயல்பாட்டு / கூட்டாண்மை பகுதிகள்" },
+  part_s6_sub: {
+    en: "Select the districts or areas where your organisation would like to support environmental activities.",
+    ta: "உங்கள் நிறுவனம் சுற்றுச்சூழல் பணிகளை ஆதரிக்க விரும்பும் மாவட்டங்கள் அல்லது பகுதிகளைத் தேர்ந்தெடுக்கவும்."
+  },
+  part_areas_ph: { en: "Click to select districts / regions...", ta: "மாவட்டங்களைத் தேர்ந்தெடுக்க கிளிக் செய்யவும்..." },
+  part_search_dist_ph: { en: "Search districts...", ta: "மாவட்டங்களைத் தேடுங்கள்..." },
+  btn_select_all: { en: "Select All", ta: "அனைத்தும்" },
+  btn_clear_all: { en: "Clear All", ta: "அனைத்தையும் நீக்கு" },
+
+  part_s7_title: { en: "Organisation Profile", ta: "அமைப்பு விவரக்குறிப்பு" },
+  part_s7_sub: { en: "Brief overview of your organisation and environmental collaboration vision", ta: "உங்கள் அமைப்பு மற்றும் சுற்றுச்சூழல் ஒத்துழைப்பு பற்றிய சுருக்கமான பார்வை" },
+  part_org_prof_lbl: { en: "Brief Organisation Profile", ta: "சுருக்கமான அமைப்பு விவரம்" },
+  part_org_prof_ph: {
+    en: "Briefly describe your organisation, activities, experience and how you would like to support environmental initiatives...",
+    ta: "உங்கள் நிறுவனம், செயல்பாடுகள், அனுபவம் மற்றும் சுற்றுச்சூழல் முயற்சிகளுக்கு எவ்வாறு ஆதரவளிக்க விரும்புகிறீர்கள் என்பதை சுருக்கமாக விவரிக்கவும்..."
+  },
+
+  part_s8_title: { en: "Supporting Documents", ta: "ஆவணங்கள்" },
+  part_s8_sub: { en: "Attach relevant organisation documents for official records (Optional)", ta: "அமைப்பின் தொடர்புடைய ஆவணங்களை இணைக்கவும் (விருப்பத்தேர்வு)" },
+  doc_logo: { en: "Organisation Logo", ta: "அமைப்பின் சின்னம் / லோகோ" },
+  doc_regcert: { en: "Registration Certificate", ta: "பதிவு சான்றிதழ்" },
+  doc_gst: { en: "GST Certificate", ta: "ஜிஎஸ்டி சான்றிதழ்" },
+  doc_pan: { en: "PAN Card", ta: "பான் கார்டு" },
+  doc_brochure: { en: "Organisation Profile / Brochure", ta: "அமைப்பு விவரக்குறிப்பு / கையேடு" },
+  doc_hint_img: { en: "PNG, JPG or SVG", ta: "PNG, JPG அல்லது SVG" },
+  doc_hint_pdf: { en: "PDF or Image copy", ta: "PDF அல்லது படம்" },
+  doc_hint_brochure: { en: "PDF overview of your organisation & CSR works", ta: "உங்கள் அமைப்பு & CSR பணிகளின் PDF தொகுப்பு" },
+  doc_btn_choose: { en: "Choose File", ta: "கோப்பைத் தேர்ந்தெடு" },
+
+  part_s9_title: { en: "Partnership Contribution", ta: "கூட்டாண்மை பங்களிப்பு" },
+  part_s9_sub: { en: "Collaborative environmental participation and support overview", ta: "ஒத்துழைப்பு சுற்றுச்சூழல் பங்களிப்பு விவரம்" },
+  part_collab_badge: { en: "COLLABORATION FRAMEWORK", ta: "கூட்டாண்மை கட்டமைப்பு" },
+  part_contrib_desc: {
+    en: "Contribution details will be confirmed by Mannum Maramum Iyakkam. Collaborative engagement—whether through sapling plantation drives, seed supply, native nursery setup, water-body cleanup, or institutional CSR programs—will be tailored to your organisation's focus and planned directly with our coordinators.",
+    ta: "பங்களிப்பு விவரங்கள் மண்ணும் மரமும் இயக்கத்தால் பின்னர் உறுதிசெய்யப்படும். மரக்கன்றுகள் நடுதல், பனை விதை வழங்குதல், நாற்றுப்பண்ணை அமைத்தல், நீர்நிலைகள் தூய்மைப்படுத்துதல் அல்லது CSR திட்டங்கள் போன்ற ஒத்துழைப்பு பங்களிப்புகள் உங்கள் விருப்பத்திற்கேற்ப எங்கள் ஒருங்கிணைப்பாளர்களால் திட்டமிடப்படும்."
+  },
+  tbl_sel_partner: { en: "Selected Partner Type:", ta: "தேர்ந்தெடுக்கப்பட்ட கூட்டாளி வகை:" },
+  tbl_sel_duration: { en: "Partnership Duration:", ta: "கூட்டாண்மை காலம்:" },
+  tbl_contrib_status: { en: "Contribution Status:", ta: "பங்களிப்பு நிலை:" },
+  tbl_contrib_status_val: { en: "To be confirmed by Mannum Maramum Iyakkam", ta: "மண்ணும் மரமும் இயக்கத்தால் உறுதிசெய்யப்படும்" },
+
+  part_s10_title: { en: "Declaration", ta: "உறுதிமொழி" },
+  part_decl_text: {
+    en: "I hereby declare that the information provided above is true and correct. I agree to support the environmental and sustainable development initiatives of Mannum Maramum Iyakkam.",
+    ta: "மேலே வழங்கிய தகவல்கள் உண்மையானவை மற்றும் சரியானவை என்பதை உறுதிப்படுத்துகிறேன். மண்ணும் மரமும் இயக்கத்தின் சுற்றுச்சூழல் மற்றும் நிலையான வளர்ச்சி முயற்சிகளுக்கு ஆதரவு அளிக்க ஒப்புக்கொள்கிறேன்."
+  },
+  btn_submit_part: { en: "Submit Partnership Registration", ta: "கூட்டாண்மை பதிவை சமர்ப்பிக்கவும்" },
+
+  modal_succ_title: { en: "Partnership Registration Submitted", ta: "கூட்டாண்மை பதிவு சமர்ப்பிக்கப்பட்டது" },
+  modal_succ_desc: {
+    en: "Thank you for registering your interest in partnering with Mannum Maramum Iyakkam. Our team will review your details and contact you.",
+    ta: "மண்ணும் மரமும் இயக்கத்துடன் இணைந்து செயல்பட உங்கள் ஆர்வத்தை பதிவு செய்ததற்கு நன்றி. எங்கள் குழு உங்கள் தகவல்களை பரிசீலித்து உங்களை தொடர்பு கொள்ளும்."
+  },
+  modal_lbl_org: { en: "Organisation:", ta: "அமைப்பு:" },
+  modal_lbl_type: { en: "Partner Type:", ta: "கூட்டாளி வகை:" },
+  modal_lbl_dur: { en: "Duration:", ta: "காலம்:" },
+  modal_lbl_dist: { en: "District:", ta: "மாவட்டம்:" },
+  modal_lbl_focus: { en: "Focus Areas:", ta: "முக்கிய செயல்பாடுகள்:" },
+  modal_btn_close: { en: "Done / Close", ta: "நிறைவு / மூடுக" },
+  lbl_optional: { en: "(Optional)", ta: "(விருப்பத்தேர்வு)" },
+
+  // Volunteer Registration Popup Translations
+  vol_title: { en: "JOIN AS A VOLUNTEER", ta: "தன்னார்வலராக இணையுங்கள்" },
+  vol_desc: { en: "Be part of our lake restoration and palm planting campaigns.", ta: "நமது ஏரி மறுசீரமைப்பு மற்றும் பனை விதை நடவு பணிகளில் எங்களுடன் இணைந்திடுங்கள்." },
+  vol_name: { en: "Your Full Name *", ta: "உங்கள் முழுப் பெயர் *" },
+  vol_name_ph: { en: "e.g. Anbarasan", ta: "உதாரணம்: அன்பரசன்" },
+  vol_email: { en: "Email Address *", ta: "மின்னஞ்சல் முகவரி *" },
+  vol_phone: { en: "WhatsApp / Mobile Number *", ta: "வாட்ஸ்அப் / கைபேசி எண் *" },
+  vol_district: { en: "District / City", ta: "மாவட்டம் / நகரம்" },
+  vol_district_ph: { en: "e.g. Tiruchirappalli", ta: "உதாரணம்: திருச்சிராப்பள்ளி" },
+  vol_activity: { en: "Preferred Activity or Skills", ta: "விருப்பமான செயல்பாடு அல்லது திறன்கள்" },
+  vol_activity_ph: { en: "Weekend seed planting, Photography, College team", ta: "வார இறுதி விதை நடவு, புகைப்படம் எடுத்தல், கல்லூரி குழு" },
+  vol_submit: { en: "Submit Volunteer Registration", ta: "தன்னார்வலர் பதிவைச் சமர்ப்பிக்கவும்" },
+  vol_close: { en: "Close", ta: "மூடு" }
 };
 let currentLang = 'en';
-let currentDonationType = 'One-time Donation';
+let currentDonationType = 'Individual Donation';
 let currentDonationAmount = 500;
 let isCustomAmount = false;
+let isDonationSubmitting = false;
 
 function setLang(l){
   currentLang = l;
@@ -3310,6 +4815,11 @@ function setLang(l){
     updateGenZModalLang(l);
   } else if (typeof window !== "undefined" && typeof window.updateGenZModalLang === "function") {
     window.updateGenZModalLang(l);
+  }
+  if (typeof updateVolunteerModalLang === "function") {
+    updateVolunteerModalLang(l);
+  } else if (typeof window !== "undefined" && typeof window.updateVolunteerModalLang === "function") {
+    window.updateVolunteerModalLang(l);
   }
   document.querySelectorAll('[data-i]').forEach(el=>{
     const k = el.getAttribute('data-i');
@@ -3324,7 +4834,7 @@ function setLang(l){
   if (btnEn) btnEn.classList.toggle('on', l==='en');
   if (btnTa) btnTa.classList.toggle('on', l==='ta');
   document.body.classList.toggle('lang-ta', l==='ta');
-  if (typeof updateSummaryDisplays === "function") updateSummaryDisplays();
+  if (typeof updateDynamicDonorFields === "function") updateDynamicDonorFields();
 }
 
 function toggleMobileNav() {
@@ -3359,6 +4869,1227 @@ function closeMobileNav() {
     }
   }
 }
+
+// =========================================================================
+// DROPDOWN NAVIGATION CONTROLLER (DESKTOP & MOBILE)
+// =========================================================================
+
+function toggleNavDropdown(wrapId, triggerEl, event) {
+  if (event) {
+    if (event.preventDefault) event.preventDefault();
+    if (event.stopPropagation) event.stopPropagation();
+  }
+  const wrap = document.getElementById(wrapId);
+  if (!wrap) return;
+  const trigger = triggerEl || wrap.querySelector('.nav-dropdown-trigger');
+  const isAlreadyOpen = wrap.classList.contains('open');
+
+  // Clicking another dropdown item closes the previous dropdown and opens the selected one.
+  closeAllNavDropdowns();
+
+  // Clicking a navigation item opens its dropdown directly below the item.
+  // Clicking the same item again closes the dropdown.
+  if (!isAlreadyOpen) {
+    wrap.classList.add('open');
+    const menu = wrap.querySelector('.nav-dropdown-menu');
+    if (menu) menu.classList.add('open');
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
+  }
+}
+
+function closeAllNavDropdowns() {
+  document.querySelectorAll('.nav-dropdown').forEach(function(d) {
+    d.classList.remove('open');
+    const trigger = d.querySelector('.nav-dropdown-trigger');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    const menu = d.querySelector('.nav-dropdown-menu');
+    if (menu) menu.classList.remove('open');
+  });
+}
+
+function toggleMobileDropdown(wrapId, triggerEl) {
+  const wrap = document.getElementById(wrapId);
+  if (!wrap) return;
+  const isAlreadyOpen = wrap.classList.contains('open');
+
+  // Close other mobile dropdowns to keep mobile clean
+  document.querySelectorAll('.mob-dropdown').forEach(function(m) {
+    if (m !== wrap) {
+      m.classList.remove('open');
+      const trig = m.querySelector('.mob-dropdown-trigger');
+      if (trig) trig.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  const nextState = !isAlreadyOpen;
+  wrap.classList.toggle('open', nextState);
+  if (triggerEl) triggerEl.setAttribute('aria-expanded', nextState ? 'true' : 'false');
+}
+
+function handleDropdownOptionClick(e, hash, isVolunteer, isMobile) {
+  if (e) {
+    if (e.stopPropagation) e.stopPropagation();
+    if (e.preventDefault) e.preventDefault();
+  }
+  closeAllNavDropdowns();
+  if (isMobile) {
+    closeMobileNav();
+  }
+  if (isVolunteer && typeof window.openVolunteerModal === 'function') {
+    window.openVolunteerModal('General Volunteer');
+  }
+  if (hash) {
+    const target = document.querySelector(hash);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      try { history.pushState(null, '', hash); } catch(err){}
+    }
+  }
+}
+
+// Clicking outside the dropdown closes it
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    closeAllNavDropdowns();
+  }
+});
+
+// Accessible keyboard navigation: Escape, ArrowDown, ArrowUp
+document.addEventListener('keydown', function(e) {
+  // Pressing Escape closes the open dropdown and restores trigger focus
+  if (e.key === 'Escape' || e.key === 'Esc') {
+    const openWrap = document.querySelector('.nav-dropdown.open');
+    closeAllNavDropdowns();
+    closeMobileNav();
+    if (openWrap) {
+      const trigger = openWrap.querySelector('.nav-dropdown-trigger');
+      if (trigger) trigger.focus();
+    }
+    return;
+  }
+
+  const activeEl = document.activeElement;
+  if (!activeEl) return;
+
+  const currentDropdown = activeEl.closest('.nav-dropdown');
+  if (!currentDropdown) return;
+
+  const trigger = currentDropdown.querySelector('.nav-dropdown-trigger');
+  const menu = currentDropdown.querySelector('.nav-dropdown-menu');
+  const items = Array.from(menu ? menu.querySelectorAll('.dropdown-item') : []);
+
+  if (activeEl === trigger) {
+    if (e.key === 'ArrowDown' || e.key === 'Down') {
+      e.preventDefault();
+      if (!currentDropdown.classList.contains('open')) {
+        toggleNavDropdown(currentDropdown.id, trigger);
+      }
+      if (items.length > 0) items[0].focus();
+    }
+  } else if (items.includes(activeEl)) {
+    const currentIndex = items.indexOf(activeEl);
+    if (e.key === 'ArrowDown' || e.key === 'Down') {
+      e.preventDefault();
+      const nextIndex = (currentIndex + 1) % items.length;
+      items[nextIndex].focus();
+    } else if (e.key === 'ArrowUp' || e.key === 'Up') {
+      e.preventDefault();
+      const prevIndex = (currentIndex - 1 + items.length) % items.length;
+      items[prevIndex].focus();
+    }
+  }
+});
+
+// Close dropdown if focus moves outside via Tab navigation
+document.addEventListener('focusin', function(e) {
+  const openWrap = document.querySelector('.nav-dropdown.open');
+  if (openWrap && !openWrap.contains(e.target)) {
+    closeAllNavDropdowns();
+  }
+});
+
+
+
+// =========================================================================
+// DONATION SYSTEM LOGIC (ALL 5 DONOR TYPES, AMOUNTS & SUBMISSION)
+// =========================================================================
+
+const DONATION_FIELD_CONFIG = {
+  'Individual Donation': {
+    nameLabel: { en: 'Full Name', ta: 'முழுப் பெயர்' },
+    namePh: { en: 'Enter your full name', ta: 'உங்கள் முழுப் பெயரை உள்ளிடவும்' },
+    emailLabel: { en: 'Email Address', ta: 'மின்னஞ்சல் முகவரி' },
+    emailPh: { en: 'name@example.com', ta: 'name@example.com' },
+    hasContactPerson: false
+  },
+  'Corporate Donation': {
+    nameLabel: { en: 'Company Name', ta: 'நிறுவனத்தின் பெயர்' },
+    namePh: { en: 'Enter registered company name', ta: 'பதிவு செய்யப்பட்ட நிறுவனப் பெயர்' },
+    emailLabel: { en: 'Business Email', ta: 'வணிக மின்னஞ்சல்' },
+    emailPh: { en: 'corporate@company.com', ta: 'corporate@company.com' },
+    hasContactPerson: true,
+    contactLabel: { en: 'Contact Person', ta: 'தொடர்பு நபர்' },
+    contactPh: { en: 'Name of company representative / coordinator', ta: 'நிறுவன பிரதிநிதி / ஒருங்கிணைப்பாளர் பெயர்' }
+  },
+  'Institutional Donation': {
+    nameLabel: { en: 'Institution Name', ta: 'கல்வி / அமைப்பின் பெயர்' },
+    namePh: { en: 'College / School / Institution name', ta: 'கல்லூரி / பள்ளி / நிறுவனத்தின் பெயர்' },
+    emailLabel: { en: 'Official Email', ta: 'அதிகாரப்பூர்வ மின்னஞ்சல்' },
+    emailPh: { en: 'official@institution.edu', ta: 'official@institution.edu' },
+    hasContactPerson: true,
+    contactLabel: { en: 'Contact Person', ta: 'தொடர்பு நபர்' },
+    contactPh: { en: 'Principal / Dean / Authorized representative', ta: 'முதல்வர் / ஒருங்கிணைப்பாளர் பெயர்' }
+  },
+  'NGO / Trust Donation': {
+    nameLabel: { en: 'Organisation Name', ta: 'அமைப்பின் பெயர் / அறக்கட்டளை' },
+    namePh: { en: 'Registered NGO or Trust name', ta: 'பதிவு செய்யப்பட்ட NGO / அறக்கட்டளை பெயர்' },
+    emailLabel: { en: 'Email Address', ta: 'மின்னஞ்சல் முகவரி' },
+    emailPh: { en: 'contact@trust.org', ta: 'contact@trust.org' },
+    hasContactPerson: true,
+    contactLabel: { en: 'Contact Person', ta: 'தொடர்பு நபர்' },
+    contactPh: { en: 'Managing Trustee / Secretary name', ta: 'நிர்வாக அறங்காவலர் / செயலாளர் பெயர்' }
+  },
+  'Community Group Donation': {
+    nameLabel: { en: 'Group / Association Name', ta: 'குழு / சங்கத்தின் பெயர்' },
+    namePh: { en: 'Resident association or Community group name', ta: 'குடியிருப்போர் சங்கம் / குழுவின் பெயர்' },
+    emailLabel: { en: 'Email Address', ta: 'மின்னஞ்சல் முகவரி' },
+    emailPh: { en: 'group@community.org', ta: 'group@community.org' },
+    hasContactPerson: true,
+    contactLabel: { en: 'Contact Person', ta: 'தொடர்பு நபர்' },
+    contactPh: { en: 'Organizer / Representative name', ta: 'ஒருங்கிணைப்பாளர் / பிரதிநிதி பெயர்' }
+  }
+};
+
+function updateDynamicDonorFields() {
+  const lang = typeof currentLang !== 'undefined' ? currentLang : 'en';
+  const cfg = DONATION_FIELD_CONFIG[currentDonationType] || DONATION_FIELD_CONFIG['Individual Donation'];
+
+  // 1. Name / Org Name label & placeholder
+  const lblName = document.getElementById('lblDnOrgOrName');
+  const inputName = document.getElementById('dnOrgOrName');
+  if (lblName) lblName.textContent = cfg.nameLabel[lang];
+  if (inputName) inputName.placeholder = cfg.namePh[lang];
+
+  // 2. Contact Person show/hide, label & placeholder
+  const groupContact = document.getElementById('groupDnContactPerson');
+  const lblContact = document.getElementById('lblDnContactPerson');
+  const inputContact = document.getElementById('dnContactPerson');
+  if (groupContact) {
+    if (cfg.hasContactPerson) {
+      groupContact.style.display = 'flex';
+      if (lblContact) lblContact.textContent = cfg.contactLabel[lang];
+      if (inputContact) inputContact.placeholder = cfg.contactPh[lang];
+    } else {
+      groupContact.style.display = 'none';
+      clearFieldError('groupDnContactPerson', 'errDnContactPerson');
+    }
+  }
+
+  // 3. Email label & placeholder
+  const lblEmail = document.getElementById('lblDnEmail');
+  const inputEmail = document.getElementById('dnEmail');
+  if (lblEmail) lblEmail.textContent = cfg.emailLabel[lang];
+  if (inputEmail) inputEmail.placeholder = cfg.emailPh[lang];
+
+  // 4. Update selected preview text and value
+  const previewAmt = document.getElementById('dnSelectedAmtDisplay');
+  if (previewAmt) {
+    previewAmt.textContent = currentDonationAmount && currentDonationAmount > 0
+      ? '₹' + currentDonationAmount.toLocaleString('en-IN')
+      : '₹0';
+  }
+}
+
+function setDonationType(type, buttonEl) {
+  currentDonationType = type;
+  document.querySelectorAll('.dntypes-grid .dn-type-card').forEach(c => c.classList.remove('active'));
+  if (buttonEl) {
+    buttonEl.classList.add('active');
+  }
+  updateDynamicDonorFields();
+}
+
+function setDonationAmount(amount, buttonElement) {
+  isCustomAmount = false;
+  currentDonationAmount = Number(amount);
+
+  document.querySelectorAll('.dnamounts .dnamt').forEach(b => b.classList.remove('active'));
+  if (buttonElement) {
+    buttonElement.classList.add('active');
+  }
+
+  const customWrap = document.getElementById('customAmountWrap');
+  if (customWrap) {
+    customWrap.classList.remove('show');
+    const customInput = document.getElementById('dnCustomInput');
+    if (customInput) customInput.value = '';
+    clearFieldError('customAmountWrap', 'errCustomAmount');
+  }
+
+  updateDynamicDonorFields();
+}
+
+function setCustomAmountMode(buttonElement) {
+  isCustomAmount = true;
+  document.querySelectorAll('.dnamounts .dnamt').forEach(b => b.classList.remove('active'));
+  if (buttonElement) {
+    buttonElement.classList.add('active');
+  }
+
+  const customWrap = document.getElementById('customAmountWrap');
+  if (customWrap) {
+    customWrap.classList.add('show');
+    const customInput = document.getElementById('dnCustomInput');
+    if (customInput) {
+      customInput.focus();
+      const val = Number(customInput.value);
+      if (!isNaN(val) && val > 0) {
+        currentDonationAmount = Math.floor(val);
+      } else {
+        currentDonationAmount = 0;
+      }
+    }
+  }
+  updateDynamicDonorFields();
+}
+
+function handleCustomInput(input) {
+  clearFieldError('customAmountWrap', 'errCustomAmount');
+  const val = Number(input.value);
+  if (!isNaN(val) && val > 0) {
+    currentDonationAmount = Math.floor(val);
+  } else {
+    currentDonationAmount = 0;
+  }
+  updateDynamicDonorFields();
+}
+
+function handleCustomInputKeydown(e) {
+  if (e.key === '-' || e.key === 'e' || e.key === 'E' || e.key === '.') {
+    e.preventDefault();
+  }
+}
+
+async function handleDonationSubmit(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  if (isDonationSubmitting) return;
+
+  let isValid = true;
+  let firstError = null;
+
+  // 1. Amount validation
+  if (!currentDonationAmount || currentDonationAmount <= 0) {
+    isValid = false;
+    const msg = currentLang === 'ta'
+      ? 'தயவுசெய்து சரியான நன்கொடை தொகையைத் தேர்ந்தெடுக்கவும் அல்லது உள்ளிடவும் (குறைந்தபட்சம் ₹1).'
+      : 'Please select or enter a valid donation amount greater than zero (minimum ₹1).';
+    showFieldError('customAmountWrap', 'errCustomAmount', msg);
+    const customWrap = document.getElementById('customAmountWrap');
+    if (customWrap) customWrap.classList.add('show');
+    firstError = document.getElementById('dnCustomInput') || document.querySelector('.dnamounts');
+  } else {
+    clearFieldError('customAmountWrap', 'errCustomAmount');
+  }
+
+  // 2. Name / Org Name validation
+  const nameEl = document.getElementById('dnOrgOrName');
+  const nameVal = nameEl ? nameEl.value.trim() : '';
+  if (!nameVal) {
+    isValid = false;
+    const isInd = currentDonationType === 'Individual Donation';
+    const msg = currentLang === 'ta'
+      ? (isInd ? 'முழுப் பெயரை உள்ளிடவும்.' : 'அமைப்பு அல்லது நிறுவனப் பெயரை உள்ளிடவும்.')
+      : (isInd ? 'Please enter your full name.' : 'Please enter organisation/company name.');
+    showFieldError('groupDnOrgOrName', 'errDnOrgOrName', msg);
+    if (!firstError) firstError = nameEl;
+  } else {
+    clearFieldError('groupDnOrgOrName', 'errDnOrgOrName');
+  }
+
+  // 3. Contact Person validation (if non-individual)
+  const cfg = DONATION_FIELD_CONFIG[currentDonationType];
+  const contactEl = document.getElementById('dnContactPerson');
+  let contactVal = '';
+  if (cfg && cfg.hasContactPerson) {
+    contactVal = contactEl ? contactEl.value.trim() : '';
+    if (!contactVal) {
+      isValid = false;
+      const msg = currentLang === 'ta' ? 'தொடர்பு கொள்வோரின் பெயரை உள்ளிடவும்.' : 'Please enter the contact person name.';
+      showFieldError('groupDnContactPerson', 'errDnContactPerson', msg);
+      if (!firstError) firstError = contactEl;
+    } else {
+      clearFieldError('groupDnContactPerson', 'errDnContactPerson');
+    }
+  }
+
+  // 4. Mobile validation
+  const mobileEl = document.getElementById('dnMobile');
+  const mobileVal = mobileEl ? mobileEl.value.trim() : '';
+  const digitsOnly = mobileVal.replace(/\D/g, '');
+  if (!mobileVal) {
+    isValid = false;
+    const msg = currentLang === 'ta' ? 'கைபேசி எண் தேவை.' : 'Mobile number is required.';
+    showFieldError('groupDnMobile', 'errDnMobile', msg);
+    if (!firstError) firstError = mobileEl;
+  } else if (digitsOnly.length < 10) {
+    isValid = false;
+    const msg = currentLang === 'ta' ? 'கைபேசி எண் குறைந்தபட்சம் 10 இலக்கங்களைக் கொண்டிருக்க வேண்டும்.' : 'Mobile number must contain at least 10 digits.';
+    showFieldError('groupDnMobile', 'errDnMobile', msg);
+    if (!firstError) firstError = mobileEl;
+  } else {
+    clearFieldError('groupDnMobile', 'errDnMobile');
+  }
+
+  // 5. Email validation
+  const emailEl = document.getElementById('dnEmail');
+  const emailVal = emailEl ? emailEl.value.trim() : '';
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailVal) {
+    isValid = false;
+    const msg = currentLang === 'ta' ? 'மின்னஞ்சல் முகவரி தேவை.' : 'Email address is required.';
+    showFieldError('groupDnEmail', 'errDnEmail', msg);
+    if (!firstError) firstError = emailEl;
+  } else if (!emailRegex.test(emailVal)) {
+    isValid = false;
+    const msg = currentLang === 'ta' ? 'சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்.' : 'Please enter a valid email address.';
+    showFieldError('groupDnEmail', 'errDnEmail', msg);
+    if (!firstError) firstError = emailEl;
+  } else {
+    clearFieldError('groupDnEmail', 'errDnEmail');
+  }
+
+  // 6. City / District validation
+  const cityEl = document.getElementById('dnCity');
+  const cityVal = cityEl ? cityEl.value.trim() : '';
+  if (!cityVal) {
+    isValid = false;
+    const msg = currentLang === 'ta' ? 'நகரம் அல்லது மாவட்டத்தை உள்ளிடவும்.' : 'City or District is required.';
+    showFieldError('groupDnCity', 'errDnCity', msg);
+    if (!firstError) firstError = cityEl;
+  } else {
+    clearFieldError('groupDnCity', 'errDnCity');
+  }
+
+  const panEl = document.getElementById('dnPan');
+  const panVal = panEl ? panEl.value.trim().toUpperCase() : '';
+
+  if (!isValid && firstError) {
+    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (typeof firstError.focus === 'function') firstError.focus();
+    return;
+  }
+
+  // Prevent duplicate submissions while request is processing
+  isDonationSubmitting = true;
+  const submitBtn = document.getElementById('btnSubmitDonation');
+  const submitText = document.getElementById('btnSubmitDonationText');
+  const origBtnContent = submitBtn ? submitBtn.innerHTML : '';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
+    submitBtn.style.cursor = 'not-allowed';
+    if (submitText) submitText.textContent = currentLang === 'ta' ? 'செயலாக்கப்படுகிறது...' : 'Processing...';
+  }
+
+  try {
+    const payload = {
+      donor_name: nameVal,
+      donor_email: emailVal,
+      donor_phone: mobileVal,
+      donor_pan: panVal,
+      amount: currentDonationAmount,
+      donation_type: currentDonationType,
+      city_district: cityVal,
+      contact_person: contactVal,
+      payment_status: 'Awaiting Offline Verification'
+    };
+
+    const res = await fetch('/api/donations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      throw new Error(data.message || 'Donation submission failed. Please try again.');
+    }
+
+    const ref = data.transactionRef || ('MMI-' + Date.now().toString().slice(-6) + '-' + Math.floor(Math.random() * 900 + 100));
+
+    // Populate confirmation card
+    const refCodeEl = document.getElementById('successRefCode');
+    if (refCodeEl) refCodeEl.textContent = ref;
+
+    const sName = document.getElementById('successDonorName');
+    if (sName) sName.textContent = nameVal;
+
+    const rowContact = document.getElementById('rowSuccessContact');
+    const sContact = document.getElementById('successContactPerson');
+    if (cfg && cfg.hasContactPerson && contactVal) {
+      if (rowContact) rowContact.style.display = 'flex';
+      if (sContact) sContact.textContent = contactVal;
+    } else {
+      if (rowContact) rowContact.style.display = 'none';
+    }
+
+    const sType = document.getElementById('successDonationType');
+    if (sType) {
+      const typeTranslations = {
+        'Individual Donation': { en: 'Individual Donation', ta: 'தனிநபர் நன்கொடை' },
+        'Corporate Donation': { en: 'Corporate Donation', ta: 'நிறுவன நன்கொடை' },
+        'Institutional Donation': { en: 'Institutional Donation', ta: 'அமைப்புக் கல்வி நிறுவன நன்கொடை' },
+        'NGO / Trust Donation': { en: 'NGO / Trust Donation', ta: 'தன்னார்வ அமைப்பு / அறக்கட்டளை நன்கொடை' },
+        'Community Group Donation': { en: 'Community Group Donation', ta: 'சமூகக் குழு நன்கொடை' }
+      };
+      const tObj = typeTranslations[currentDonationType] || { en: currentDonationType, ta: currentDonationType };
+      sType.textContent = currentLang === 'ta' ? tObj.ta : tObj.en;
+    }
+
+    const sMobile = document.getElementById('successMobile');
+    if (sMobile) sMobile.textContent = mobileVal;
+
+    const sEmail = document.getElementById('successEmail');
+    if (sEmail) sEmail.textContent = emailVal;
+
+    const sCity = document.getElementById('successCity');
+    if (sCity) sCity.textContent = cityVal;
+
+    const sAmt = document.getElementById('successAmount');
+    if (sAmt) sAmt.textContent = '₹' + currentDonationAmount.toLocaleString('en-IN');
+
+    const sStatus = document.getElementById('successPaymentStatus');
+    if (sStatus) {
+      sStatus.textContent = currentLang === 'ta'
+        ? 'நேரடி பரிவர்த்தனை சரிபார்ப்பு நிலுவையில் உள்ளது'
+        : 'Awaiting Offline Transfer Verification';
+    }
+
+    // Hide form card, display confirmation card
+    const formCard = document.getElementById('dnFormCard');
+    if (formCard) formCard.style.display = 'none';
+
+    const successCard = document.getElementById('dnSuccessCard');
+    if (successCard) {
+      successCard.classList.add('visible');
+      successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  } catch (err) {
+    alert(err.message || 'Submission error. Please check your network and try again.');
+  } finally {
+    isDonationSubmitting = false;
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      submitBtn.style.cursor = 'pointer';
+      submitBtn.innerHTML = origBtnContent;
+    }
+  }
+}
+
+function resetDonationForm() {
+  const form = document.getElementById('donorForm');
+  if (form) form.reset();
+
+  setDonationType('Individual Donation', document.getElementById('btnTypeIndividual'));
+  setDonationAmount(500, document.querySelector('.dnamounts .dnamt'));
+
+  ['groupDnOrgOrName', 'groupDnContactPerson', 'groupDnMobile', 'groupDnEmail', 'groupDnCity', 'customAmountWrap'].forEach(id => {
+    clearFieldError(id);
+  });
+
+  const formCard = document.getElementById('dnFormCard');
+  if (formCard) formCard.style.display = 'block';
+
+  const successCard = document.getElementById('dnSuccessCard');
+  if (successCard) successCard.classList.remove('visible');
+
+  const donateSec = document.getElementById('donate');
+  if (donateSec) donateSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function showFieldError(groupId, errorId, message) {
+  const group = document.getElementById(groupId);
+  const error = document.getElementById(errorId);
+  if (group) group.classList.add('has-error');
+  if (error) {
+    if (message) error.textContent = message;
+    error.style.display = 'block';
+  }
+}
+
+function clearFieldError(groupId, errorId) {
+  const group = document.getElementById(groupId);
+  if (group) group.classList.remove('has-error');
+  if (errorId) {
+    const error = document.getElementById(errorId);
+    if (error) error.style.display = 'none';
+  } else if (group) {
+    const error = group.querySelector('.dn-field-error');
+    if (error) error.style.display = 'none';
+  }
+}
+
+// Attach realtime input error clearers for donation form
+document.addEventListener('DOMContentLoaded', () => {
+  const dnFields = [
+    { id: 'dnOrgOrName', group: 'groupDnOrgOrName', err: 'errDnOrgOrName' },
+    { id: 'dnContactPerson', group: 'groupDnContactPerson', err: 'errDnContactPerson' },
+    { id: 'dnMobile', group: 'groupDnMobile', err: 'errDnMobile' },
+    { id: 'dnEmail', group: 'groupDnEmail', err: 'errDnEmail' },
+    { id: 'dnCity', group: 'groupDnCity', err: 'errDnCity' }
+  ];
+  dnFields.forEach(f => {
+    const el = document.getElementById(f.id);
+    if (el) {
+      el.addEventListener('input', () => clearFieldError(f.group, f.err));
+    }
+  });
+
+  // Initialize dynamic donor fields
+  if (typeof updateDynamicDonorFields === 'function') {
+    updateDynamicDonorFields();
+  }
+});
+// =========================================================================
+// MANNUM MARAMUM PARTNERSHIP REGISTRATION LOGIC
+// =========================================================================
+const FVR_PRICING = {
+  'Corporate Vendor': { '1 Year': 5000, '2 Years': 9000, '3 Years': 13000 },
+  'Company Vendor': { '1 Year': 3000, '2 Years': 5500, '3 Years': 8000 }
+};
+
+// MANNUM MARAMUM PARTNERSHIP REGISTRATION TRANSLATIONS
+Object.assign(T, {
+  // DONATION SECTION TRANSLATIONS
+  n_donate: { en: "Donate", ta: "நன்கொடை" },
+
+  n_partnership: { en: "Partnership Registration", ta: "கூட்டாண்மை பதிவு" },
+  part_eyebrow: { en: "PARTNERSHIP INITIATIVE", ta: "கூட்டாண்மை முயற்சி" },
+  part_title: { en: "MANNUM MARAMUM PARTNERSHIP REGISTRATION", ta: "மண்ணும் மரமும் கூட்டாண்மை பதிவு" },
+  part_subtitle: {
+    en: "Register your company or organisation to support environmental activities, tree plantation, palm seed planting, lake rejuvenation and sustainable development initiatives with Mannum Maramum Iyakkam.",
+    ta: "மரம் நடுதல், பனை விதை நடுதல், ஏரி புனரமைப்பு மற்றும் நிலையான சுற்றுச்சூழல் வளர்ச்சி முயற்சிகளில் மண்ணும் மரமும் இயக்கத்துடன் இணைந்து செயல்பட உங்கள் நிறுவனம் அல்லது அமைப்பைப் பதிவு செய்யுங்கள்."
+  },
+  part_s1_title: { en: "Partnership Registration Type", ta: "கூட்டாண்மை பதிவு வகை" },
+  part_s1_sub: { en: "Select the category that best describes your organisation", ta: "உங்கள் நிறுவனத்தை விவரிக்கும் வகையைத் தேர்ந்தெடுக்கவும்" },
+  part_corp_title: { en: "Corporate Partner", ta: "நிறுவனக் கூட்டாளி" },
+  part_corp_desc: { en: "For corporate enterprises, private companies, industries, MSMEs & business establishments.", ta: "கார்ப்பரேட் நிறுவனங்கள், தனியார் நிறுவனங்கள், தொழிலகங்கள், குறு-சிறு வணிக அமைப்புகளுக்கு." },
+  part_corp_badge: { en: "Corporate / Business", ta: "வணிகம் / கார்ப்பரேட்" },
+  part_inst_title: { en: "Institutional Partner", ta: "அமைப்புக் கூட்டாளி" },
+  part_inst_desc: { en: "For educational institutions, colleges, schools, registered NGOs, environmental trusts & social bodies.", ta: "கல்வி நிறுவனங்கள், கல்லூரிகள், பள்ளிகள், தன்னார்வ தொண்டு நிறுவனங்கள், அறக்கட்டளைகளுக்கு." },
+  part_inst_badge: { en: "Institution / NGO / Trust", ta: "கல்வி / NGO / அறக்கட்டளை" },
+
+  part_s2_title: { en: "Partnership Duration", ta: "கூட்டாண்மை காலம்" },
+  part_s2_sub: { en: "Choose your preferred partnership duration.", ta: "உங்கள் விருப்பமான கூட்டாண்மை காலத்தைத் தேர்ந்தெடுக்கவும்." },
+  part_dur_label: { en: "Partnership Duration", ta: "கூட்டாண்மை காலம்" },
+  part_dur_help: { en: "Choose your preferred partnership duration.", ta: "உங்கள் விருப்பமான கூட்டாண்மை காலத்தைத் தேர்ந்தெடுக்கவும்." },
+  part_opt_1y: { en: "1 Year", ta: "1 ஆண்டு" },
+  part_opt_2y: { en: "2 Years", ta: "2 ஆண்டுகள்" },
+  part_opt_3y: { en: "3 Years", ta: "3 ஆண்டுகள்" },
+  part_opt_4y: { en: "4 Years", ta: "4 ஆண்டுகள்" },
+  part_opt_5y: { en: "5 Years", ta: "5 ஆண்டுகள்" },
+  part_opt_6y: { en: "6 Years", ta: "6 ஆண்டுகள்" },
+  part_opt_7y: { en: "7 Years", ta: "7 ஆண்டுகள்" },
+  part_opt_8y: { en: "8 Years", ta: "8 ஆண்டுகள்" },
+  part_opt_9y: { en: "9 Years", ta: "9 ஆண்டுகள்" },
+  part_opt_10y: { en: "10 Years", ta: "10 ஆண்டுகள்" },
+  part_opt_custom: { en: "Custom Duration (1 - 10 Years)...", ta: "தனிப்பயன் காலம் (1 - 10 ஆண்டுகள்)..." },
+  part_years_unit: { en: "Years", ta: "ஆண்டுகள்" },
+  part_err_dur_range: { en: "Please enter a valid whole number between 1 and 10 years.", ta: "தயவுசெய்து 1 முதல் 10 வரையிலான முழு எண்ணை உள்ளிடவும்." },
+  part_dur_note: { en: "Partnership details and project schedules will be confirmed by Mannum Maramum Iyakkam.", ta: "கூட்டாண்மை விவரங்கள் மற்றும் திட்ட அட்டவணைகள் மண்ணும் மரமும் இயக்கத்தால் உறுதிசெய்யப்படும்." },
+
+  part_s3_title: { en: "Organisation Details", ta: "அமைப்பின் விவரங்கள்" },
+  part_s3_sub: { en: "Provide registered particulars of your organisation or company", ta: "உங்கள் நிறுவனம் அல்லது அமைப்பின் பதிவு செய்யப்பட்ட விவரங்களை வழங்கவும்" },
+  part_org_name: { en: "Organisation / Company Name", ta: "அமைப்பு / நிறுவனத்தின் பெயர்" },
+  part_org_name_ph: { en: "e.g. Green Heritage Private Limited / Zenith College", ta: "எ.கா. கிரீன் ஹெரிட்டேஜ் பிரைவேட் லிமிடெட் / கல்லூரி" },
+  part_org_regno: { en: "Registration Number", ta: "பதிவு எண்" },
+  part_org_regno_ph: { en: "CIN / Society / Trust Reg No.", ta: "CIN / சங்கம் / அறக்கட்டளை பதிவு எண்" },
+  part_org_gst: { en: "GST Number", ta: "ஜிஎஸ்டி எண்" },
+  part_org_gst_ph: { en: "15-digit GSTIN (if applicable)", ta: "15-இலக்க GSTIN (இருப்பின்)" },
+  part_org_pan: { en: "PAN Number", ta: "பான் எண்" },
+  part_org_pan_ph: { en: "10-digit PAN (if applicable)", ta: "10-இலக்க PAN (இருப்பின்)" },
+  part_org_web: { en: "Website", ta: "இணையதளம்" },
+  part_org_web_ph: { en: "https://yourorganisation.org", ta: "https://yourorganisation.org" },
+  part_org_addr: { en: "Organisation Address", ta: "அமைப்பின் முகவரி" },
+  part_org_addr_ph: { en: "Building, Street, Area / Campus address...", ta: "கட்டடம், தெரு, பகுதி / வளாக முகவரி..." },
+  part_org_dist: { en: "City / District", ta: "நகரம் / மாவட்டம்" },
+  part_select_dist: { en: "-- Select District --", ta: "-- மாவட்டத்தைத் தேர்ந்தெடுக்கவும் --" },
+  part_org_pin: { en: "PIN Code", ta: "அஞ்சல் குறியீட்டு எண்" },
+  part_org_pin_ph: { en: "6-digit PIN code", ta: "6-இலக்க பின் கோடு" },
+
+  part_s4_title: { en: "Contact Details", ta: "தொடர்பு விவரங்கள்" },
+  part_s4_sub: { en: "Authorised representative or coordinator for partnership communication", ta: "கூட்டாண்மை தகவல் தொடர்பிற்கான அங்கீகரிக்கப்பட்ட பிரதிநிதி" },
+  part_con_name: { en: "Contact Person Name", ta: "தொடர்பு கொள்வோரின் பெயர்" },
+  part_con_name_ph: { en: "Full name of representative", ta: "பிரதிநிதியின் முழுப் பெயர்" },
+  part_con_desig: { en: "Designation", ta: "பதவி" },
+  part_con_desig_ph: { en: "e.g. Director / CSR Lead / Principal", ta: "எ.கா. இயக்குநர் / CSR தலைவர் / முதல்வர்" },
+  part_con_mob: { en: "Mobile Number", ta: "கைபேசி எண்" },
+  part_con_mob_ph: { en: "10-digit mobile number", ta: "10-இலக்க கைபேசி எண்" },
+  part_con_altmob: { en: "Alternate Mobile Number", ta: "மாற்று கைபேசி எண்" },
+  part_con_altmob_ph: { en: "10-digit alternate mobile", ta: "10-இலக்க மாற்று கைபேசி எண்" },
+  part_con_email: { en: "Email Address", ta: "மின்னஞ்சல் முகவரி" },
+  part_con_email_ph: { en: "name@organisation.com", ta: "name@organisation.com" },
+
+  part_s5_title: { en: "Partnership Focus", ta: "கூட்டாண்மை நோக்கம்" },
+  part_s5_sub: { en: "Select the environmental areas your organisation wishes to support", ta: "உங்கள் நிறுவனம் ஆதரிக்க விரும்பும் சுற்றுச்சூழல் பகுதிகளைத் தேர்ந்தெடுக்கவும்" },
+  focus_tree: { en: "Tree Plantation", ta: "மரம் நடுதல்" },
+  focus_palm: { en: "Palm Seed Plantation", ta: "பனை விதை நடுதல்" },
+  focus_lake: { en: "Lake Rejuvenation", ta: "ஏரி புனரமைப்பு" },
+  focus_aware: { en: "Environmental Awareness", ta: "சுற்றுச்சூழல் விழிப்புணர்வு" },
+  focus_water_soil: { en: "Water & Soil Conservation", ta: "நீர் மற்றும் மண் பாதுகாப்பு" },
+  focus_community: { en: "Community Activities", ta: "சமூக செயல்பாடுகள்" },
+  focus_sustain: { en: "Sustainable Development", ta: "நிலையான வளர்ச்சி" },
+  focus_other: { en: "Other", ta: "மற்றவை" },
+
+  part_s6_title: { en: "Activity / Partnership Areas", ta: "செயல்பாட்டு / கூட்டாண்மை பகுதிகள்" },
+  part_s6_sub: {
+    en: "Select the districts or areas where your organisation would like to support environmental activities.",
+    ta: "உங்கள் நிறுவனம் சுற்றுச்சூழல் பணிகளை ஆதரிக்க விரும்பும் மாவட்டங்கள் அல்லது பகுதிகளைத் தேர்ந்தெடுக்கவும்."
+  },
+  part_areas_ph: { en: "Click to select districts / regions...", ta: "மாவட்டங்களைத் தேர்ந்தெடுக்க கிளிக் செய்யவும்..." },
+  part_search_dist_ph: { en: "Search districts...", ta: "மாவட்டங்களைத் தேடுங்கள்..." },
+  btn_select_all: { en: "Select All", ta: "அனைத்தும்" },
+  btn_clear_all: { en: "Clear All", ta: "அனைத்தையும் நீக்கு" },
+
+  part_s7_title: { en: "Organisation Profile", ta: "அமைப்பு விவரக்குறிப்பு" },
+  part_s7_sub: { en: "Brief overview of your organisation and environmental collaboration vision", ta: "உங்கள் அமைப்பு மற்றும் சுற்றுச்சூழல் ஒத்துழைப்பு பற்றிய சுருக்கமான பார்வை" },
+  part_org_prof_lbl: { en: "Brief Organisation Profile", ta: "சுருக்கமான அமைப்பு விவரம்" },
+  part_org_prof_ph: {
+    en: "Briefly describe your organisation, activities, experience and how you would like to support environmental initiatives...",
+    ta: "உங்கள் நிறுவனம், செயல்பாடுகள், அனுபவம் மற்றும் சுற்றுச்சூழல் முயற்சிகளுக்கு எவ்வாறு ஆதரவளிக்க விரும்புகிறீர்கள் என்பதை சுருக்கமாக விவரிக்கவும்..."
+  },
+
+  part_s8_title: { en: "Supporting Documents", ta: "ஆவணங்கள்" },
+  part_s8_sub: { en: "Attach relevant organisation documents for official records (Optional)", ta: "அமைப்பின் தொடர்புடைய ஆவணங்களை இணைக்கவும் (விருப்பத்தேர்வு)" },
+  doc_logo: { en: "Organisation Logo", ta: "அமைப்பின் சின்னம் / லோகோ" },
+  doc_regcert: { en: "Registration Certificate", ta: "பதிவு சான்றிதழ்" },
+  doc_gst: { en: "GST Certificate", ta: "ஜிஎஸ்டி சான்றிதழ்" },
+  doc_pan: { en: "PAN Card", ta: "பான் கார்டு" },
+  doc_brochure: { en: "Organisation Profile / Brochure", ta: "அமைப்பு விவரக்குறிப்பு / கையேடு" },
+  doc_hint_img: { en: "PNG, JPG or SVG", ta: "PNG, JPG அல்லது SVG" },
+  doc_hint_pdf: { en: "PDF or Image copy", ta: "PDF அல்லது படம்" },
+  doc_hint_brochure: { en: "PDF overview of your organisation & CSR works", ta: "உங்கள் அமைப்பு & CSR பணிகளின் PDF தொகுப்பு" },
+  doc_btn_choose: { en: "Choose File", ta: "கோப்பைத் தேர்ந்தெடு" },
+
+  part_s9_title: { en: "Partnership Contribution", ta: "கூட்டாண்மை பங்களிப்பு" },
+  part_s9_sub: { en: "Collaborative environmental participation and support overview", ta: "ஒத்துழைப்பு சுற்றுச்சூழல் பங்களிப்பு விவரம்" },
+  part_collab_badge: { en: "COLLABORATION FRAMEWORK", ta: "கூட்டாண்மை கட்டமைப்பு" },
+  part_contrib_desc: {
+    en: "Contribution details will be confirmed by Mannum Maramum Iyakkam. Collaborative engagement—whether through sapling plantation drives, seed supply, native nursery setup, water-body cleanup, or institutional CSR programs—will be tailored to your organisation's focus and planned directly with our coordinators.",
+    ta: "பங்களிப்பு விவரங்கள் மண்ணும் மரமும் இயக்கத்தால் பின்னர் உறுதிசெய்யப்படும். மரக்கன்றுகள் நடுதல், பனை விதை வழங்குதல், நாற்றுப்பண்ணை அமைத்தல், நீர்நிலைகள் தூய்மைப்படுத்துதல் அல்லது CSR திட்டங்கள் போன்ற ஒத்துழைப்பு பங்களிப்புகள் உங்கள் விருப்பத்திற்கேற்ப எங்கள் ஒருங்கிணைப்பாளர்களால் திட்டமிடப்படும்."
+  },
+  tbl_sel_partner: { en: "Selected Partner Type:", ta: "தேர்ந்தெடுக்கப்பட்ட கூட்டாளி வகை:" },
+  tbl_sel_duration: { en: "Partnership Duration:", ta: "கூட்டாண்மை காலம்:" },
+  tbl_contrib_status: { en: "Contribution Status:", ta: "பங்களிப்பு நிலை:" },
+  tbl_contrib_status_val: { en: "To be confirmed by Mannum Maramum Iyakkam", ta: "மண்ணும் மரமும் இயக்கத்தால் உறுதிசெய்யப்படும்" },
+
+  part_s10_title: { en: "Declaration", ta: "உறுதிமொழி" },
+  part_decl_text: {
+    en: "I hereby declare that the information provided above is true and correct. I agree to support the environmental and sustainable development initiatives of Mannum Maramum Iyakkam.",
+    ta: "மேலே வழங்கிய தகவல்கள் உண்மையானவை மற்றும் சரியானவை என்பதை உறுதிப்படுத்துகிறேன். மண்ணும் மரமும் இயக்கத்தின் சுற்றுச்சூழல் மற்றும் நிலையான வளர்ச்சி முயற்சிகளுக்கு ஆதரவு அளிக்க ஒப்புக்கொள்கிறேன்."
+  },
+  btn_submit_part: { en: "Submit Partnership Registration", ta: "கூட்டாண்மை பதிவை சமர்ப்பிக்கவும்" },
+
+  modal_succ_title: { en: "Partnership Registration Submitted", ta: "கூட்டாண்மை பதிவு சமர்ப்பிக்கப்பட்டது" },
+  modal_succ_desc: {
+    en: "Thank you for registering your interest in partnering with Mannum Maramum Iyakkam. Our team will review your details and contact you.",
+    ta: "மண்ணும் மரமும் இயக்கத்துடன் இணைந்து செயல்பட உங்கள் ஆர்வத்தை பதிவு செய்ததற்கு நன்றி. எங்கள் குழு உங்கள் தகவல்களை பரிசீலித்து உங்களை தொடர்பு கொள்ளும்."
+  },
+  modal_lbl_org: { en: "Organisation:", ta: "அமைப்பு:" },
+  modal_lbl_type: { en: "Partner Type:", ta: "கூட்டாளி வகை:" },
+  modal_lbl_dur: { en: "Duration:", ta: "காலம்:" },
+  modal_lbl_dist: { en: "District:", ta: "மாவட்டம்:" },
+  modal_lbl_focus: { en: "Focus Areas:", ta: "முக்கிய செயல்பாடுகள்:" },
+  modal_btn_close: { en: "Done / Close", ta: "நிறைவு / மூடுக" },
+  lbl_optional: { en: "(Optional)", ta: "(விருப்பத்தேர்வு)" }
+});
+
+// =========================================================================
+// MANNUM MARAMUM PARTNERSHIP REGISTRATION LOGIC
+// =========================================================================
+
+const MMI_DISTRICTS = [
+  "Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore",
+  "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kancheepuram",
+  "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam",
+  "Kanniyakumari", "Namakkal", "Perambalur", "Pudukkottai", "Ramanathapuram",
+  "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni",
+  "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur", "Tiruppur",
+  "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram",
+  "Virudhunagar", "The Nilgiris", "Puducherry"
+];
+
+let mmiSelectedType = 'Corporate Partner';
+let mmiSelectedDuration = '1 Year';
+let mmiSelectedFocusAreas = ['Tree Plantation', 'Palm Seed Plantation'];
+let mmiSelectedAreas = [];
+
+function initPartnershipIntegration() {
+  populateMmiDistricts();
+  initMmiAreaChips();
+  updatePartnershipSummary();
+
+  // Clear errors on input
+  const inputs = [
+    { id: 'mmiOrgName', grp: 'grpOrgName', err: 'errOrgName' },
+    { id: 'mmiOrgAddress', grp: 'grpOrgAddress', err: 'errOrgAddress' },
+    { id: 'mmiOrgDistrict', grp: 'grpOrgDistrict', err: 'errOrgDistrict' },
+    { id: 'mmiOrgPin', grp: 'grpOrgPin', err: 'errOrgPin' },
+    { id: 'mmiContactName', grp: 'grpContactName', err: 'errContactName' },
+    { id: 'mmiContactMobile', grp: 'grpContactMobile', err: 'errContactMobile' },
+    { id: 'mmiContactAltMobile', grp: 'grpContactAltMobile', err: 'errContactAltMobile' },
+    { id: 'mmiContactEmail', grp: 'grpContactEmail', err: 'errContactEmail' }
+  ];
+
+  inputs.forEach(item => {
+    const el = document.getElementById(item.id);
+    if (el) {
+      el.addEventListener('input', () => clearPartError(item.grp, item.err));
+      el.addEventListener('change', () => clearPartError(item.grp, item.err));
+    }
+  });
+}
+
+function populateMmiDistricts() {
+  const sel = document.getElementById('mmiOrgDistrict');
+  if (!sel) return;
+  // Keep first default option
+  sel.innerHTML = '<option value="" data-i="part_select_dist">-- Select District --</option>';
+  MMI_DISTRICTS.forEach(d => {
+    const opt = document.createElement('option');
+    opt.value = d;
+    opt.textContent = d;
+    sel.appendChild(opt);
+  });
+}
+
+function selectPartnerType(type, el) {
+  mmiSelectedType = type;
+  document.querySelectorAll('#mmiTypesGrid .mmi-type-card').forEach(c => {
+    c.classList.remove('active');
+    c.setAttribute('aria-checked', 'false');
+  });
+  if (el) {
+    el.classList.add('active');
+    el.setAttribute('aria-checked', 'true');
+  }
+  clearPartError('grpPartType', 'errPartType');
+  updatePartnershipSummary();
+}
+
+function handleDurationDropdownChange(val) {
+  const customWrap = document.getElementById('mmiCustomDurationWrap');
+  const customInput = document.getElementById('mmiCustomDurationInput');
+
+  if (val === 'custom') {
+    if (customWrap) customWrap.style.display = 'block';
+    if (customInput) {
+      customInput.focus();
+      validateCustomDuration(customInput.value);
+    }
+  } else {
+    if (customWrap) customWrap.style.display = 'none';
+    clearPartError('grpPartDuration', 'errPartDuration');
+    mmiSelectedDuration = val;
+    updatePartnershipSummary();
+  }
+}
+
+function handleCustomDurationKeydown(e) {
+  // Prevent decimal points, negative signs, exponents, plus signs, commas
+  if (e.key === '.' || e.key === ',' || e.key === 'e' || e.key === 'E' || e.key === '-' || e.key === '+') {
+    e.preventDefault();
+  }
+}
+
+function handleCustomDurationInput(val) {
+  validateCustomDuration(val);
+}
+
+function validateCustomDuration(val) {
+  const str = String(val).trim();
+  const isWholeNumber = /^\d+$/.test(str);
+  const num = Number(str);
+
+  if (!str || !isWholeNumber || num < 1 || num > 10) {
+    const msg = (typeof currentLang !== 'undefined' && currentLang === 'ta')
+      ? 'தயவுசெய்து 1 முதல் 10 வரையிலான முழு எண்ணை உள்ளிடவும்.'
+      : 'Please enter a valid whole number between 1 and 10 years.';
+    showPartError('grpPartDuration', 'errPartDuration', msg);
+    mmiSelectedDuration = '';
+    updatePartnershipSummary();
+    return false;
+  }
+
+  clearPartError('grpPartDuration', 'errPartDuration');
+  mmiSelectedDuration = num === 1 ? '1 Year' : `${num} Years`;
+  updatePartnershipSummary();
+  return true;
+}
+
+function selectPartnerDuration(duration, el) {
+  mmiSelectedDuration = duration;
+  const sel = document.getElementById('mmiDurationSelect');
+  if (sel) {
+    let matched = false;
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === duration) {
+        sel.selectedIndex = i;
+        matched = true;
+        break;
+      }
+    }
+    const customWrap = document.getElementById('mmiCustomDurationWrap');
+    const customInput = document.getElementById('mmiCustomDurationInput');
+    if (!matched) {
+      sel.value = 'custom';
+      if (customWrap) customWrap.style.display = 'block';
+      const numMatch = String(duration).match(/\d+/);
+      if (customInput && numMatch) {
+        customInput.value = numMatch[0];
+        validateCustomDuration(numMatch[0]);
+      }
+    } else {
+      if (customWrap) customWrap.style.display = 'none';
+      clearPartError('grpPartDuration', 'errPartDuration');
+    }
+  }
+  updatePartnershipSummary();
+}
+
+function updatePartnershipSummary() {
+  const tblType = document.getElementById('mmiTblPartnerType');
+  const tblDur = document.getElementById('mmiTblDuration');
+  if (tblType) tblType.textContent = mmiSelectedType;
+  if (tblDur) tblDur.textContent = mmiSelectedDuration;
+}
+
+function toggleFocusArea(el, name) {
+  const checkEl = el.querySelector('.mmi-focus-check');
+  if (mmiSelectedFocusAreas.includes(name)) {
+    mmiSelectedFocusAreas = mmiSelectedFocusAreas.filter(item => item !== name);
+    el.classList.remove('active');
+    if (checkEl) checkEl.innerHTML = '';
+  } else {
+    mmiSelectedFocusAreas.push(name);
+    el.classList.add('active');
+    if (checkEl) checkEl.innerHTML = '&check;';
+  }
+  if (mmiSelectedFocusAreas.length > 0) {
+    clearPartError('grpPartFocus', 'errPartFocus');
+  }
+}
+
+// Activity / Partnership Areas Multi-Select with Removable Chips
+function initMmiAreaChips() {
+  const box = document.getElementById('mmiChipsBox');
+  const menu = document.getElementById('mmiDropdownMenu');
+  const list = document.getElementById('mmiOptList');
+  const search = document.getElementById('mmiSearchDistricts');
+  const btnAll = document.getElementById('mmiBtnSelectAll');
+  const btnClear = document.getElementById('mmiBtnClearAll');
+
+  if (!list) return;
+  list.innerHTML = '';
+  MMI_DISTRICTS.forEach((d, i) => {
+    const lbl = document.createElement('label');
+    lbl.className = 'mmi-opt-label';
+    lbl.dataset.name = d.toLowerCase();
+
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.value = d;
+    cb.id = 'mmi_area_' + i;
+
+    cb.addEventListener('change', () => {
+      if (cb.checked) {
+        if (!mmiSelectedAreas.includes(d)) mmiSelectedAreas.push(d);
+      } else {
+        mmiSelectedAreas = mmiSelectedAreas.filter(item => item !== d);
+      }
+      renderMmiAreaChips();
+      if (mmiSelectedAreas.length > 0) {
+        clearPartError('grpPartAreas', 'errPartAreas');
+      }
+    });
+
+    const sp = document.createElement('span');
+    sp.textContent = d;
+    lbl.appendChild(cb);
+    lbl.appendChild(sp);
+    list.appendChild(lbl);
+  });
+
+  box.addEventListener('click', (e) => {
+    if (e.target.classList.contains('mmi-chip-del')) return;
+    const isShowing = menu.classList.contains('show');
+    if (isShowing) {
+      menu.classList.remove('show');
+      box.classList.remove('open');
+    } else {
+      menu.classList.add('show');
+      box.classList.add('open');
+      if (search) search.focus();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.mmi-service-wrapper')) {
+      menu.classList.remove('show');
+      box.classList.remove('open');
+    }
+  });
+
+  if (search) {
+    search.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      list.querySelectorAll('.mmi-opt-label').forEach(lbl => {
+        lbl.style.display = lbl.dataset.name.includes(q) ? 'flex' : 'none';
+      });
+    });
+  }
+
+  if (btnAll) {
+    btnAll.addEventListener('click', () => {
+      mmiSelectedAreas = [...MMI_DISTRICTS];
+      renderMmiAreaChips();
+      clearPartError('grpPartAreas', 'errPartAreas');
+    });
+  }
+
+  if (btnClear) {
+    btnClear.addEventListener('click', () => {
+      mmiSelectedAreas = [];
+      renderMmiAreaChips();
+    });
+  }
+
+  window.removeMmiAreaChip = function(d) {
+    mmiSelectedAreas = mmiSelectedAreas.filter(item => item !== d);
+    renderMmiAreaChips();
+  };
+}
+
+function renderMmiAreaChips() {
+  const box = document.getElementById('mmiChipsBox');
+  const cbs = document.querySelectorAll('#mmiOptList input[type="checkbox"]');
+  cbs.forEach(cb => {
+    cb.checked = mmiSelectedAreas.includes(cb.value);
+    const parent = cb.closest('.mmi-opt-label');
+    if (parent) parent.classList.toggle('selected', cb.checked);
+  });
+
+  if (mmiSelectedAreas.length === 0) {
+    box.innerHTML = '<span class="mmi-placeholder-text" id="mmiChipsPlaceholder" data-i="part_areas_ph">Click to select districts / regions...</span>';
+    return;
+  }
+  box.innerHTML = '';
+  mmiSelectedAreas.forEach(d => {
+    const chip = document.createElement('span');
+    chip.className = 'mmi-chip';
+    chip.innerHTML = d + ' <span class="mmi-chip-del" onclick="removeMmiAreaChip(\'' + d + '\')">&times;</span>';
+    box.appendChild(chip);
+  });
+}
+
+function triggerDocUpload(id) {
+  const el = document.getElementById(id);
+  if (el) el.click();
+}
+
+function handleDocSelected(input, dispId) {
+  const disp = document.getElementById(dispId);
+  if (!disp) return;
+  if (input.files && input.files[0]) {
+    const f = input.files[0];
+    const mb = (f.size / (1024 * 1024)).toFixed(2);
+    disp.textContent = f.name + ' (' + mb + ' MB)';
+    disp.style.display = 'block';
+  } else {
+    disp.textContent = '';
+    disp.style.display = 'none';
+  }
+}
+
+function showPartError(grpId, errId, msg) {
+  const g = document.getElementById(grpId);
+  const e = document.getElementById(errId);
+  if (g) g.classList.add('has-error');
+  if (e) {
+    if (msg) e.textContent = msg;
+    e.style.display = 'block';
+  }
+}
+
+function clearPartError(grpId, errId) {
+  const g = document.getElementById(grpId);
+  const e = document.getElementById(errId);
+  if (g) g.classList.remove('has-error');
+  if (e) e.style.display = 'none';
+}
+
+function handlePartnershipSubmit(e) {
+  e.preventDefault();
+
+  let valid = true;
+  let firstErr = null;
+
+  function markErr(element, grpId, errId, msg) {
+    valid = false;
+    showPartError(grpId, errId, msg);
+    if (!firstErr) firstErr = element || document.getElementById(grpId);
+  }
+
+  // 0. Partnership Duration *
+  const durSelect = document.getElementById('mmiDurationSelect');
+  if (durSelect && durSelect.value === 'custom') {
+    const customInput = document.getElementById('mmiCustomDurationInput');
+    const isValid = validateCustomDuration(customInput ? customInput.value : '');
+    if (!isValid) {
+      valid = false;
+      if (!firstErr) firstErr = customInput || durSelect;
+    }
+  } else if (durSelect) {
+    mmiSelectedDuration = durSelect.value;
+    clearPartError('grpPartDuration', 'errPartDuration');
+  }
+
+  // 1. Organisation Name *
+  const oName = document.getElementById('mmiOrgName');
+  if (!oName.value.trim()) {
+    markErr(oName, 'grpOrgName', 'errOrgName', 'Organisation / Company Name is required.');
+  } else {
+    clearPartError('grpOrgName', 'errOrgName');
+  }
+
+  // 2. Organisation Address *
+  const addr = document.getElementById('mmiOrgAddress');
+  if (!addr.value.trim()) {
+    markErr(addr, 'grpOrgAddress', 'errOrgAddress', 'Organisation Address is required.');
+  } else {
+    clearPartError('grpOrgAddress', 'errOrgAddress');
+  }
+
+  // 3. District *
+  const dist = document.getElementById('mmiOrgDistrict');
+  if (!dist.value) {
+    markErr(dist, 'grpOrgDistrict', 'errOrgDistrict', 'Please select a District.');
+  } else {
+    clearPartError('grpOrgDistrict', 'errOrgDistrict');
+  }
+
+  // 4. PIN Code (optional, but 6 digits if entered)
+  const pin = document.getElementById('mmiOrgPin');
+  if (pin.value.trim() && !/^\d{6}$/.test(pin.value.trim())) {
+    markErr(pin, 'grpOrgPin', 'errOrgPin', 'Enter a valid 6-digit PIN code.');
+  } else {
+    clearPartError('grpOrgPin', 'errOrgPin');
+  }
+
+  // 5. Contact Person Name *
+  const cPerson = document.getElementById('mmiContactName');
+  if (!cPerson.value.trim()) {
+    markErr(cPerson, 'grpContactName', 'errContactName', 'Contact Person Name is required.');
+  } else {
+    clearPartError('grpContactName', 'errContactName');
+  }
+
+  // 6. Mobile Number * (10 digits)
+  const mob = document.getElementById('mmiContactMobile');
+  if (!mob.value.trim() || !/^\d{10}$/.test(mob.value.trim())) {
+    markErr(mob, 'grpContactMobile', 'errContactMobile', 'Enter a valid 10-digit mobile number.');
+  } else {
+    clearPartError('grpContactMobile', 'errContactMobile');
+  }
+
+  // Alternate mobile if entered
+  const altMob = document.getElementById('mmiContactAltMobile');
+  if (altMob.value.trim() && !/^\d{10}$/.test(altMob.value.trim())) {
+    markErr(altMob, 'grpContactAltMobile', 'errContactAltMobile', 'Alternate mobile must be 10 digits.');
+  } else {
+    clearPartError('grpContactAltMobile', 'errContactAltMobile');
+  }
+
+  // 7. Email Address *
+  const email = document.getElementById('mmiContactEmail');
+  if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+    markErr(email, 'grpContactEmail', 'errContactEmail', 'Please enter a valid email address.');
+  } else {
+    clearPartError('grpContactEmail', 'errContactEmail');
+  }
+
+  // 8. Partnership Focus * (At least 1 required)
+  if (mmiSelectedFocusAreas.length === 0) {
+    markErr(document.getElementById('mmiFocusGrid'), 'grpPartFocus', 'errPartFocus', 'Please select at least one Partnership Focus area.');
+  } else {
+    clearPartError('grpPartFocus', 'errPartFocus');
+  }
+
+  // 9. Activity Areas * (At least 1 district)
+  if (mmiSelectedAreas.length === 0) {
+    markErr(document.getElementById('mmiChipsBox'), 'grpPartAreas', 'errPartAreas', 'Please select at least one activity / partnership area.');
+  } else {
+    clearPartError('grpPartAreas', 'errPartAreas');
+  }
+
+  // 10. Declaration checkbox *
+  const decl = document.getElementById('mmiDeclCheck');
+  if (!decl.checked) {
+    markErr(decl, 'grpPartDecl', 'errPartDecl', 'You must agree to the declaration before submitting.');
+  } else {
+    clearPartError('grpPartDecl', 'errPartDecl');
+  }
+
+  if (!valid && firstErr) {
+    firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (typeof firstErr.focus === 'function') firstErr.focus();
+    return;
+  }
+
+  // Populate success modal
+  document.getElementById('mmiModalOrgName').textContent = oName.value.trim();
+  document.getElementById('mmiModalType').textContent = mmiSelectedType;
+  document.getElementById('mmiModalDur').textContent = mmiSelectedDuration;
+  document.getElementById('mmiModalDist').textContent = dist.value;
+  document.getElementById('mmiModalFocusCount').textContent = mmiSelectedFocusAreas.join(', ');
+
+  document.getElementById('mmiSuccessModal').classList.add('active');
+}
+
+function closePartnershipModal() {
+  document.getElementById('mmiSuccessModal').classList.remove('active');
+  document.getElementById('mmiPartnershipForm').reset();
+  selectPartnerType('Corporate Partner', document.querySelector('#mmiTypesGrid .mmi-type-card'));
+  selectPartnerDuration('1 Year');
+  const durSelect = document.getElementById('mmiDurationSelect');
+  if (durSelect) durSelect.value = '1 Year';
+  const customWrap = document.getElementById('mmiCustomDurationWrap');
+  if (customWrap) customWrap.style.display = 'none';
+  const customInput = document.getElementById('mmiCustomDurationInput');
+  if (customInput) customInput.value = '';
+  clearPartError('grpPartDuration', 'errPartDuration');
+  mmiSelectedFocusAreas = ['Tree Plantation', 'Palm Seed Plantation'];
+  document.querySelectorAll('#mmiFocusGrid .mmi-focus-item').forEach(item => {
+    const isDefault = item.textContent.includes('Tree') || item.textContent.includes('Palm');
+    item.classList.toggle('active', isDefault);
+    const chk = item.querySelector('.mmi-focus-check');
+    if (chk) chk.innerHTML = isDefault ? '&check;' : '';
+  });
+  mmiSelectedAreas = [];
+  renderMmiAreaChips();
+  ['dispOrgLogo', 'dispRegCert', 'dispGstCert', 'dispPanCard', 'dispBrochure'].forEach(id => {
+    const d = document.getElementById(id);
+    if (d) { d.textContent = ''; d.style.display = 'none'; }
+  });
+  document.getElementById('partnership').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initPartnershipIntegration();
+});
+// =========================================================================
+
 
 // =========================================================================
 // GO GREEN — LIVE NATURE MODAL LOGIC
@@ -3717,7 +6448,7 @@ window.updateGenZModalLang = updateGenZModalLang;
      ========================================================================== -->
 <script>
 (function() {
-  const MAX_PER_YEAR = 15;
+  const GALLERY_YEARS = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
 
   const GALLERY_ARCHIVE = {
     2019: [],
@@ -3887,211 +6618,224 @@ window.updateGenZModalLang = updateGenZModalLang;
     2026: []
   };
 
-  let currentYear = 2024;
-  let currentIndex = 0;
+  const YEAR_DESCRIPTIONS = {
+    2019: 'Pioneering community outreach & seed preservation',
+    2020: 'Local environmental conservation initiatives',
+    2021: 'Waterbody restoration & nursery sapling rearing',
+    2022: 'Native palm trees lake bund inspection',
+    2023: 'Railway green gardens & community seed drives',
+    2024: 'Cauvery bank mega drives & college partnerships',
+    2025: 'BHEL campus & institutional greening missions',
+    2026: 'Upcoming seasonal afforestation campaigns'
+  };
 
-  // Automatically generate years from 2019 to current calendar year and beyond
-  function renderYearTabs() {
-    const tabsContainer = document.querySelector('.gallery-year-tabs');
-    if (!tabsContainer) return;
+  let activeYear = null;
+  let activePhotoIndex = 0;
+  let currentAlbumPhotos = [];
 
-    const START_YEAR = 2019;
-    const currentCalendarYear = new Date().getFullYear();
-    const archiveYears = Object.keys(GALLERY_ARCHIVE).map(Number).filter(y => !isNaN(y));
-    const maxArchiveYear = archiveYears.length > 0 ? Math.max(...archiveYears) : currentCalendarYear;
-    const endYear = Math.max(currentCalendarYear, maxArchiveYear);
+  function renderAlbums() {
+    const grid = document.getElementById('galAlbumsGrid');
+    if (!grid) return;
 
-    tabsContainer.innerHTML = '';
-    for (let yr = START_YEAR; yr <= endYear; yr++) {
-      const btn = document.createElement('button');
-      btn.className = 'gallery-year-btn' + (yr === currentYear ? ' active' : '');
-      btn.setAttribute('data-year', yr);
-      btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-selected', yr === currentYear ? 'true' : 'false');
-      btn.textContent = yr;
-      btn.addEventListener('click', () => {
-        switchYear(yr);
+    grid.innerHTML = GALLERY_YEARS.map(year => {
+      const photos = GALLERY_ARCHIVE[year] || [];
+      const count = photos.length;
+      const countLabel = count === 1 ? '1 Photo' : (count + ' Photos');
+      const desc = YEAR_DESCRIPTIONS[year] || 'Field eco-restoration drives';
+
+      let coverHtml = '';
+      if (count > 0 && photos[0] && photos[0].src) {
+        coverHtml = '<div class="album-card-cover">' +
+          '<img src="' + photos[0].src + '" alt="' + (photos[0].title || (year + ' Album')) + '" loading="lazy" />' +
+        '</div>';
+      } else {
+        coverHtml = '<div class="album-card-cover">' +
+          '<div class="album-card-placeholder">' +
+            '<span class="album-placeholder-icon">🌱</span>' +
+            '<span class="album-placeholder-text">' + (year >= 2026 ? 'Upcoming' : 'Archived') + '</span>' +
+          '</div>' +
+        '</div>';
+      }
+
+      return '<div class="album-card" role="button" tabindex="0" data-year="' + year + '" aria-label="Open ' + year + ' Album (' + countLabel + ')">' +
+        coverHtml +
+        '<div class="album-card-body">' +
+          '<div class="album-card-header">' +
+            '<h3 class="album-year-title">' + year + '</h3>' +
+            '<span class="album-count-badge ' + (count === 0 ? 'empty' : '') + '">' + countLabel + '</span>' +
+          '</div>' +
+          '<p class="album-card-desc" title="' + desc + '">' + desc + '</p>' +
+          '<div class="album-card-action">' +
+            '<span>View Album</span>' +
+            '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    // Attach click events
+    grid.querySelectorAll('.album-card').forEach(card => {
+      const year = parseInt(card.getAttribute('data-year'), 10);
+      card.addEventListener('click', () => openAlbum(year));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openAlbum(year);
+        }
       });
-      tabsContainer.appendChild(btn);
+    });
+  }
+
+  function openAlbum(year, shouldScroll = true) {
+    activeYear = year;
+    currentAlbumPhotos = GALLERY_ARCHIVE[year] || [];
+
+    const albumsView = document.getElementById('galAlbumsView');
+    const photosView = document.getElementById('galPhotosView');
+    const yearTitle = document.getElementById('galSelectedYearTitle');
+    const yearCount = document.getElementById('galSelectedYearCount');
+    const photosGrid = document.getElementById('galPhotosGrid');
+    const emptyState = document.getElementById('galEmptyAlbum');
+    const emptyYearSpan = document.getElementById('galEmptyYearSpan');
+
+    if (albumsView) albumsView.style.display = 'none';
+    if (photosView) photosView.style.display = 'block';
+
+    if (yearTitle) yearTitle.textContent = year + ' Album';
+    if (yearCount) {
+      const c = currentAlbumPhotos.length;
+      yearCount.textContent = c === 1 ? '1 Photo' : (c + ' Photos');
     }
+
+    if (currentAlbumPhotos.length === 0) {
+      if (photosGrid) photosGrid.innerHTML = '';
+      if (emptyState) emptyState.style.display = 'block';
+      if (emptyYearSpan) emptyYearSpan.textContent = year;
+    } else {
+      if (emptyState) emptyState.style.display = 'none';
+      if (photosGrid) {
+        photosGrid.innerHTML = currentAlbumPhotos.map((photo, idx) => {
+          return '<div class="photo-card" role="button" tabindex="0" data-index="' + idx + '" aria-label="' + photo.title + '">' +
+            '<div class="photo-card-img-wrap">' +
+              '<img src="' + photo.src + '" alt="' + (photo.alt || photo.title) + '" loading="lazy" />' +
+            '</div>' +
+            '<div class="photo-card-body">' +
+              '<h4 class="photo-card-title">' + photo.title + '</h4>' +
+              '<div class="photo-card-loc">' +
+                '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 7.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>' +
+                '<span>' + (photo.location || 'Tamil Nadu') + '</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+
+        photosGrid.querySelectorAll('.photo-card').forEach(card => {
+          const idx = parseInt(card.getAttribute('data-index'), 10);
+          card.addEventListener('click', () => openLightbox(idx));
+          card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openLightbox(idx);
+            }
+          });
+        });
+      }
+    }
+
+    if (shouldScroll) {
+      const galSec = document.getElementById('gallery');
+      if (galSec) {
+        galSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
+
+  function showAlbumsView(shouldScroll = true) {
+    const albumsView = document.getElementById('galAlbumsView');
+    const photosView = document.getElementById('galPhotosView');
+    if (photosView) photosView.style.display = 'none';
+    if (albumsView) albumsView.style.display = 'block';
+    activeYear = null;
+
+    if (shouldScroll) {
+      const galSec = document.getElementById('gallery');
+      if (galSec) {
+        galSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
+
+  window.showAlbumsView = showAlbumsView;
+
+  function openLightbox(index) {
+    if (!currentAlbumPhotos || currentAlbumPhotos.length === 0) return;
+    activePhotoIndex = index;
+    updateLightbox();
+    const lb = document.getElementById('galLightbox');
+    if (lb) lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    const lb = document.getElementById('galLightbox');
+    if (lb) lb.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function updateLightbox() {
+    const photo = currentAlbumPhotos[activePhotoIndex];
+    if (!photo) return;
+
+    const img = document.getElementById('galLightboxImg');
+    const title = document.getElementById('galLightboxTitle');
+    const badge = document.getElementById('galLightboxBadge');
+    const meta = document.getElementById('galLightboxMeta');
+    const desc = document.getElementById('galLightboxDesc');
+
+    if (img) {
+      img.src = photo.src;
+      img.alt = photo.alt || photo.title;
+    }
+    if (title) title.textContent = photo.title;
+    if (badge) badge.textContent = activeYear + ' • Photo ' + (activePhotoIndex + 1) + ' of ' + currentAlbumPhotos.length;
+    if (meta) meta.textContent = '📍 ' + (photo.location || 'Tamil Nadu');
+    if (desc) desc.textContent = photo.description || '';
+  }
+
+  function navigateLightbox(dir) {
+    if (!currentAlbumPhotos || currentAlbumPhotos.length <= 1) return;
+    activePhotoIndex += dir;
+    if (activePhotoIndex < 0) activePhotoIndex = currentAlbumPhotos.length - 1;
+    if (activePhotoIndex >= currentAlbumPhotos.length) activePhotoIndex = 0;
+    updateLightbox();
   }
 
   function initGallery() {
-    // Generate years dynamically (2019 to current year)
-    renderYearTabs();
+    renderAlbums();
 
-    // Attach Arrow Buttons
-    const prevBtn = document.getElementById('galPrevBtn');
-    const nextBtn = document.getElementById('galNextBtn');
-    if (prevBtn) prevBtn.addEventListener('click', () => navigatePhoto(-1));
-    if (nextBtn) nextBtn.addEventListener('click', () => navigatePhoto(1));
+    // Back to albums button
+    const backBtn = document.getElementById('galBackToAlbumsBtn');
+    if (backBtn) backBtn.addEventListener('click', () => showAlbumsView(true));
 
-    // Keyboard Arrow Navigation
+    // Lightbox controls
+    const lbClose = document.getElementById('galLightboxClose');
+    const lbOverlay = document.getElementById('galLightboxOverlay');
+    const lbPrev = document.getElementById('galLightboxPrev');
+    const lbNext = document.getElementById('galLightboxNext');
+
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+    if (lbOverlay) lbOverlay.addEventListener('click', closeLightbox);
+    if (lbPrev) lbPrev.addEventListener('click', () => navigateLightbox(-1));
+    if (lbNext) lbNext.addEventListener('click', () => navigateLightbox(1));
+
     document.addEventListener('keydown', (e) => {
-      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
-      if (e.key === 'ArrowLeft') {
-        navigatePhoto(-1);
-      } else if (e.key === 'ArrowRight') {
-        navigatePhoto(1);
+      const lb = document.getElementById('galLightbox');
+      if (lb && lb.style.display === 'flex') {
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        else if (e.key === 'ArrowRight') navigateLightbox(1);
       }
     });
-
-    // Initial render
-    renderGallery();
-  }
-
-  function switchYear(year) {
-    if (currentYear === year) return;
-    currentYear = year;
-    currentIndex = 0; // Reset to first photo on year switch
-
-    document.querySelectorAll('.gallery-year-btn').forEach(btn => {
-      const bYear = parseInt(btn.getAttribute('data-year'), 10);
-      const isActive = bYear === year;
-      btn.classList.toggle('active', isActive);
-      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-    });
-
-    renderGallery();
-  }
-
-  function renderGallery() {
-    const rawList = GALLERY_ARCHIVE[currentYear] || [];
-    const photos = rawList.slice(0, MAX_PER_YEAR); // Enforce maximum 15 photos per year
-    const viewerCard = document.getElementById('galleryViewerCard');
-    const emptyState = document.getElementById('galleryEmptyState');
-    const emptyYearSpan = document.getElementById('emptyYearNumber');
-
-    if (photos.length === 0) {
-      if (viewerCard) viewerCard.style.display = 'none';
-      if (emptyState) {
-        emptyState.style.display = 'block';
-        if (emptyYearSpan) emptyYearSpan.textContent = currentYear;
-      }
-      return;
-    }
-
-    if (emptyState) emptyState.style.display = 'none';
-    if (viewerCard) viewerCard.style.display = 'block';
-
-    if (currentIndex >= photos.length) currentIndex = 0;
-    if (currentIndex < 0) currentIndex = photos.length - 1;
-
-    updateViewer(photos);
-    renderDots(photos);
-    renderThumbnails(photos);
-  }
-
-  function updateViewer(photos) {
-    const photo = photos[currentIndex];
-    if (!photo) return;
-
-    const imgEl = document.getElementById('galMainImg');
-    const badgeYear = document.getElementById('galBadgeYear');
-    const badgeCounter = document.getElementById('galBadgeCounter');
-    const titleEl = document.getElementById('galInfoTitle');
-    const pillEl = document.getElementById('galInfoPill');
-    const locText = document.getElementById('galLocText');
-    const descEl = document.getElementById('galInfoDesc');
-
-    if (badgeYear) badgeYear.textContent = currentYear;
-    if (badgeCounter) badgeCounter.textContent = 'Photo ' + (currentIndex + 1) + ' of ' + photos.length;
-    if (titleEl) titleEl.textContent = photo.title;
-    if (pillEl) pillEl.textContent = currentYear + ' Drive';
-    if (locText) locText.textContent = photo.location || 'Tamil Nadu';
-    if (descEl) descEl.textContent = photo.description || '';
-
-    if (imgEl) {
-      if (imgEl.src !== photo.src) {
-        imgEl.classList.add('img-switching');
-        setTimeout(() => {
-          imgEl.src = photo.src;
-          imgEl.alt = photo.alt || photo.title;
-          imgEl.onload = () => imgEl.classList.remove('img-switching');
-          setTimeout(() => imgEl.classList.remove('img-switching'), 150);
-        }, 120);
-      }
-    }
-  }
-
-  function renderDots(photos) {
-    const dotsContainer = document.getElementById('galDotsContainer');
-    if (!dotsContainer) return;
-
-    dotsContainer.innerHTML = '';
-    const total = photos.length;
-    if (total <= 1) return;
-
-    // Flipkart-style 5 dots window
-    const windowSize = Math.min(5, total);
-    let startIdx = 0;
-
-    if (total > 5) {
-      startIdx = Math.max(0, currentIndex - 2);
-      if (startIdx + windowSize > total) {
-        startIdx = Math.max(0, total - windowSize);
-      }
-    }
-
-    for (let i = 0; i < windowSize; i++) {
-      const targetPhotoIndex = startIdx + i;
-      const dot = document.createElement('button');
-      dot.className = 'gallery-dot' + (targetPhotoIndex === currentIndex ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to photo ' + (targetPhotoIndex + 1));
-      dot.addEventListener('click', () => {
-        currentIndex = targetPhotoIndex;
-        updateViewer(photos);
-        renderDots(photos);
-        highlightActiveThumb();
-      });
-      dotsContainer.appendChild(dot);
-    }
-  }
-
-  function renderThumbnails(photos) {
-    const track = document.getElementById('galThumbsTrack');
-    if (!track) return;
-
-    track.innerHTML = '';
-    photos.forEach((p, idx) => {
-      const btn = document.createElement('button');
-      btn.className = 'gallery-thumb-btn' + (idx === currentIndex ? ' active' : '');
-      btn.setAttribute('aria-label', 'Thumbnail ' + (idx + 1));
-      btn.innerHTML = '<img src="' + p.src + '" alt="' + p.title + '" loading="lazy" />';
-      btn.addEventListener('click', () => {
-        currentIndex = idx;
-        updateViewer(photos);
-        renderDots(photos);
-        highlightActiveThumb();
-      });
-      track.appendChild(btn);
-    });
-
-    highlightActiveThumb();
-  }
-
-  function highlightActiveThumb() {
-    const thumbs = document.querySelectorAll('.gallery-thumb-btn');
-    thumbs.forEach((t, idx) => {
-      const isActive = idx === currentIndex;
-      t.classList.toggle('active', isActive);
-      if (isActive) {
-        t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
-    });
-  }
-
-  function navigatePhoto(dir) {
-    const photos = (GALLERY_ARCHIVE[currentYear] || []).slice(0, MAX_PER_YEAR);
-    if (photos.length <= 1) return;
-
-    currentIndex += dir;
-    if (currentIndex < 0) currentIndex = photos.length - 1;
-    if (currentIndex >= photos.length) currentIndex = 0;
-
-    updateViewer(photos);
-    renderDots(photos);
-    highlightActiveThumb();
   }
 
   if (document.readyState === 'loading') {
@@ -4099,8 +6843,15 @@ window.updateGenZModalLang = updateGenZModalLang;
   } else {
     initGallery();
   }
-})();
-</script>
+
+  // Ensure homepage loads at top if no hash is present in URL
+  if (!window.location.hash) {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }
+})();</script>
 
 </body>
 </html>

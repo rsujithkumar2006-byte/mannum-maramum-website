@@ -1,21 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { run, get, all } = require('../data/database');
-const { authenticateToken } = require('../middleware/auth');
-
-const jwt = require('jsonwebtoken');
-
-function checkIsAdmin(req) {
-  const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) return false;
-  const token = authHeader.split(' ')[1];
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'mannum_maramum_secret_jwt_key_2025');
-    return !!decoded;
-  } catch (e) {
-    return false;
-  }
-}
+const { authenticateToken, checkIsAdmin } = require('../middleware/auth');
 
 // GET /api/projects - Public & Admin with filters
 router.get('/', async (req, res) => {

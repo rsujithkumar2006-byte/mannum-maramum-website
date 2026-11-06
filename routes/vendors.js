@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { run, get, all } = require('../data/database');
-const { authenticateToken } = require('../middleware/auth');
+const { authenticateToken, requireRole } = require('../middleware/auth');
 
 // POST /api/vendors - Public Vendor Registration submission
 router.post('/', async (req, res) => {
@@ -163,8 +163,8 @@ router.post('/', async (req, res) => {
   }
 });
 
-// GET /api/vendors - List vendor applications (Admin/Public read)
-router.get('/', async (req, res) => {
+// GET /api/vendors - List vendor applications (Protected - Admin/Editor only)
+router.get('/', authenticateToken, requireRole(['super_admin', 'admin', 'editor']), async (req, res) => {
   try {
     const { status, vendor_type, search } = req.query;
     let sql = 'SELECT * FROM vendors WHERE 1=1';

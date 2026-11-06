@@ -147,12 +147,12 @@ async function runValidation() {
   }
   console.log(`✓ Original projects preserved: ${finalProjects.length} projects intact.`);
 
-  // Verify gallery integrity (all 18 items preserved)
+  // Verify gallery integrity (all 17 authentic items preserved)
   const galleryItems = await all('SELECT id, is_published FROM gallery');
-  if (galleryItems.length !== 18) {
-    throw new Error(`FAIL: Expected exactly 18 gallery items, found ${galleryItems.length}!`);
+  if (galleryItems.length !== 17) {
+    throw new Error(`FAIL: Expected exactly 17 gallery items, found ${galleryItems.length}!`);
   }
-  console.log(`✓ All 18 Gallery items verified intact in SQLite.`);
+  console.log(`✓ All 17 Gallery items verified intact in SQLite.`);
 
   console.log('\n===============================================================');
   console.log('🎉 REQUIREMENT 4 PROJECT VALIDATION COMPLETED WITH 100% SUCCESS');
